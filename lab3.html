@@ -1,0 +1,75 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 3</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a  href="index.html">Головна</a><a  href="lab1.html">Лабораторна робота 1</a><a  href="lab2.html">Лабораторна робота 2</a><a class=active href="lab3.html">Лабораторна робота 3</a><a  href="lab4.html">Лабораторна робота 4</a><a  href="lab5.html">Лабораторна робота 5</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 03</p><h1>Лабораторна робота 3</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Циклічні обчислювальні процеси.</p><p><strong>Мета:</strong> Вивчити особливості циклічних обчислювальних процесів, опанувати оператори циклів та розроблення алгоритмів циклічних процесів.</p></section><section class="card" id="condition"><h2>Умова завдання</h2><p>Обчислити подвійну суму. Параметр зовнішньої суми x змінюється від 1 до 5, внутрішньої — k від 0 до досягнення заданої точності. Степінь та факторіал обчислювати за рекурентними співвідношеннями.</p><figure class="figure"><a href="assets/lab3-formula.gif" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-formula.gif" alt="Варіант 1 — формула з методичних вказівок"></a><figcaption>Варіант 1 — формула з методичних вказівок</figcaption></figure></section><section class="card" id="analysis"><h2>Аналіз завдання</h2><p>Користувач задає точність. Для кожного x внутрішній цикл додає поточний член до суми та виводить x, k, current і sum. Початкові значення: sign = −1, factorial = 1, power = 1/x. Після кожної ітерації знак змінюється, k збільшується, factorial множиться на k, а power — на x².</p><p>Внутрішній цикл завершується при |current| ≤ accuracy або досягненні меж FLT_MAX / FLT_MIN. Кількість доданків залежить від x. Програма виводить окремі внутрішні суми.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><div class="gallery"><figure class="figure"><a href="assets/lab3-flow-input.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-flow-input.png" alt="Введення точності та виведення таблиці"></a><figcaption>Введення точності та виведення таблиці</figcaption></figure><figure class="figure"><a href="assets/lab3-flow-fraction.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-flow-fraction.png" alt="Обчислення поточного члена ряду"></a><figcaption>Обчислення поточного члена ряду</figcaption></figure><figure class="figure"><a href="assets/lab3-flow-inner.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-flow-inner.png" alt="Внутрішня сума"></a><figcaption>Внутрішня сума</figcaption></figure><figure class="figure"><a href="assets/lab3-flow-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-flow-main.png" alt="Головна функція та зовнішній цикл"></a><figcaption>Головна функція та зовнішній цикл</figcaption></figure></div></section><section class="card" id="code"><h2>Код програми</h2><h3>Циклічне обчислення ряду</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;windows.h&gt;
+#include &lt;cmath&gt;
+#include &lt;cfloat&gt;
+
+using namespace std;
+
+void inputAccuracy(float&amp; accuracy)
+{
+    cout &lt;&lt; &quot;Введіть точність розрахунку: &quot;;
+    cin &gt;&gt; accuracy;
+}
+
+void outputTableHeader()
+{
+    cout &lt;&lt; &quot;====================================================&quot; &lt;&lt; endl;
+    cout &lt;&lt; setw(5) &lt;&lt; &quot;x&quot; &lt;&lt; setw(5) &lt;&lt; &quot;k&quot; &lt;&lt; setw(20) &lt;&lt; &quot;current&quot; &lt;&lt; setw(20) &lt;&lt; &quot;sum&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;====================================================&quot; &lt;&lt; endl;
+}
+
+double calculateFraction(int k, int sign, double power, double factorial)
+{
+    double result;
+    result = (sign * power) / ((2 * k + 1) * factorial);
+    return result;
+}
+
+void innerSum(int x, float accuracy)
+{
+    int sign = -1;
+    int k = 0;
+    double sum = 0;
+    double factorial = 1;
+    double power = 1.0 / x;
+
+    while (true)
+    {
+        double current = calculateFraction(k, sign, power, factorial);
+        sum += current;
+        cout &lt;&lt; setw(5) &lt;&lt; x &lt;&lt; setw(5) &lt;&lt; k &lt;&lt; setw(20) &lt;&lt; current &lt;&lt; setw(20) &lt;&lt; sum &lt;&lt; endl;
+        if (fabs(current) &lt;= accuracy)
+        {
+            break;
+        }
+        else if (fabs(current) &gt;= FLT_MAX || fabs(current) &lt;= FLT_MIN)
+        {
+            cout &lt;&lt; &quot;current досягло значення 10^38 або 10^-38, внутрішній цикл перервано&quot; &lt;&lt; endl;
+            break;
+        }
+        sign *= -1;
+        k++;
+        factorial *= k;
+        power *= x * x;
+    }
+}
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    float accuracy;
+    cout &lt;&lt; &quot;Анастасьєв Володимир Андрійович ІПЗ11&quot; &lt;&lt; endl;
+    inputAccuracy(accuracy);
+    outputTableHeader();
+    for (int x = 1; x &lt; 6; x++)
+    {
+        innerSum(x, accuracy);
+        cout &lt;&lt; &quot;====================================================&quot; &lt;&lt; endl;
+    }
+}
+</code></pre></section><section class="card" id="checks"><h2>Перевірка розрахунків</h2><div class="gallery"><figure class="figure"><a href="assets/lab3-result.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-result.png" alt="Результат виконання програми"></a><figcaption>Результат виконання програми</figcaption></figure><figure class="figure"><a href="assets/lab3-check.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab3-check.png" alt="Контрольний розрахунок в Excel, точність 0,0001"></a><figcaption>Контрольний розрахунок в Excel, точність 0,0001</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У ході виконання лабораторної роботи було опановано організацію вкладених циклів для обчислення ряду. Зовнішній цикл for перебирає значення x від 1 до 5, а внутрішній цикл while обчислює члени ряду до виконання умови завершення. Набуто навичок керування кількістю повторень за допомогою заданої точності та оператора break.</p><p>Для визначення степеня та факторіала застосовано рекурентні співвідношення: кожне наступне значення отримується з попереднього. Такий підхід дозволяє виконувати обчислення без окремого виклику функцій піднесення до степеня і розрахунку факторіала на кожній ітерації. Знак поточного члена змінюється після кожного повторення, що відповідає знакозмінному характеру ряду.</p><p>У програмі реалізовано виведення таблиці зі значеннями x, k, поточного члена та накопиченої внутрішньої суми. Умови завершення враховують модуль поточного члена, задану точність і межі FLT_MAX та FLT_MIN. Результати для точності 0,0001 наведено разом із контрольним розрахунком в Excel, що дозволяє зіставити окремі члени та проміжні суми.</p><p>Робота закріпила розуміння різниці між циклом із заданою кількістю повторень і циклом, завершення якого визначається числовою умовою. Програма виводить внутрішню суму окремо для кожного x; підсумкове додавання цих п’яти сум у ній не виконується. Отримані навички є основою для подальшого програмування ітераційних чисельних алгоритмів.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

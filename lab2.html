@@ -1,0 +1,72 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 2</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a  href="index.html">Головна</a><a  href="lab1.html">Лабораторна робота 1</a><a class=active href="lab2.html">Лабораторна робота 2</a><a  href="lab3.html">Лабораторна робота 3</a><a  href="lab4.html">Лабораторна робота 4</a><a  href="lab5.html">Лабораторна робота 5</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 02</p><h1>Лабораторна робота 2</h1></section>
+<nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav>
+<section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Розгалужені обчислювальні процеси.</p><p><strong>Мета:</strong> Вивчити особливості розгалужених обчислювальних процесів. Опанувати технологію використання логічних операторів.</p></section>
+<section class="card" id="condition"><h2>Умова завдань</h2><div class="task"><h3>Завдання 1</h3><p>Визначити значення функції залежно від значення її аргументу, яке вводиться з клавіатури.</p><img style="max-width:420px;width:100%" src="assets/lab2-formula.png" alt="Кусково-задана функція"></div><div class="task"><h3>Завдання 2</h3><p>Визначити умови взаємного розташування двох прямих, що задаються коефіцієнтами рівнянь виду ax + by + c = 0: паралельні, перпендикулярні, перетинаються або збігаються.</p></div></section>
+<section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Користувач вводить значення a та b. Далі функція calculateY() порівнює значення і виконує розрахунок відповідно до потрібної гілки умови.</p><h3>Завдання 2</h3><p>Функція input() отримує a1, b1, c1, a2, b2, c2, а checker() перевіряє взаємне розташування прямих: збіжність, паралельність, перпендикулярність або перетин.</p></section>
+<section class="card" id="flows"><h2>Блок-схеми завдань</h2><div class="gallery">
+<figure class="figure wide"><img src="assets/lab2-flow-calculate.png"><figcaption>calculateY()</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-flow-main.png"><figcaption>main()</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-flow-input.png"><figcaption>input()</figcaption></figure>
+<figure class="figure wide"><img src="assets/lab2-flow-checker.png"><figcaption>checker()</figcaption></figure></div></section>
+<section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 2</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;Windows.h&gt;
+
+using namespace std;
+
+string checker(float a1, float b1, float c1,
+               float a2, float b2, float c2)
+{
+    if (a1 * b2 == b1 * a2 &amp;&amp;
+        c1 * b2 == b1 * c2 &amp;&amp;
+        a1 * c2 == a2 * c1)
+    {
+        return &quot;Прямі збігаються&quot;;
+    }
+    else if (a1 * b2 == b1 * a2)
+    {
+        return &quot;Прямі паралельні&quot;;
+    }
+    else if (a1 * a2 + b1 * b2 == 0)
+    {
+        return &quot;Прямі перпендикулярні&quot;;
+    }
+    else
+    {
+        return &quot;Прямі перетинаються&quot;;
+    }
+}
+
+void input()
+{
+    float a1, b1, c1, a2, b2, c2;
+
+    cout &lt;&lt; &quot;Лабораторна робота 2 Анастасьєв Володимир ІПЗ11&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;Введіть значення a1: &quot;; cin &gt;&gt; a1;
+    cout &lt;&lt; &quot;Введіть значення b1: &quot;; cin &gt;&gt; b1;
+    cout &lt;&lt; &quot;Введіть значення c1: &quot;; cin &gt;&gt; c1;
+    cout &lt;&lt; &quot;Введіть значення a2: &quot;; cin &gt;&gt; a2;
+    cout &lt;&lt; &quot;Введіть значення b2: &quot;; cin &gt;&gt; b2;
+    cout &lt;&lt; &quot;Введіть значення c2: &quot;; cin &gt;&gt; c2;
+
+    cout &lt;&lt; checker(a1, b1, c1, a2, b2, c2);
+}
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    input();
+    return 0;
+}</code></pre></section>
+<section class="card" id="checks"><h2>Перевірка розрахунків</h2><div class="gallery">
+<figure class="figure"><img src="assets/lab2-result-b0.png"><figcaption>Випадок b = 0</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-result-agb.png"><figcaption>Результат для a &gt; b</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-check-agb.png"><figcaption>Перевірка для a &gt; b</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-result-altb.png"><figcaption>Результат для a &lt; b</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-check-altb.png"><figcaption>Перевірка для a &lt; b</figcaption></figure>
+<figure class="figure"><img src="assets/lab2-result-equal.png"><figcaption>Випадок a = b</figcaption></figure></div></section>
+<section class="card" id="conclusion"><h2>Висновки</h2><p>У ході лабораторної роботи було вивчено розгалужені обчислювальні процеси та застосування умовних операторів у C++. Закріплено навички використання операторів порівняння і логічних операцій для вибору потрібної гілки алгоритму. Під час аналізу завдань визначено, які умови необхідно перевіряти та в якій послідовності виконувати ці перевірки.</p><p>У першому завданні розглянуто обчислення функції залежно від співвідношення введених значень. Результати для різних гілок умови наведено у звіті разом із контрольними розрахунками. У другому завданні реалізовано визначення взаємного розташування двох прямих за коефіцієнтами їхніх рівнянь: збігу, паралельності, перпендикулярності або перетину.</p><p>Робота показала, що правильність розгалуженого алгоритму залежить від повноти умов і порядку їх перевірки. Для перевірки таких програм необхідно розглядати різні співвідношення початкових даних, а також граничні й особливі випадки. Набуті навички можна застосовувати під час побудови програм, поведінка яких змінюється залежно від введених значень.</p></section><a class="back" href="index.html">← На головну</a></main>
+<footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

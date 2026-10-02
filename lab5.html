@@ -1,0 +1,191 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 5</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a  href="index.html">Головна</a><a  href="lab1.html">Лабораторна робота 1</a><a  href="lab2.html">Лабораторна робота 2</a><a  href="lab3.html">Лабораторна робота 3</a><a  href="lab4.html">Лабораторна робота 4</a><a class=active href="lab5.html">Лабораторна робота 5</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 05</p><h1>Лабораторна робота 5</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Рекурсивні обчислювальні процеси.</p><p><strong>Мета:</strong> Опанувати побудову рекурсивних функцій, визначення базової умови та рекурсивного переходу. Порівняти рекурсивний та ітераційний способи розв’язання задачі, визначити глибину рекурсії й кількість ітерацій.</p></section><section class="card" id="condition"><h2>Умова завдань</h2><h3>Завдання 1</h3><p>Увести з клавіатури натуральне число n. Знайти суму його цифр, використовуючи рекурентне означення функції f(n). Реалізувати також ітераційний спосіб обчислення. Порівняти результати, визначити глибину рекурсії та кількість ітерацій циклу.</p><figure class="figure"><a href="assets/lab5-formula.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-formula.png" alt="Рекурентне співвідношення для суми цифр"></a><figcaption>Рекурентне співвідношення для суми цифр</figcaption></figure><p>Умова завершення: для n = 0 сума цифр дорівнює 0. Умова продовження: остання цифра додається до суми цифр числа без останньої цифри.</p><h3>Завдання 2</h3><p>Вкладник поклав у банк sum грошових одиниць під percent відсотків за один період. Усі дані вводяться з клавіатури. Використовуючи рекурсію, визначити величину вкладу після months періодів. Масиви та рядки для розв’язання задачі не використовувати.</p><p>Контрольний тест: початкова сума 1000, ставка за період 1,25%, кількість періодів 12; результат — приблизно 1160,75.</p></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Остання цифра числа визначається як n % 10, а число без останньої цифри — як n / 10 із цілочисельним діленням. Рекурсивна функція повторює ці операції для коротшого числа, поки n не стане нулем. Ітераційна реалізація накопичує суму в циклі та рахує його повторення.</p><p>Для числа 123456 обидва способи дають 21. У коді лічильник depth збільшується після перевірки n == 0, тому для числа 123456 значення depth та iterations дорівнюють 6. Загальна кількість викликів рекурсивної функції разом із базовим викликом дорівнює 7.</p><h3>Завдання 2</h3><p>За кожний період до поточної суми додається sum · percent / 100. Нова сума стає основою для наступного нарахування. Лічильник currentMonth збільшується до значення months, після чого рекурсивна функція повертає накопичену суму.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab5-flow-task1-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-main.png" alt="main()"></a><figcaption>main()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task1-identification.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-identification.png" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task1-recursive.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-recursive.png" alt="calculateDigitSumRecursive()"></a><figcaption>calculateDigitSumRecursive()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task1-iterative.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-iterative.png" alt="calculateDigitSumIterative()"></a><figcaption>calculateDigitSumIterative()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task1-input.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-input.png" alt="inputNumber()"></a><figcaption>inputNumber()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task1-output.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task1-output.png" alt="outputResults()"></a><figcaption>outputResults()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab5-flow-task2-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task2-main.png" alt="main()"></a><figcaption>main()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task2-identification.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task2-identification.png" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task2-input.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task2-input.png" alt="inputDepositData()"></a><figcaption>inputDepositData()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task2-deposit.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task2-deposit.png" alt="calculateDeposit()"></a><figcaption>calculateDeposit()</figcaption></figure><figure class="figure"><a href="assets/lab5-flow-task2-output.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-flow-task2-output.png" alt="outputDepositResult()"></a><figcaption>outputDepositResult()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+
+using namespace std;
+
+int n = 0; // Число для обчислення суми його цифр
+int depth = 0; // Кількість рекурсивних викликів функції
+int iterations = 0; // Кількість ітерацій циклу
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 5 Завдання 1&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Знайти суму цифр натурального числа n введеного з клавіатури. &quot;
+		&lt;&lt; &quot;Сума цифр дорівнює останній цифрі плюс уся сума цифр числа &quot;
+		&lt;&lt; &quot;без останньої цифри&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;f(n) = { n % 10 + f(n/10),   n != 0&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;       { 0,                  n = 0&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;========================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для рекурсивного обчислення суми цифр числа
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;n&quot;&gt;Число, сума цифр якого обчислюється&lt;/param&gt;
+/// &lt;param name=&quot;depth&quot;&gt;Кількість рекурсивних викликів функції&lt;/param&gt;
+/// &lt;returns&gt;Сума цифр числа&lt;/returns&gt;
+int calculateDigitSumRecursive(int n, int&amp; depth)
+{
+	if (n == 0)
+	{
+		return 0;
+	}
+
+	++depth;
+
+	return n % 10 + calculateDigitSumRecursive(n / 10, depth);
+}
+
+/// &lt;summary&gt;
+/// Функція для ітеративного обчислення суми цифр числа
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;n&quot;&gt;Число, сума цифр якого обчислюється&lt;/param&gt;
+/// &lt;param name=&quot;iterations&quot;&gt;Кількість ітерацій циклу&lt;/param&gt;
+/// &lt;returns&gt;Сума цифр числа&lt;/returns&gt;
+int calculateDigitSumIterative(int n, int&amp; iterations)
+{
+	int sum = 0; // Сума цифр числа
+
+	while (n &gt; 0)
+	{
+		sum += n % 10;
+		n /= 10;
+		++iterations;
+	}
+
+	return sum;
+}
+
+/// &lt;summary&gt;
+/// Функція для введення значення числа
+/// &lt;/summary&gt;
+void inputNumber()
+{
+	cout &lt;&lt; &quot;Введіть значення n: &quot;;
+	cin &gt;&gt; n;
+
+	while (n &lt; 0)
+	{
+		cout &lt;&lt; &quot;Значення n повинно бути 0 або більше!&quot; &lt;&lt; endl;
+		cin &gt;&gt; n;
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення результатів обчислення на консоль
+/// &lt;/summary&gt;
+void outputResults()
+{
+	int recursiveResult = calculateDigitSumRecursive(n, depth); // Результат рекурсивного обчислення
+	int iterativeResult = calculateDigitSumIterative(n, iterations); // Результат ітеративного обчислення
+
+	cout &lt;&lt; setw(23) &lt;&lt; &quot;Результат&quot; &lt;&lt; setw(15) &lt;&lt; &quot;Кількість&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;========================================&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Рекурсія &quot; &lt;&lt; setw(10) &lt;&lt; recursiveResult &lt;&lt; setw(15) &lt;&lt; depth &lt;&lt; endl;
+	cout &lt;&lt; &quot;Ітерація &quot; &lt;&lt; setw(10) &lt;&lt; iterativeResult &lt;&lt; setw(15) &lt;&lt; iterations &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	identificationOutput();
+	inputNumber();
+	outputResults();
+}</code></pre><h3>Завдання 2</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;Windows.h&gt;
+
+using namespace std;
+
+float sum; // Початкова сума депозиту
+float percent; // Відсоткова ставка депозиту
+int months; // Кількість місяців депозиту
+int currentMonth = 0; // Номер поточного місяця
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Вкладник поклав в банк sum грошових одиниць під pr &quot;
+		&lt;&lt; &quot;відсотків за один період.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Усі дані вводити з клавіатури. Використовуючи рекурсію, &quot;
+		&lt;&lt; &quot;визначити величину вкладу по завершенні m періодів часу.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для введення початкових даних депозиту
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sum&quot;&gt;Початкова сума депозиту&lt;/param&gt;
+/// &lt;param name=&quot;percent&quot;&gt;Відсоткова ставка депозиту&lt;/param&gt;
+/// &lt;param name=&quot;months&quot;&gt;Кількість місяців депозиту&lt;/param&gt;
+void inputDepositData(float&amp; sum, float&amp; percent, int&amp; months)
+{
+	cout &lt;&lt; &quot;Введіть суму депозиту: &quot;;
+	cin &gt;&gt; sum;
+
+	cout &lt;&lt; &quot;Введіть відсоток: &quot;;
+	cin &gt;&gt; percent;
+
+	cout &lt;&lt; &quot;Введіть кількість періодів: &quot;;
+	cin &gt;&gt; months;
+}
+
+/// &lt;summary&gt;
+/// Функція для рекурсивного обчислення суми депозиту
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;currentMonth&quot;&gt;Номер поточного місяця&lt;/param&gt;
+/// &lt;returns&gt;Сума депозиту після завершення заданої кількості місяців&lt;/returns&gt;
+float calculateDeposit(int&amp; currentMonth)
+{
+	if (currentMonth == months)
+	{
+		return sum;
+	}
+
+	++currentMonth;
+
+	sum += sum * percent / 100;
+
+	return calculateDeposit(currentMonth);
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення результату обчислення депозиту
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;months&quot;&gt;Кількість місяців депозиту&lt;/param&gt;
+void outputDepositResult(int months)
+{
+	float result = calculateDeposit(currentMonth); // Результат обчислення суми депозиту
+
+	cout &lt;&lt; &quot;Величина вкладу після завершення &quot; &lt;&lt; months
+		&lt;&lt; &quot; місяців становить: &quot; &lt;&lt; result &lt;&lt; &quot; ГРН&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	identificationOutput();
+	inputDepositData(sum, percent, months);
+	outputDepositResult(months);
+}</code></pre></section><section class="card" id="checks"><h2>Перевірка розрахунків</h2><h3>Завдання 1</h3><div class="gallery"><figure class="figure"><a href="assets/lab5-result-task1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-result-task1.png" alt="Сума цифр числа 123456: рекурсія та ітерація"></a><figcaption>Сума цифр числа 123456: рекурсія та ітерація</figcaption></figure><figure class="figure"><a href="assets/lab5-check-task1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-check-task1.png" alt="Контрольний розрахунок: 1 + 2 + 3 + 4 + 5 + 6 = 21"></a><figcaption>Контрольний розрахунок: 1 + 2 + 3 + 4 + 5 + 6 = 21</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery"><figure class="figure"><a href="assets/lab5-result-task2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-result-task2.png" alt="Результат розрахунку депозиту: 1160,75"></a><figcaption>Результат розрахунку депозиту: 1160,75</figcaption></figure><figure class="figure"><a href="assets/lab5-check-task2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab5-check-task2.png" alt="Контрольний розрахунок в Excel: 1160,754518"></a><figcaption>Контрольний розрахунок в Excel: 1160,754518</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У ході лабораторної роботи було опановано побудову рекурсивних обчислювальних процесів. Закріплено визначення умови завершення рекурсії та переходу до простішого підзавдання. Розглянуто, як повторний виклик функції дозволяє послідовно обробляти число або виконувати нарахування за окремими періодами.</p><p>У першому завданні суму цифр числа визначено рекурсивним та ітераційним способами. Для контрольного числа 123456 обидва обчислення дали результат 21. У наведеному коді лічильник depth враховує лише виклики з ненульовим аргументом, тому для цього числа обидва лічильники дорівнюють 6. Базовий виклик для n = 0 завершує рекурсію без збільшення depth.</p><p>Обидва способи обробляють кожну цифру один раз, тому кількість основних дій зростає пропорційно кількості цифр. Ітераційний спосіб використовує сталу кількість допоміжних змінних, тоді як рекурсивний потребує збереження активних викликів у стеку. Це дозволило порівняти способи не лише за результатом, а й за організацією виконання.</p><p>У другому завданні застосовано рекурсію для обчислення депозиту з нарахуванням відсотків на поточну суму. Для початкового вкладу 1000, ставки 1,25% за період і 12 періодів отримано приблизно 1160,75. Результат узгоджується з контрольним розрахунком в Excel, де наведено більше десяткових знаків.</p><p>Робота закріпила навички аналізу рекурсивних алгоритмів, визначення базового випадку, підрахунку повторень та перевірки результатів незалежним розрахунком. Побудовані блок-схеми відображають послідовність виконання функцій і умови завершення обчислень.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

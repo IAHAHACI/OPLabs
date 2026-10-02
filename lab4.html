@@ -1,0 +1,166 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 4</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a  href="index.html">Головна</a><a  href="lab1.html">Лабораторна робота 1</a><a  href="lab2.html">Лабораторна робота 2</a><a  href="lab3.html">Лабораторна робота 3</a><a class=active href="lab4.html">Лабораторна робота 4</a><a  href="lab5.html">Лабораторна робота 5</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 04</p><h1>Лабораторна робота 4</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Ітераційні обчислювальні процеси.</p><p><strong>Мета:</strong> Навчитися обчислювати функції за рядами із заданою точністю, застосовувати рекурентні співвідношення та обчислювати скінченні ланцюгові дроби.</p></section><section class="card" id="condition"><h2>Умова завдань</h2><h3>Завдання 1</h3><p>Обчислити значення заданої функції на проміжку від minX до maxX з кроком step. Косинус обчислювати за рядом Маклорена та порівняти зі стандартною функцією cos.</p><figure class="figure"><a href="assets/lab4-formula-task1.gif" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-formula-task1.gif" alt="Завдання 1 — варіант 1 із методичних вказівок"></a><figcaption>Завдання 1 — варіант 1 із методичних вказівок</figcaption></figure><h3>Завдання 2</h3><p>Обчислити скінченний ланцюговий дріб для введеного n.</p><figure class="figure"><a href="assets/lab4-formula-task2.gif" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-formula-task2.gif" alt="Завдання 2 — варіант 1 із методичних вказівок"></a><figcaption>Завдання 2 — варіант 1 із методичних вказівок</figcaption></figure></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Вводяться межі проміжку, додатний крок та точність від 10⁻⁶ до 10⁻². Для −1 ≤ x ≤ 0 обчислюється cos(x/2)/cos(x²), для x &gt; 0 — cos²(x/2)·cos(2x). Для x &lt; −1 функція не визначена. Член ряду оновлюється за формулою term *= −x²/((2k+1)(2k+2)). Похибка дорівнює модулю різниці між результатом і стандартним значенням.</p><h3>Завдання 2</h3><p>Дріб обчислюється знизу вгору. Початкове значення term = 2n−1 + 1/(2n+1). Цикл від i = n−1 до 1 виконує term = 2i−1 + 1/term. Контрольний приклад: n = 5, результат ≈ 1,313035.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab4-flow-task1-cos.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task1-cos.png" alt="Завдання 1: calculateCos()"></a><figcaption>Завдання 1 — calculateCos()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task1-function.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task1-function.png" alt="Завдання 1: calculateFunction()"></a><figcaption>Завдання 1 — calculateFunction()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task1-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task1-main.png" alt="Завдання 1: main()"></a><figcaption>Завдання 1 — main()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task1-identification.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task1-identification.png" alt="Завдання 1: outputIdentification()"></a><figcaption>Завдання 1 — outputIdentification()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task1-input.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task1-input.png" alt="Завдання 1: inputData()"></a><figcaption>Завдання 1 — inputData()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab4-flow-task2-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task2-main.png" alt="Завдання 2: main()"></a><figcaption>Завдання 2 — main()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task2-identification.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task2-identification.png" alt="Завдання 2: outputIdentification()"></a><figcaption>Завдання 2 — outputIdentification()</figcaption></figure><figure class="figure"><a href="assets/lab4-flow-task2-fraction.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-flow-task2-fraction.png" alt="Завдання 2: calculateChainFraction()"></a><figcaption>Завдання 2 — calculateChainFraction()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+
+using namespace std;
+
+double minX; // Мінімальне значення аргументу x
+double maxX; // Максимальне значення аргументу x
+double step; // Крок зміни аргументу x
+double result; // Результат обчислення функції за рядом Маклорена
+double standardValue = 0; // Результат обчислення функції за допомогою стандартної функції cos
+double error; // Похибка обчислення
+double accuracy; // Точність розрахунку
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void outputIdentification()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна 4 Завдання 1&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;Обчислити значення функції за виразом:&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;    { cos(x/2)/cos(x^2), -1 &lt;= x &lt;= 0&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;y = |&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;    { (cos(x/2))^2*cos(2*x), x &gt; 0&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для введення та перевірки початкових даних
+/// &lt;/summary&gt;
+void inputData()
+{
+    cout &lt;&lt; &quot;Введіть minX, maxX, step наприклад: -5 5 1 &quot; &lt;&lt; endl;
+    cin &gt;&gt; minX &gt;&gt; maxX &gt;&gt; step;
+    while (minX &gt;= maxX)
+    {
+        cout &lt;&lt; &quot;minX повинен бути менше за maxX, введіть нове значення minX та maxX, наприклад: -5 5&quot; &lt;&lt; endl;
+        cin &gt;&gt; minX &gt;&gt; maxX;
+    }
+    while (step &lt;= 0)
+    {
+        cout &lt;&lt; &quot;Крок повинен бути більше 0, введіть нове значення step&quot; &lt;&lt; endl;
+        cin &gt;&gt; step;
+    }
+    do
+    {
+        cout &lt;&lt; &quot;Введіть точність від 10^-2 до 10^-6: &quot; &lt;&lt; endl;
+        cin &gt;&gt; accuracy;
+    }
+    while (accuracy &lt; 1e-6 || accuracy &gt; 1e-2);
+    cout &lt;&lt; &quot;===========================================================================================&quot; &lt;&lt; endl;
+    cout &lt;&lt; setw(15) &lt;&lt; &quot;x&quot; &lt;&lt; setw(20) &lt;&lt; &quot;y&quot; &lt;&lt; setw(20) &lt;&lt; &quot;standard value&quot; &lt;&lt; setw(20) &lt;&lt; &quot;error&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;===========================================================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення значення косинуса за рядом Маклорена
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;x&quot;&gt;Аргумент функції косинуса&lt;/param&gt;
+/// &lt;param name=&quot;accuracy&quot;&gt;Точність розрахунку&lt;/param&gt;
+/// &lt;returns&gt;Обчислене значення косинуса&lt;/returns&gt;
+double calculateCos(double x, double accuracy)
+{
+    double sum = 1; // Сума членів ряду Маклорена
+    double term = 1; // Поточний член ряду Маклорена
+    int k = 0; // Номер поточного члена ряду
+    while (fabs(term) &gt;= accuracy)
+    {
+        term *= -x * x / ((k * 2 + 1) * (k * 2 + 2));
+        sum += term;
+        k++;
+    }
+    return sum;
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення та виведення значень заданої функції
+/// &lt;/summary&gt;
+void calculateFunction()
+{
+    for (double x = minX; x &lt;= maxX; x += step)
+    {
+        if (x &gt;= -1 &amp;&amp; x &lt;= 0)
+        {
+            result = calculateCos(x / 2, accuracy) / calculateCos(x * x, accuracy);
+            standardValue = cos(x / 2) / cos(x * x);
+            error = fabs(result - standardValue);
+            cout &lt;&lt; setw(15) &lt;&lt; x &lt;&lt; setw(20) &lt;&lt; result &lt;&lt; setw(20) &lt;&lt; standardValue &lt;&lt; setw(20) &lt;&lt; error &lt;&lt; endl;
+        }
+        else if (x &gt; 0)
+        {
+            result = calculateCos(x / 2, accuracy) * calculateCos(x / 2, accuracy) * calculateCos(2 * x, accuracy);
+            standardValue = cos(x / 2) * cos(x / 2) * cos(2 * x);
+            error = fabs(result - standardValue);
+            cout &lt;&lt; setw(15) &lt;&lt; x &lt;&lt; setw(20) &lt;&lt; result &lt;&lt; setw(20) &lt;&lt; standardValue &lt;&lt; setw(20) &lt;&lt; error &lt;&lt; endl;
+        }
+        else
+        {
+            cout &lt;&lt; setw(15) &lt;&lt; x &lt;&lt; setw(20) &lt;&lt; &quot; function is not defined&quot; &lt;&lt; endl;
+        }
+    }
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+    outputIdentification();
+    inputData();
+    calculateFunction();
+}
+</code></pre><h3>Завдання 2</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;Windows.h&gt;
+
+using namespace std;
+
+int n; // Кількість елементів ланцюгового дробу
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void outputIdentification()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 4 завдання 2&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;Обчислити скінченний ланцюговий дріб:&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;1 + 1 / (3 + 1 / ... 2n - 1 + 1 / (2n + 1))&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;====================================================&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;Введіть значення n: &quot;;
+    cin &gt;&gt; n;
+    cout &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення значення ланцюгового дробу
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;n&quot;&gt;Кількість елементів ланцюгового дробу&lt;/param&gt;
+void calculateChainFraction()
+{
+    double term = 0; // Поточне значення ланцюгового дробу
+    term = 2 * n - 1 + 1.0 / (2 * n + 1);
+    for (int i = n - 1; i &gt;= 1; --i)
+    {
+        term = 2 * i - 1 + 1.0 / term;
+    }
+    cout &lt;&lt; &quot;Результат обчислення: &quot; &lt;&lt; term &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+    outputIdentification();
+    calculateChainFraction();
+}
+</code></pre></section><section class="card" id="checks"><h2>Перевірка розрахунків</h2><h3>Завдання 1</h3><div class="gallery"><figure class="figure"><a href="assets/lab4-result-task1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-result-task1.png" alt="Результат виконання завдання 1"></a><figcaption>Результат виконання завдання 1</figcaption></figure><figure class="figure"><a href="assets/lab4-check-task1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-check-task1.png" alt="Контрольний розрахунок завдання 1"></a><figcaption>Контрольний розрахунок завдання 1</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery"><figure class="figure"><a href="assets/lab4-result-task2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-result-task2.png" alt="Результат виконання завдання 2, n = 5"></a><figcaption>Результат виконання завдання 2, n = 5</figcaption></figure><figure class="figure"><a href="assets/lab4-check-task2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab4-check-task2.png" alt="Контрольний розрахунок: 1,313035"></a><figcaption>Контрольний розрахунок: 1,313035</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У ході лабораторної роботи було розроблено дві програми ітераційних обчислювальних процесів. Закріплено використання циклів, умовних операторів, функцій та рекурентних співвідношень для розв’язування математичних задач. Окрему увагу приділено вибору початкових значень і порядку виконання повторюваних обчислень.</p><p>У першому завданні реалізовано обчислення косинуса за рядом Маклорена із заданою точністю. Кожний наступний член ряду визначається через попередній, тому не потрібно окремо обчислювати степені та факторіали. Розрахована функція вибирається залежно від значення x, а для аргументів поза її областю визначення виводиться повідомлення. Перед обчисленнями перевіряються порядок меж проміжку, додатність кроку та допустимий діапазон точності.</p><p>Для кожного визначеного значення функції програма виводить результат обчислення за рядом, значення зі стандартною функцією cos та абсолютну різницю між ними. Таке подання дає змогу оцінювати узгодженість двох способів обчислення на вибраному проміжку. Задана точність використовується як умова завершення обчислення ряду; фактична похибка складеного виразу відображається окремо в таблиці.</p><p>У другому завданні скінченний ланцюговий дріб обчислено знизу вгору. Після визначення найглибшої частини дробу цикл послідовно переходить до попередніх рівнів, використовуючи вже отриманий результат. Для контрольного значення n = 5 обчислення дає приблизно 1,313035, що відображено у прикріпленій перевірці.</p><p>Робота дала змогу порівняти два види ітерацій: накопичення суми до досягнення умови точності та обчислення виразу із заздалегідь відомою кількістю рівнів. Складені блок-схеми відображають послідовність викликів функцій, розгалуження і цикли, а наведені результати та контрольні розрахунки доповнюють перевірку реалізованих алгоритмів.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

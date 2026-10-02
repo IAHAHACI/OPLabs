@@ -1,0 +1,61 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 1</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a  href="index.html">Головна</a><a class=active href="lab1.html">Лабораторна робота 1</a><a  href="lab2.html">Лабораторна робота 2</a><a  href="lab3.html">Лабораторна робота 3</a><a  href="lab4.html">Лабораторна робота 4</a><a  href="lab5.html">Лабораторна робота 5</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 01</p><h1>Лабораторна робота 1</h1></section>
+<nav class="section-nav"><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav>
+<section class="card" id="condition"><h2>Умова завдань</h2><div class="task"><h3>Завдання 1</h3><p>За даними, що введені з клавіатури в оперативну пам’ять, визначити значення виразу, використовуючи математичні функції, і вивести результат на екран. Довільні значення A, B, C, D ввести з клавіатури.</p><div class="formula">X = (2A − B²) / (D(sin(C) − 4,5))</div></div><div class="task"><h3>Завдання 2</h3><p>Обчислити гіпотенузу C прямокутного трикутника за катетами A та B, значення яких ввести з клавіатури.</p></div></section>
+<section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Для введення значень A, B, C та D використовується <code>cin</code>, після чого виконується обчислення за заданим виразом. Результат X виводиться за допомогою <code>cout</code>.</p><h3>Завдання 2</h3><p>З клавіатури вводяться катети A та B, після чого гіпотенуза C обчислюється за теоремою Піфагора: C² = A² + B².</p></section>
+<section class="card" id="flows"><h2>Блок-схеми завдань</h2><div class="gallery"><figure class="figure"><img src="assets/lab1-flow-task1.png" alt="Блок-схема завдання 1"><figcaption>Завдання 1</figcaption></figure><figure class="figure"><img src="assets/lab1-flow-task2.png" alt="Блок-схема завдання 2"><figcaption>Завдання 2</figcaption></figure></div></section>
+<section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+#include &lt;cmath&gt;
+
+using namespace std;
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+
+    cout &lt;&lt; &quot;Лабораторна робота 1 Анастасьєв Володимир ІПЗ11&quot; &lt;&lt; endl;
+
+    float A, B, C, D, X;
+    cout &lt;&lt; &quot;Введіть значення А, В, С, D: &quot; &lt;&lt; endl;
+    cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; D;
+
+    X = (2 * A - pow(B, 2)) / (D * (sin(C) - 4.5));
+
+    cout &lt;&lt; &quot;X = &quot; &lt;&lt; X &lt;&lt; endl;
+}</code></pre><h3>Завдання 2</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+#include &lt;cmath&gt;
+
+using namespace std;
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+
+    cout &lt;&lt; &quot;Лабораторна робота 1 Анастасьєв Володимир ІПЗ11&quot; &lt;&lt; endl;
+
+    float a, b, c;
+
+    cout &lt;&lt; &quot;Введіть значення катету А: &quot;;
+    cin &gt;&gt; a;
+
+    cout &lt;&lt; &quot;Введіть значення катету B: &quot;;
+    cin &gt;&gt; b;
+
+    c = sqrt(a * a + b * b);
+
+    cout &lt;&lt; &quot;Гіпотенуза C дорівнює: &quot; &lt;&lt; c;
+}</code></pre></section>
+<section class="card" id="checks"><h2>Перевірка розрахунків</h2><div class="gallery">
+<figure class="figure"><img src="assets/lab1-result-task1.png"><figcaption>Результат програми — завдання 1</figcaption></figure>
+<figure class="figure"><img src="assets/lab1-check-task1.png"><figcaption>Перевірка обчислення — завдання 1</figcaption></figure>
+<figure class="figure"><img src="assets/lab1-zero-task1.png"><figcaption>Приклад з діленням на нуль — завдання 1</figcaption></figure>
+<figure class="figure"><img src="assets/lab1-result-task2.png"><figcaption>Результат програми — завдання 2</figcaption></figure>
+<figure class="figure"><img src="assets/lab1-check-task2.png"><figcaption>Перевірка гіпотенузи</figcaption></figure></div></section>
+<section class="card" id="conclusion"><h2>Висновки</h2><p>У ході виконання лабораторної роботи було опановано побудову програм лінійних обчислювальних процесів мовою C++. Набуто практичних навичок оголошення змінних, вибору типів даних, введення початкових значень за допомогою cin та виведення результатів за допомогою cout. Закріплено розуміння порядку виконання арифметичних операцій і використання дужок у математичних виразах.</p><p>У першому завданні реалізовано обчислення виразу за введеними значеннями A, B, C і D. Під час розрахунку враховано необхідність перевірки знаменника, оскільки ділення на нуль не дає коректного результату для заданого виразу. У другому завданні визначено гіпотенузу прямокутного трикутника за відомими катетами на основі теореми Піфагора.</p><p>Для перевірки виконано контрольні розрахунки та зіставлено їх із результатами програм, наведеними у звіті. Робота дала змогу закріпити застосування стандартних математичних функцій, навчитися переводити математичну формулу в програмний вираз і оформлювати результати обчислень у зрозумілому вигляді.</p></section><a class="back" href="index.html">← На головну</a></main>
+<footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
