@@ -1,0 +1,523 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 7</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a href="index.html">Головна</a><a href="lab1.html">Лабораторна робота 1</a><a href="lab2.html">Лабораторна робота 2</a><a href="lab3.html">Лабораторна робота 3</a><a href="lab4.html">Лабораторна робота 4</a><a href="lab5.html">Лабораторна робота 5</a><a href="lab6.html">Лабораторна робота 6</a><a class="active" href="lab7.html">Лабораторна робота 7</a><a href="lab8.html">Лабораторна робота 8</a><a href="lab9.html">Лабораторна робота 9</a><a href="lab10.html">Лабораторна робота 10</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 07</p><h1>Лабораторна робота 7</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Двовимірні масиви та обробка квадратних матриць.</p><p><strong>Мета:</strong> Опанувати введення й обробку двовимірних масивів, роботу з головною діагоналлю, модифікацію матриці та обчислення оберненої матриці через визначник і алгебраїчні доповнення.</p></section><section class="card" id="condition"><h2>Умова завдань</h2><h3>Завдання 1</h3><p>Створити квадратну матрицю розмірності n ≥ 3 з ручним або автоматичним заповненням. Знайти суму елементів головної діагоналі та елементів над нею, які більші за всі елементи під головною діагоналлю. Записати цю суму в додатковий рядок і стовпець, передбачивши контроль меж матриці.</p><h3>Завдання 2</h3><p>Створити квадратну матрицю A розмірності m ≥ 3. Передбачити введення з клавіатури або генерацію додатних та від’ємних псевдовипадкових чисел. Знайти обернену матрицю, використовуючи алгебраїчні доповнення. Вивести вхідну матрицю, визначник та результат; передбачити виведення проміжних обчислень.</p><figure class="figure"><a href="assets/lab7-condition-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-condition-1.png" alt="Формула з умови завдання"></a><figcaption>Формула з умови завдання</figcaption></figure><figure class="figure"><a href="assets/lab7-condition-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-condition-2.png" alt="Формула з умови завдання"></a><figcaption>Формула з умови завдання</figcaption></figure></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Для елементів під головною діагоналлю виконується i > j. Спочатку серед них знаходиться максимум M. Після цього додаються лише ті елементи, для яких i ≤ j та aᵢⱼ > M. Строга нерівність застосовується і до елементів самої головної діагоналі.</p><p>Початковий розмір може становити від 3 до 10. Додатковий рядок і стовпець записуються за індексом n, тому розширення можливе лише для n ≤ 9. Якщо n = 10, сума обчислюється, але модифікація не виконується через обмеження масиву.</p><h3>Завдання 2</h3><p>Для кожного елемента створюється мінор шляхом вилучення відповідного рядка та стовпця. Його визначник із множником (−1)ⁱ⁺ʲ утворює алгебраїчне доповнення. Визначник матриці обчислюється рекурсивним розкладом за першим рядком, а для матриці 2 × 2 використовується безпосередня формула.</p><p>Обернена матриця існує за det(A) ≠ 0. Матриця алгебраїчних доповнень транспонується, після чого кожний її елемент ділиться на визначник: A⁻¹ = Cᵀ / det(A). У програмі розмір обмежено значеннями від 3 до 6.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab7-flow-1-01.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-01.png" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-02.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-02.png" alt="matrixOutput()"></a><figcaption>matrixOutput()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-03.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-03.png" alt="automaticMatrixFill()"></a><figcaption>automaticMatrixFill()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-04.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-04.png" alt="manualMatrixFill()"></a><figcaption>manualMatrixFill()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-05.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-05.png" alt="checkMaxElementUnderMainDiagonal()"></a><figcaption>checkMaxElementUnderMainDiagonal()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-06.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-06.png" alt="mainDiagonalAndAboveSum()"></a><figcaption>mainDiagonalAndAboveSum()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-07.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-07.png" alt="input()"></a><figcaption>input()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-08.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-08.png" alt="matrixSumChecker()"></a><figcaption>matrixSumChecker()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-09.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-09.png" alt="matrixModificationOutput()"></a><figcaption>matrixModificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-1-10.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-1-10.png" alt="main()"></a><figcaption>main()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab7-flow-2-01.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-01.png" alt="outputIdentification()"></a><figcaption>outputIdentification()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-02.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-02.png" alt="matrixOutput()"></a><figcaption>matrixOutput()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-03.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-03.png" alt="automaticMatrixFill()"></a><figcaption>automaticMatrixFill()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-04.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-04.png" alt="manualMatrixFill()"></a><figcaption>manualMatrixFill()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-05.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-05.png" alt="minorMatrixCreate()"></a><figcaption>minorMatrixCreate()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-06.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-06.png" alt="findMatrixDeterminant()"></a><figcaption>findMatrixDeterminant()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-07.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-07.png" alt="findAlgebraicComplements()"></a><figcaption>findAlgebraicComplements()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-08.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-08.png" alt="input()"></a><figcaption>input()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-09.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-09.png" alt="matrixOutputFloat()"></a><figcaption>matrixOutputFloat()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-10.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-10.png" alt="findInverseMatrix()"></a><figcaption>findInverseMatrix()</figcaption></figure><figure class="figure"><a href="assets/lab7-flow-2-11.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-flow-2-11.png" alt="main()"></a><figcaption>main()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;windows.h&gt;
+#include &lt;time.h&gt;
+
+using namespace std;
+
+const int maxArraySize = 10; // Максимальний розмір матриці
+
+int squareMatrix[maxArraySize][maxArraySize]; // Квадратна матриця
+int n; // Розмір квадратної матриці
+int i, j; // Індекси елементів матриці
+int maxElementUnderMainDiagonal = 0; // Максимальний елемент під головною діагоналлю
+int upperPartSum = 0; // Сума вибраних елементів матриці
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 &quot;
+		&lt;&lt; &quot;Лабораторна робота 7 завдання 1&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Створити квадратну матрицю розмірністю n &gt;= 3, &quot;
+		&lt;&lt; &quot;з автоматичним та ручним введенням значень. &quot;
+		&lt;&lt; &quot;Знайти суму елементів головної діагоналі або вище &quot;
+		&lt;&lt; &quot;від неї і є більшими за всі елементи, розташовані &quot;
+		&lt;&lt; &quot;під нею. Отриману суму елементів записати в якості &quot;
+		&lt;&lt; &quot;елементів n+1 рядку та n+1 стовпця створеної раніше &quot;
+		&lt;&lt; &quot;матриці. Передбачити контроль виходу за межі матриці.&quot;
+		&lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot;
+		&lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення елементів матриці на консоль
+/// &lt;/summary&gt;
+void matrixOutput()
+{
+	for (i = 0; i &lt; n; ++i)
+	{
+		for (j = 0; j &lt; n; ++j)
+		{
+			cout &lt;&lt; setw(4) &lt;&lt; squareMatrix[i][j];
+		}
+
+		cout &lt;&lt; endl;
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для автоматичного заповнення матриці
+/// випадковими значеннями
+/// &lt;/summary&gt;
+void automaticMatrixFill()
+{
+	srand((unsigned)time(0));
+
+	for (i = 0; i &lt; n; ++i)
+	{
+		for (j = 0; j &lt; n; ++j)
+		{
+			squareMatrix[i][j] = rand() % 31;
+		}
+	}
+
+	cout &lt;&lt; &quot;Вхідна матриця:&quot; &lt;&lt; endl;
+	matrixOutput();
+}
+
+/// &lt;summary&gt;
+/// Функція для ручного введення елементів матриці
+/// &lt;/summary&gt;
+void manualMatrixFill()
+{
+	cout &lt;&lt; &quot;Введіть усі елементи масиву: &quot;;
+
+	for (i = 0; i &lt; n; ++i)
+	{
+		for (j = 0; j &lt; n; ++j)
+		{
+			cin &gt;&gt; squareMatrix[i][j];
+		}
+	}
+
+	cout &lt;&lt; &quot;Вхідна матриця:&quot; &lt;&lt; endl;
+	matrixOutput();
+}
+
+/// &lt;summary&gt;
+/// Функція для знаходження максимального елемента
+/// під головною діагоналлю матриці
+/// &lt;/summary&gt;
+void checkMaxElementUnderMainDiagonal()
+{
+	maxElementUnderMainDiagonal = squareMatrix[1][0];
+
+	for (i = 0; i &lt; n; ++i)
+	{
+		for (j = 0; j &lt; n; ++j)
+		{
+			if (i &gt; j
+				&amp;&amp; squareMatrix[i][j] &gt; maxElementUnderMainDiagonal)
+			{
+				maxElementUnderMainDiagonal = squareMatrix[i][j];
+			}
+		}
+	}
+
+	cout &lt;&lt; &quot;Максимальний елемент масиву під головною діагоналлю: &quot;
+		&lt;&lt; maxElementUnderMainDiagonal &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для додавання елементів головної діагоналі
+/// та елементів над нею до загальної суми
+/// &lt;/summary&gt;
+void mainDiagonalAndAboveSum()
+{
+	if (i &lt;= j &amp;&amp; squareMatrix[i][j] &gt; maxElementUnderMainDiagonal)
+	{
+		upperPartSum += squareMatrix[i][j];
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для введення розміру матриці та вибору
+/// способу її заповнення
+/// &lt;/summary&gt;
+void input()
+{
+	cout &lt;&lt; &quot;Введіть розмірність n квадратної матриці: &quot;;
+	cin &gt;&gt; n;
+
+	while (n &lt; 3 || n &gt; maxArraySize)
+	{
+		cout &lt;&lt; &quot;Значення n повинно бути від 3 до 10&quot; &lt;&lt; endl
+			&lt;&lt; &quot;Введіть нове значення n: &quot;;
+		cin &gt;&gt; n;
+	}
+
+	int choice; // Спосіб заповнення матриці
+
+	cout &lt;&lt; &quot;Виберіть спосіб заповнення массиву &quot;
+		&lt;&lt; &quot;(1 - автоматично, 2 - вручну): &quot;;
+	cin &gt;&gt; choice;
+
+	while (choice != 1 &amp;&amp; choice != 2)
+	{
+		cout &lt;&lt; &quot;Помилка! Оберіть 1 чи 2: &quot;;
+		cin &gt;&gt; choice;
+	}
+
+	if (choice == 1)
+	{
+		automaticMatrixFill();
+		return;
+	}
+
+	manualMatrixFill();
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення суми елементів головної діагоналі
+/// та елементів над нею, які задовольняють умову завдання
+/// &lt;/summary&gt;
+void matrixSumChecker()
+{
+	for (i = 0; i &lt; n; ++i)
+	{
+		for (j = 0; j &lt; n; ++j)
+		{
+			mainDiagonalAndAboveSum();
+		}
+	}
+
+	cout &lt;&lt; &quot;Сума елементів головної діагоналі та над нею, &quot;
+		&lt;&lt; &quot;які більше ніж усі елементи під діагоналлю: &quot;
+		&lt;&lt; upperPartSum &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для формування та виведення модифікованої матриці
+/// &lt;/summary&gt;
+void matrixModificationOutput()
+{
+	cout &lt;&lt; &quot;Модифікована матриця:&quot; &lt;&lt; endl;
+
+	if (n + 1 &gt; maxArraySize)
+	{
+		cout &lt;&lt; &quot;Вихід за межі матриці, модифікація неможлива&quot;
+			&lt;&lt; endl;
+		return;
+	}
+
+	for (i = 0; i &lt; n + 1; ++i)
+	{
+		for (j = 0; j &lt; n + 1; ++j)
+		{
+			if (i == n || j == n)
+			{
+				squareMatrix[i][j] = upperPartSum;
+			}
+
+			cout &lt;&lt; setw(4) &lt;&lt; squareMatrix[i][j];
+		}
+
+		cout &lt;&lt; endl;
+	}
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+int main()
+{
+	identificationOutput();
+	input();
+	checkMaxElementUnderMainDiagonal();
+	matrixSumChecker();
+	matrixModificationOutput();
+}</code></pre><h3>Завдання 2</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+#include &lt;iomanip&gt;
+#include &lt;time.h&gt;
+
+using namespace std;
+
+const int maxArraySize = 6; // Максимальний розмір матриці
+
+int squareMatrix[maxArraySize][maxArraySize]; // Квадратна матриця
+float algebraicComplementMatrix[maxArraySize][maxArraySize]; // Матриця алгебраїчних доповнень
+float inverseMatrix[maxArraySize][maxArraySize]; // Обернена матриця
+int m; // Розмір квадратної матриці
+int outputFlag; // Ознака виведення проміжних результатів
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void outputIdentification()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 7 Завдання 2&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Створити квадратну матрицю A, кількість рядків та стовпчиків &quot;
+		&lt;&lt; &quot;m &gt;= 3 якої ввести з клавіатури. Передбачити меню вибору &quot;
+		&lt;&lt; &quot;способу створення матриці: введення з клавіатури або генерація &quot;
+		&lt;&lt; &quot;псевдовипадкових додатних та від&#x27;ємних чисел. Знайти обернену &quot;
+		&lt;&lt; &quot;матрицю, використовуючи алгебраїчні доповнення елементів матриці.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення цілочисельної матриці
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrix&quot;&gt;Матриця для виведення&lt;/param&gt;
+/// &lt;param name=&quot;size&quot;&gt;Розмір матриці&lt;/param&gt;
+void matrixOutput(int matrix[maxArraySize][maxArraySize], int size)
+{
+	for (int i = 0; i &lt; size; ++i)
+	{
+		for (int j = 0; j &lt; size; ++j)
+		{
+			cout &lt;&lt; setw(4) &lt;&lt; matrix[i][j];
+		}
+
+		cout &lt;&lt; endl;
+	}
+	cout &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для автоматичного заповнення матриці
+/// випадковими значеннями
+/// &lt;/summary&gt;
+void automaticMatrixFill()
+{
+	srand((unsigned)time(0));
+
+	for (int i = 0; i &lt; m; ++i)
+	{
+		for (int j = 0; j &lt; m; ++j)
+		{
+			squareMatrix[i][j] = rand() % 21 - 10;
+		}
+	}
+
+	cout &lt;&lt; &quot;Вхідна матриця А:&quot; &lt;&lt; endl;
+	matrixOutput(squareMatrix, m);
+}
+
+/// &lt;summary&gt;
+/// Функція для ручного введення елементів матриці
+/// &lt;/summary&gt;
+void manualMatrixFill()
+{
+	cout &lt;&lt; &quot;Введіть усі елементи матриці: &quot;;
+
+	for (int i = 0; i &lt; m; ++i)
+	{
+		for (int j = 0; j &lt; m; ++j)
+		{
+			cin &gt;&gt; squareMatrix[i][j];
+		}
+	}
+
+	cout &lt;&lt; &quot;Вхідна матриця А:&quot; &lt;&lt; endl;
+	matrixOutput(squareMatrix, m);
+}
+
+/// &lt;summary&gt;
+/// Функція для створення мінорної матриці шляхом
+/// видалення заданого рядка та стовпця
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;squareMatrix&quot;&gt;Початкова квадратна матриця&lt;/param&gt;
+/// &lt;param name=&quot;minorMatrix&quot;&gt;Матриця для збереження мінора&lt;/param&gt;
+/// &lt;param name=&quot;size&quot;&gt;Розмір початкової матриці&lt;/param&gt;
+/// &lt;param name=&quot;deletedRow&quot;&gt;Індекс рядка, який видаляється&lt;/param&gt;
+/// &lt;param name=&quot;deletedColumn&quot;&gt;Індекс стовпця, який видаляється&lt;/param&gt;
+void minorMatrixCreate(int squareMatrix[maxArraySize][maxArraySize], int minorMatrix[maxArraySize][maxArraySize],
+	int size, int deletedRow, int deletedColumn)
+{
+	int minorI = 0;
+	int minorJ = 0;
+	for (int i = 0; i &lt; size; i++)
+	{
+		for (int j = 0; j &lt; size; j++)
+		{
+			if (i != deletedRow &amp;&amp; j != deletedColumn)
+			{
+				minorMatrix[minorI][minorJ] = squareMatrix[i][j];
+				minorJ++;
+			}
+		}
+
+		if (i != deletedRow)
+		{
+			minorI++;
+			minorJ = 0;
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для рекурсивного обчислення визначника матриці
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrix&quot;&gt;Матриця для обчислення визначника&lt;/param&gt;
+/// &lt;param name=&quot;size&quot;&gt;Розмір матриці&lt;/param&gt;
+/// &lt;returns&gt;Значення визначника матриці&lt;/returns&gt;
+float findMatrixDeterminant(int matrix[maxArraySize][maxArraySize], int size)
+{
+	float determinant = 0;
+	if (size == 2)
+	{
+		determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+	}
+	else
+	{
+		for (int column = 0; column &lt; size; column++)
+		{
+			int sign = 1;
+			int currentMinor[maxArraySize][maxArraySize];
+
+			if (column % 2 != 0)
+			{
+				sign = -1;
+			}
+
+			minorMatrixCreate(matrix, currentMinor, size, 0, column);
+
+			float minorDeterminant = findMatrixDeterminant(currentMinor, size - 1);
+
+			determinant += sign * matrix[0][column] * minorDeterminant;
+		}
+	}
+
+	return determinant;
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення алгебраїчних доповнень
+/// елементів матриці
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrix&quot;&gt;Початкова квадратна матриця&lt;/param&gt;
+/// &lt;param name=&quot;algebraicComplementMatrix&quot;&gt;
+/// Матриця для збереження алгебраїчних доповнень
+/// &lt;/param&gt;
+/// &lt;param name=&quot;size&quot;&gt;Розмір матриці&lt;/param&gt;
+void findAlgebraicComplements(int matrix[maxArraySize][maxArraySize], float algebraicComplementMatrix[maxArraySize][maxArraySize], int size)
+{
+	for (int i = 0; i &lt; size; i++)
+	{
+		for (int j = 0; j &lt; size; j++)
+		{
+			int sign = 1;
+			int currentMinor[maxArraySize][maxArraySize];
+			if ((i + j) % 2 != 0)
+			{
+				sign = -1;
+			}
+			minorMatrixCreate(matrix, currentMinor, size, i, j);
+
+			float minorDeterminant = findMatrixDeterminant(currentMinor, size - 1);
+
+			algebraicComplementMatrix[i][j] = sign * minorDeterminant;
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для введення розміру матриці та вибору
+/// способу її заповнення
+/// &lt;/summary&gt;
+void input()
+{
+	cout &lt;&lt; &quot;Введіть розмірність m квадратної матриці: &quot;;
+	cin &gt;&gt; m;
+
+	while (m &lt; 3 || m &gt; maxArraySize)
+	{
+		cout &lt;&lt; &quot;Значення m повинно бути від 3 до &quot; &lt;&lt; maxArraySize &lt;&lt; endl
+			&lt;&lt; &quot;Введіть нове значення m: &quot;;
+		cin &gt;&gt; m;
+	}
+
+	int choice; // Спосіб заповнення матриці
+
+	cout &lt;&lt; &quot;Виберіть спосіб заповнення матриці &quot;
+		&lt;&lt; &quot;(1 - автоматично, 2 - вручну): &quot;;
+	cin &gt;&gt; choice;
+
+	while (choice != 1 &amp;&amp; choice != 2)
+	{
+		cout &lt;&lt; &quot;Помилка! Оберіть 1 чи 2: &quot;;
+		cin &gt;&gt; choice;
+	}
+
+	cout &lt;&lt; &quot;Чи виводити на екран проміжні результати? (1 - ні, 2 - так): &quot;;
+	cin &gt;&gt; outputFlag;
+
+	while (outputFlag != 1 &amp;&amp; outputFlag != 2)
+	{
+		cout &lt;&lt; &quot;Помилка! Оберіть 1 чи 2: &quot;;
+		cin &gt;&gt; outputFlag;
+	}
+
+	if (choice == 1)
+	{
+		automaticMatrixFill();
+		return;
+	}
+
+	manualMatrixFill();
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення матриці з дійсними значеннями
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrix&quot;&gt;Матриця для виведення&lt;/param&gt;
+/// &lt;param name=&quot;size&quot;&gt;Розмір матриці&lt;/param&gt;
+void matrixOutputFloat(float matrix[maxArraySize][maxArraySize], int size)
+{
+	for (int i = 0; i &lt; size; ++i)
+	{
+		for (int j = 0; j &lt; size; ++j)
+		{
+			cout &lt;&lt; setw(13) &lt;&lt; matrix[i][j];
+		}
+		cout &lt;&lt; endl;
+	}
+	cout &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для обчислення елементів оберненої матриці
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;determinant&quot;&gt;Визначник початкової матриці&lt;/param&gt;
+void findInverseMatrix(float determinant)
+{
+	for (int i = 0; i &lt; m; ++i)
+	{
+		for (int j = 0; j &lt; m; ++j)
+		{
+			inverseMatrix[i][j] = algebraicComplementMatrix[j][i] / determinant;
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	outputIdentification();
+	input();
+	float determinant = findMatrixDeterminant(squareMatrix, m);
+	cout &lt;&lt; &quot;Визначник матриці: &quot; &lt;&lt; determinant &lt;&lt; endl;
+
+	if (determinant == 0)
+	{
+		cout &lt;&lt; &quot;Визначник дорівнює нулю, оберненої матриці не існує&quot; &lt;&lt; endl;
+		return 0;
+	}
+
+	findAlgebraicComplements(squareMatrix, algebraicComplementMatrix, m);
+
+	if (outputFlag == 2)
+	{
+		cout &lt;&lt; &quot;Матриця алгебраїчних доповнень:&quot; &lt;&lt; endl;
+		matrixOutputFloat(algebraicComplementMatrix, m);
+	}
+
+	findInverseMatrix(determinant);
+	cout &lt;&lt; &quot;Обернена матриця:&quot; &lt;&lt; endl;
+	matrixOutputFloat(inverseMatrix, m);
+}</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>У наведеній матриці максимум під головною діагоналлю дорівнює 23. У головній діагоналі та над нею умову перевищення виконують значення 27, 26 і 28. Їх сума 81 збігається з перевіркою у WolframAlpha. Додатковий рядок та стовпець заповнено числом 81.</p><div class="gallery"><figure class="figure"><a href="assets/lab7-check-1-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-check-1-1.png" alt="Вхідна та модифікована матриці"></a><figcaption>Вхідна та модифікована матриці</figcaption></figure><figure class="figure"><a href="assets/lab7-check-1-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-check-1-2.png" alt="Перевірка суми у WolframAlpha"></a><figcaption>Перевірка суми у WolframAlpha</figcaption></figure></div><h3>Завдання 2</h3><p>Для матриці з рядками (−9, 9, −8), (3, 3, 0), (−7, 3, −6) визначник дорівнює 84. Рядки матриці алгебраїчних доповнень: (−18, 18, 30), (30, −2, −36), (24, −24, −54). Вони збігаються з результатом WolframAlpha.</p><p>Транспонування доповнень і ділення на 84 дає обернену матрицю, наведену в програмі та Excel. Незалежна перевірка множенням A · A⁻¹ дає одиничну матрицю; відмінності останніх десяткових знаків у виведенні пов’язані з округленням.</p><div class="gallery"><figure class="figure"><a href="assets/lab7-check-2-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-check-2-1.png" alt="Визначник, алгебраїчні доповнення та обернена матриця"></a><figcaption>Визначник, алгебраїчні доповнення та обернена матриця</figcaption></figure><figure class="figure"><a href="assets/lab7-check-2-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-check-2-2.png" alt="Алгебраїчні доповнення у WolframAlpha"></a><figcaption>Алгебраїчні доповнення у WolframAlpha</figcaption></figure><figure class="figure"><a href="assets/lab7-check-2-3.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab7-check-2-3.png" alt="Перевірка оберненої матриці в Excel"></a><figcaption>Перевірка оберненої матриці в Excel</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У ході лабораторної роботи опрацьовано двовимірні масиви та способи обходу квадратних матриць. Закріплено відповідність між індексами рядків і стовпців та геометричним положенням елемента відносно головної діагоналі. Розподіл обчислень на функції дозволив окремо перевірити введення, пошук, модифікацію та виведення.</p><p>У першому завданні максимум нижньої частини матриці використано як межу для відбору елементів верхньої частини. Для контрольної матриці отримано максимум 23 і суму 81. Перевірка 27 + 26 + 28 підтвердила результат; додаткові рядок та стовпець сформовано без зміни початкових елементів.</p><p>Контроль меж масиву показав необхідність враховувати місце для розширення матриці. Для найбільшого дозволеного початкового розміру обчислення суми залишається можливим, а додавання рядка та стовпця відхиляється. Це закріпило розуміння відмінності між логічним розміром матриці та місткістю виділеного масиву.</p><p>У другому завданні побудовано мінори, рекурсивно обчислено визначник і сформовано матрицю алгебраїчних доповнень. На контрольному прикладі отримано визначник 84. Перевірки у WolframAlpha та Excel підтвердили доповнення й обернену матрицю, а транспонування стало необхідним кроком між цими двома результатами.</p><p>Робота поєднала програмну обробку матриць з алгоритмами лінійної алгебри. Закріплено перевірку існування оберненої матриці, правила знаків алгебраїчних доповнень і порівняння наближених результатів з точними дробами.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

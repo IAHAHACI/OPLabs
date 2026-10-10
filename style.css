@@ -50,3 +50,5 @@ code{font-family:"Cascadia Code",Consolas,monospace}.gallery{display:grid;grid-t
 .figure img{max-width:100%;height:auto;} .figure a{display:block;} .figure:has(img[src$=".gif"]) img{background:#fff;padding:16px;border-radius:10px;width:auto;max-width:100%;} pre{tab-size:4;} .menu{flex-wrap:wrap;}
 
 .flow-gallery .figure{margin:0;} .flow-gallery img{width:auto;max-width:100%;max-height:780px;margin:auto;}
+
+header{position:sticky;flex-wrap:nowrap}.menu-btn{display:block}.menu{display:none;position:absolute;left:auto;right:5vw;top:100%;width:min(360px,90vw);max-height:75vh;overflow:auto;background:var(--card);padding:12px;border:1px solid var(--line);border-radius:0 0 14px 14px;flex-direction:column;flex-wrap:nowrap;box-shadow:var(--shadow)}.menu.open{display:flex}.flow-gallery .figure{min-width:0}.gallery .figure{margin:0;min-width:0}

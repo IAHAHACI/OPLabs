@@ -1,0 +1,540 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 10</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a href="index.html">Головна</a><a href="lab1.html">Лабораторна робота 1</a><a href="lab2.html">Лабораторна робота 2</a><a href="lab3.html">Лабораторна робота 3</a><a href="lab4.html">Лабораторна робота 4</a><a href="lab5.html">Лабораторна робота 5</a><a href="lab6.html">Лабораторна робота 6</a><a href="lab7.html">Лабораторна робота 7</a><a href="lab8.html">Лабораторна робота 8</a><a href="lab9.html">Лабораторна робота 9</a><a class="active" href="lab10.html">Лабораторна робота 10</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 10</p><h1>Лабораторна робота 10</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Структури та масиви структур.</p><p><strong>Мета:</strong> Навчитися описувати пов’язані дані структурою, створювати масив записів, виконувати пошук і вилучення за умовою, накопичувати статистику та виводити дані у табличній формі.</p></section><section class="card" id="condition"><h2>Умова завдання</h2><h3>Завдання 1</h3><p>Створити масив структур із полями: факультет, курс, група, прізвище студента та екзаменаційні оцінки. Передбачити ручне або автоматичне заповнення. Знайти й вилучити студентів факультету ФІТ, які мають дві та більше двійок за сесію; визначити факультет із найбільшою кількістю відмінників першого курсу та курс, з якого вилучено найбільше студентів. Організувати меню запитів і виведення таблиць.</p></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Структура studentData об’єднує символьні поля факультету, групи й прізвища, номер курсу та масив із шести оцінок. Масив містить до 40 студентів. Ручне введення перевіряє факультет, курс і діапазон оцінок; автоматичне формує записи з визначених наборів значень.</p><p>Під час вилучення порівнюється факультет і підраховуються оцінки «2». Запис із двома або більше такими оцінками видаляється зсувом наступних структур вліво. Кількість студентів зменшується, а індекс коригується, щоб перевірити запис, який зайняв звільнену позицію. До зсуву збільшується лічильник вилучень відповідного курсу.</p><p>Відмінником першого курсу вважається студент, для якого course == 1 і всі шість оцінок дорівнюють 5. Кількість таких студентів підраховується за факультетами. Окремий масив зберігає кількість вилучених за курсами; найбільше значення визначає результат третього запиту. За однакових максимумів у наведеному коді залишається перший із них.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab10-flow-1-01.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-1-01.svg" alt="inputStudentsData()"></a><figcaption>inputStudentsData()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-1-02.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-1-02.svg" alt="automaticStudentsDataInput()"></a><figcaption>automaticStudentsDataInput()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-1-03.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-1-03.svg" alt="studentsDataTableOutput()"></a><figcaption>studentsDataTableOutput()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-1-04.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-1-04.svg" alt="deleteBadGradeStudents()"></a><figcaption>deleteBadGradeStudents()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-1-05.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-1-05.svg" alt="findTopStudents()"></a><figcaption>findTopStudents()</figcaption></figure></div><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab10-flow-2-01.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-2-01.svg" alt="findFacultyWithMostTopStudents()"></a><figcaption>findFacultyWithMostTopStudents()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-2-02.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-2-02.svg" alt="findCourseWithMostDeletedStudents()"></a><figcaption>findCourseWithMostDeletedStudents()</figcaption></figure><figure class="figure"><a href="assets/lab10-flow-2-03.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-flow-2-03.svg" alt="main()"></a><figcaption>main()</figcaption></figure></div></section><section class="card" id="code"><h2>Код програми</h2><h3>Завдання 1</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;windows.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+
+using namespace std;
+
+const int maxStudentNumber = 40; // Максимальна кількість студентів
+const int maxGradeNumber = 6; // Кількість оцінок одного студента
+
+// Масив назв факультетів
+const char faculties[][10] =
+{
+	&quot;ФІТ&quot;,
+	&quot;ФКНК&quot;,
+	&quot;ФРЕКС&quot;
+};
+
+// Масив прізвищ для автоматичного заповнення
+const char surnames[][15] =
+{
+	&quot;Іванов&quot;,
+	&quot;Шевченко&quot;,
+	&quot;Петров&quot;,
+	&quot;Коваленко&quot;,
+	&quot;Баранов&quot;,
+	&quot;Костенко&quot;,
+	&quot;Бабенко&quot;,
+	&quot;Крутюк&quot;,
+	&quot;Адамчук&quot;,
+	&quot;Ткаченко&quot;,
+	&quot;Ткачук&quot;
+};
+
+// Масив назв груп факультету ФІТ
+const char fitGroups[2][10] =
+{
+	&quot;ІПЗ&quot;,
+	&quot;КН&quot;
+};
+
+// Масив назв груп факультету ФКНК
+const char fknkGroups[2][10] =
+{
+	&quot;КІ&quot;,
+	&quot;КС&quot;
+};
+
+// Масив назв груп факультету ФРЕКС
+const char freksGroups[2][10] =
+{
+	&quot;ТК&quot;,
+	&quot;РТ&quot;
+};
+
+/// &lt;summary&gt;
+/// Структура для збереження інформації про студента
+/// &lt;/summary&gt;
+struct studentData
+{
+	char faculty[15]; // Назва факультету
+	int course; // Номер курсу
+	char group[10]; // Назва групи
+	char surname[15]; // Прізвище студента
+	int grade[maxGradeNumber]; // Масив оцінок студента
+};
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 10&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Створити масив структур. Кожна структура складається з таких &quot;
+		&lt;&lt; &quot;елементів: факультет, курс, група, прізвища студентів, &quot;
+		&lt;&lt; &quot;екзаменаційні оцінки. Реалізувати запити, визначивши:&quot; &lt;&lt; endl
+		&lt;&lt; &quot;1. Прізвища студентів, які мають дві та більше двійок за &quot;
+		&lt;&lt; &quot;сесію на факультеті ФІТ і вилучити їх;&quot; &lt;&lt; endl
+		&lt;&lt; &quot;2. Факультет, який на першому курсі має найбільшу &quot;
+		&lt;&lt; &quot;кількість відмінників;&quot; &lt;&lt; endl
+		&lt;&lt; &quot;3. Курс, на якому виключено найбільшу кількість студентів.&quot; &lt;&lt; endl
+		&lt;&lt; &quot;Результати запитів вивести у вигляді таблиць.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для ручного введення даних студентів
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+void inputStudentsData(studentData students[], int&amp; studentCount)
+{
+	do
+	{
+		cout &lt;&lt; &quot;Введіть кількість студентів: &quot;;
+		cin &gt;&gt; studentCount;
+	} while (studentCount &lt; 1 || studentCount &gt; maxStudentNumber);
+
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		do
+		{
+			cout &lt;&lt; &quot;Введіть факультет студента (ФІТ, ФКНК, ФРЕКС): &quot;;
+			cin &gt;&gt; setw(15) &gt;&gt; students[i].faculty;
+		} while (strcmp(students[i].faculty, &quot;ФІТ&quot;) != 0
+			&amp;&amp; strcmp(students[i].faculty, &quot;ФКНК&quot;) != 0
+			&amp;&amp; strcmp(students[i].faculty, &quot;ФРЕКС&quot;) != 0);
+
+		do
+		{
+			cout &lt;&lt; &quot;Введіть курс студента (від 1 до 4): &quot;;
+			cin &gt;&gt; students[i].course;
+		} while (students[i].course &lt; 1 || students[i].course &gt; 4);
+
+		cout &lt;&lt; &quot;Введіть групу студента: &quot;;
+		cin &gt;&gt; students[i].group;
+
+		cout &lt;&lt; &quot;Введіть прізвище студента: &quot;;
+		cin &gt;&gt; students[i].surname;
+
+		cout &lt;&lt; &quot;Введіть оцінки студента (від 2 до 5): &quot;;
+
+		for (int j = 0; j &lt; maxGradeNumber; j++)
+		{
+			do
+			{
+				cin &gt;&gt; students[i].grade[j];
+			} while (students[i].grade[j] &lt; 2
+				|| students[i].grade[j] &gt; 5);
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для автоматичного заповнення даних студентів
+/// випадковими значеннями
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+void automaticStudentsDataInput(studentData students[], int&amp; studentCount)
+{
+	do
+	{
+		cout &lt;&lt; &quot;Введіть кількість студентів: &quot;;
+		cin &gt;&gt; studentCount;
+	} while (studentCount &lt; 1 || studentCount &gt; maxStudentNumber);
+
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		int randomFaculty = rand() % 3; // Випадковий індекс факультету
+
+		strcpy(students[i].faculty, faculties[randomFaculty]);
+		students[i].course = rand() % 4 + 1;
+
+		int randomGroup = rand() % 2; // Випадковий індекс групи
+
+		if (randomFaculty == 0)
+		{
+			strcpy(students[i].group, fitGroups[randomGroup]);
+		}
+		else if (randomFaculty == 1)
+		{
+			strcpy(students[i].group, fknkGroups[randomGroup]);
+		}
+		else
+		{
+			strcpy(students[i].group, freksGroups[randomGroup]);
+		}
+
+		strcat(students[i].group, &quot;-&quot;);
+
+		// Перетворення номера курсу на символьний рядок
+		char courseBuffer[2];
+		courseBuffer[0] = students[i].course + &#x27;0&#x27;;
+		courseBuffer[1] = &#x27;\0&#x27;;
+
+		strcat(students[i].group, courseBuffer);
+
+		// Формування випадкового номера групи
+		char groupNumberBuffer[2];
+		groupNumberBuffer[0] = rand() % 4 + 1 + &#x27;0&#x27;;
+		groupNumberBuffer[1] = &#x27;\0&#x27;;
+
+		strcat(students[i].group, groupNumberBuffer);
+
+		int randomSurname = rand() % 11; // Випадковий індекс прізвища
+		strcpy(students[i].surname, surnames[randomSurname]);
+
+		// Ознака генерації студента-відмінника першого курсу
+		bool topStudent = students[i].course == 1 &amp;&amp; rand() % 5 == 0;
+
+		for (int j = 0; j &lt; maxGradeNumber; j++)
+		{
+			if (topStudent)
+			{
+				students[i].grade[j] = 5;
+			}
+			else
+			{
+				students[i].grade[j] = rand() % 4 + 2;
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для виведення таблиці даних студентів
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+void studentsDataTableOutput(studentData students[], int studentCount)
+{
+	cout &lt;&lt; &quot;==========================================================================&quot; &lt;&lt; endl;
+	cout &lt;&lt; setw(5) &lt;&lt; &quot;Факультет&quot;
+		&lt;&lt; setw(10) &lt;&lt; &quot;Курс&quot;
+		&lt;&lt; setw(10) &lt;&lt; &quot;Група&quot;
+		&lt;&lt; setw(16) &lt;&lt; &quot;Прізвище&quot;
+		&lt;&lt; setw(17) &lt;&lt; &quot;Оцінки&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;==========================================================================&quot; &lt;&lt; endl;
+
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		cout &lt;&lt; setw(7) &lt;&lt; students[i].faculty
+			&lt;&lt; setw(10) &lt;&lt; students[i].course
+			&lt;&lt; setw(13) &lt;&lt; students[i].group
+			&lt;&lt; setw(14) &lt;&lt; students[i].surname
+			&lt;&lt; setw(13);
+
+		for (int j = 0; j &lt; maxGradeNumber; j++)
+		{
+			cout &lt;&lt; students[i].grade[j] &lt;&lt; &quot; &quot;;
+		}
+
+		cout &lt;&lt; endl;
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для пошуку та видалення студентів заданого факультету,
+/// які мають дві або більше незадовільних оцінок
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+/// &lt;param name=&quot;numberOfDeletedStudentsOnCourses&quot;&gt;
+/// Масив кількості видалених студентів за курсами
+/// &lt;/param&gt;
+void deleteBadGradeStudents(studentData students[], int&amp; studentCount,
+	int numberOfDeletedStudentsOnCourses[])
+{
+	char facultyToFind[10]; // Назва факультету для пошуку
+	bool studentsDeleted = false; // Ознака видалення студентів
+
+	cout &lt;&lt; &quot;Введіть факультет для пошуку: &quot;;
+	cin &gt;&gt; setw(10) &gt;&gt; facultyToFind;
+
+	cout &lt;&lt; &quot;Студенти &quot; &lt;&lt; facultyToFind
+		&lt;&lt; &quot;, які мають 2 або більше двійок за сесію: &quot; &lt;&lt; endl;
+
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		int badGrades = 0; // Кількість незадовільних оцінок
+		bool deleteStudent = false; // Ознака необхідності видалення
+
+		if (strcmp(students[i].faculty, facultyToFind) == 0)
+		{
+			for (int j = 0; j &lt; maxGradeNumber; j++)
+			{
+				if (students[i].grade[j] == 2)
+				{
+					badGrades++;
+				}
+
+				if (badGrades &gt;= 2)
+				{
+					numberOfDeletedStudentsOnCourses[students[i].course - 1]++;
+					deleteStudent = true;
+					break;
+				}
+			}
+		}
+
+		if (deleteStudent)
+		{
+			studentsDeleted = true;
+			cout &lt;&lt; students[i].surname &lt;&lt; endl;
+
+			// Зсув елементів масиву після видалення студента
+			for (int j = i; j &lt; studentCount - 1; j++)
+			{
+				students[j] = students[j + 1];
+			}
+
+			i--;
+			studentCount--;
+		}
+	}
+
+	if (!studentsDeleted)
+	{
+		cout &lt;&lt; &quot;Студентів із двома або більше двійками не знайдено.&quot;
+			&lt;&lt; endl;
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для визначення кількості студентів-відмінників
+/// першого курсу на кожному факультеті
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+/// &lt;param name=&quot;numberOfTopStudentsOnFaculties&quot;&gt;
+/// Масив кількості відмінників за факультетами
+/// &lt;/param&gt;
+void findTopStudents(studentData students[], int studentCount,
+	int numberOfTopStudentsOnFaculties[])
+{
+	for (int i = 0; i &lt; 3; i++)
+	{
+		numberOfTopStudentsOnFaculties[i] = 0;
+	}
+
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		int topGrades = 0; // Кількість оцінок «5» у студента
+
+		if (students[i].course == 1)
+		{
+			for (int j = 0; j &lt; maxGradeNumber; j++)
+			{
+				if (students[i].grade[j] == 5)
+				{
+					topGrades++;
+				}
+			}
+
+			if (topGrades == maxGradeNumber)
+			{
+				if (strcmp(students[i].faculty, &quot;ФІТ&quot;) == 0)
+				{
+					numberOfTopStudentsOnFaculties[0]++;
+				}
+				else if (strcmp(students[i].faculty, &quot;ФКНК&quot;) == 0)
+				{
+					numberOfTopStudentsOnFaculties[1]++;
+				}
+				else if (strcmp(students[i].faculty, &quot;ФРЕКС&quot;) == 0)
+				{
+					numberOfTopStudentsOnFaculties[2]++;
+				}
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для визначення факультету з найбільшою
+/// кількістю студентів-відмінників першого курсу
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;numberOfTopStudentsOnFaculties&quot;&gt;
+/// Масив кількості відмінників за факультетами
+/// &lt;/param&gt;
+void findFacultyWithMostTopStudents(int numberOfTopStudentsOnFaculties[])
+{
+	int maxIndex = 0; // Індекс факультету з найбільшою кількістю відмінників
+
+	for (int i = 1; i &lt; 3; i++)
+	{
+		if (numberOfTopStudentsOnFaculties[i] &gt;
+			numberOfTopStudentsOnFaculties[maxIndex])
+		{
+			maxIndex = i;
+		}
+	}
+
+	if (numberOfTopStudentsOnFaculties[maxIndex] == 0)
+	{
+		cout &lt;&lt; &quot;На першому курсі немає відмінників.&quot; &lt;&lt; endl;
+		return;
+	}
+
+	cout &lt;&lt; &quot;Найбільше відмінників першого курсу на факультеті &quot;
+		&lt;&lt; faculties[maxIndex] &lt;&lt; &quot;: &quot;
+		&lt;&lt; numberOfTopStudentsOnFaculties[maxIndex] &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для визначення курсу, з якого було
+/// виключено найбільшу кількість студентів
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;numberOfDeletedStudentsOnCourses&quot;&gt;
+/// Масив кількості видалених студентів за курсами
+/// &lt;/param&gt;
+void findCourseWithMostDeletedStudents(int numberOfDeletedStudentsOnCourses[])
+{
+	int maxIndex = 0; // Індекс курсу з найбільшою кількістю виключених
+
+	for (int i = 1; i &lt; 4; i++)
+	{
+		if (numberOfDeletedStudentsOnCourses[i] &gt;
+			numberOfDeletedStudentsOnCourses[maxIndex])
+		{
+			maxIndex = i;
+		}
+	}
+
+	if (numberOfDeletedStudentsOnCourses[maxIndex] == 0)
+	{
+		cout &lt;&lt; &quot;Виключених студентів немає&quot; &lt;&lt; endl;
+		return;
+	}
+
+	cout &lt;&lt; &quot;Найбільше студентів було виключено з &quot;
+		&lt;&lt; maxIndex + 1 &lt;&lt; &quot; курсу: &quot;
+		&lt;&lt; numberOfDeletedStudentsOnCourses[maxIndex] &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми для керування введенням,
+/// обробкою та аналізом даних студентів
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	identificationOutput();
+	srand((unsigned)time(NULL));
+
+	int studentCount = 0; // Поточна кількість студентів
+	int numberOfDeletedStudentsOnCourses[4] = { 0 }; // Виключені за курсами
+	int numberOfTopStudentsOnFaculties[3] = { 0 }; // Відмінники за факультетами
+	studentData students[maxStudentNumber]; // Масив даних студентів
+	int choice = 1; // Обраний пункт меню
+	int inputChoice = 0; // Спосіб заповнення даних
+	bool dataCreated = false; // Ознака створення даних студентів
+
+	while (choice != 0)
+	{
+		cout &lt;&lt; &quot;1. Внести дані студентів&quot; &lt;&lt; endl
+			&lt;&lt; &quot;2. Вивести прізвища студентів факультету, які мають дві та більше&quot;
+			&lt;&lt; &quot; двійки за сесію та вилучити їх&quot; &lt;&lt; endl
+			&lt;&lt; &quot;3. Визначити факультет, який на першому курсі має найбільшу кількість відмінників&quot;
+			&lt;&lt; endl
+			&lt;&lt; &quot;4. Визначити курс, на якому виключено найбільшу кількість студентів&quot;
+			&lt;&lt; endl
+			&lt;&lt; &quot;0. Вихід&quot; &lt;&lt; endl;
+
+		cout &lt;&lt; &quot;Оберіть пункт меню: &quot;;
+		cin &gt;&gt; choice;
+
+		switch (choice)
+		{
+		case 1:
+			for (int i = 0; i &lt; 4; i++)
+			{
+				numberOfDeletedStudentsOnCourses[i] = 0;
+			}
+
+			do
+			{
+				cout &lt;&lt; &quot;Виберіть спосіб заповнення даних &quot;
+					&lt;&lt; &quot;(1 - вручну, 2 - автоматично): &quot;;
+				cin &gt;&gt; inputChoice;
+			} while (inputChoice != 1 &amp;&amp; inputChoice != 2);
+
+			if (inputChoice == 1)
+			{
+				inputStudentsData(students, studentCount);
+			}
+			else
+			{
+				automaticStudentsDataInput(students, studentCount);
+			}
+
+			dataCreated = true;
+
+			cout &lt;&lt; &quot;Початкова таблиця: &quot; &lt;&lt; endl;
+			studentsDataTableOutput(students, studentCount);
+			break;
+
+		case 2:
+			if (studentCount == 0)
+			{
+				cout &lt;&lt; &quot;У масиві немає даних студентів!&quot; &lt;&lt; endl;
+				break;
+			}
+
+			deleteBadGradeStudents(
+				students,
+				studentCount,
+				numberOfDeletedStudentsOnCourses);
+
+			cout &lt;&lt; &quot;Таблиця після видалення двієчників: &quot; &lt;&lt; endl;
+			studentsDataTableOutput(students, studentCount);
+			break;
+
+		case 3:
+			if (!dataCreated)
+			{
+				cout &lt;&lt; &quot;Спочатку необхідно внести дані студентів!&quot; &lt;&lt; endl;
+				break;
+			}
+
+			findTopStudents(
+				students,
+				studentCount,
+				numberOfTopStudentsOnFaculties);
+
+			findFacultyWithMostTopStudents(numberOfTopStudentsOnFaculties);
+			break;
+
+		case 4:
+			if (!dataCreated)
+			{
+				cout &lt;&lt; &quot;Спочатку необхідно внести дані студентів!&quot; &lt;&lt; endl;
+				break;
+			}
+
+			findCourseWithMostDeletedStudents(numberOfDeletedStudentsOnCourses);
+			break;
+
+		case 0:
+			break;
+
+		default:
+			cout &lt;&lt; &quot;Такого пункту меню не існує!&quot; &lt;&lt; endl;
+			break;
+		}
+
+		cout &lt;&lt; endl;
+	}
+}</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>У початковій таблиці наведено 25 студентів. Для ФІТ вилучено шість записів: Ткаченко, Костенко, Баранов, Ткаченко, Петров, Коваленко. Кожен із цих записів має щонайменше дві оцінки «2», а після вилучення в таблиці залишилося 19 студентів.</p><p>Ручний підрахунок вилучень за курсами дає: 1-й — 2, 2-й — 1, 3-й — 1, 4-й — 2. За рівних максимумів програма обирає перший курс; виведений результат — 1-й курс, 2 студенти.</p><p>На першому курсі є по одному відміннику на ФІТ, ФКНК та ФРЕКС: Баранов, Костенко та Коваленко відповідно. За однакових значень обирається перший факультет у масиві faculties, тобто ФІТ. Це відповідає наведеному результату «ФІТ: 1».</p><div class="gallery"><figure class="figure"><a href="assets/lab10-check-1-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-check-1-1.png" alt="Початкова таблиця з 25 студентів"></a><figcaption>Початкова таблиця з 25 студентів</figcaption></figure><figure class="figure"><a href="assets/lab10-check-1-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-check-1-2.png" alt="Вилучені студенти та таблиця після обробки"></a><figcaption>Вилучені студенти та таблиця після обробки</figcaption></figure><figure class="figure"><a href="assets/lab10-check-1-3.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab10-check-1-3.png" alt="Факультет із відмінниками та курс із найбільшою кількістю вилучень"></a><figcaption>Факультет із відмінниками та курс із найбільшою кількістю вилучень</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У лабораторній роботі використано структуру для збереження пов’язаних відомостей про студента. Масив структур дозволив опрацьовувати факультет, курс, групу, прізвище та оцінки як один запис. Реалізовано ручне й автоматичне заповнення, табличне виведення та меню окремих запитів.</p><p>Пошук студентів із незадовільними оцінками поєднав перевірку текстового поля з підрахунком елементів масиву оцінок. У контрольному прикладі на ФІТ знайдено шість записів із двома або більше двійками. Після їх вилучення кількість записів зменшилася з 25 до 19, що підтверджено повторним виведенням таблиці.</p><p>Під час видалення важливо було зберегти правильний порядок обходу: після зсуву на поточному місці з’являється наступний студент, якого також потрібно перевірити. Накопичення статистики до вилучення дозволило зберегти відомості про курси вже відсутніх у масиві студентів.</p><p>Підрахунок відмінників показав по одному студентові першого курсу з усіма оцінками «5» на кожному факультеті. У наведеній реалізації за рівних максимумів обирається ФІТ як перший факультет. Аналогічно для вилучень по два студенти на першому й четвертому курсах виведено перший курс.</p><p>Робота закріпила обробку масивів структур, пошук за кількома ознаками, вилучення зі зсувом і використання допоміжних лічильників. Ручна перевірка таблиць допомогла оцінити не лише кількість знайдених записів, а й поведінку програми у випадку рівних результатів запитів.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
