@@ -1,0 +1,578 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 9</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a href="index.html">Головна</a><a href="lab1.html">Лабораторна робота 1</a><a href="lab2.html">Лабораторна робота 2</a><a href="lab3.html">Лабораторна робота 3</a><a href="lab4.html">Лабораторна робота 4</a><a href="lab5.html">Лабораторна робота 5</a><a href="lab6.html">Лабораторна робота 6</a><a href="lab7.html">Лабораторна робота 7</a><a href="lab8.html">Лабораторна робота 8</a><a class="active" href="lab9.html">Лабораторна робота 9</a><a href="lab10.html">Лабораторна робота 10</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 09</p><h1>Лабораторна робота 9</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Символьні рядки та масиви рядків.</p><p><strong>Мета:</strong> Опанувати обробку символьних масивів, виділення слів, аналіз цифрових символів і перетворення рядка. Реалізувати послідовне перетворення слова з використанням словника.</p></section><section class="card" id="condition"><h2>Умова завдань</h2><h3>Завдання 1</h3><p>Увести рядок зі словами, розділеними пропусками, комами та крапками. Передбачити меню для визначення кількості слів і найдовшого слова, обчислення суми цифр у словах, що складаються лише з цифр, та видалення однолітерних слів і зайвих роздільників. Вивести результати обраних дій.</p><h3>Завдання 2</h3><p>Увести початкове й кінцеве слова та словник як масив рядків. Перетворити одне слово в інше, змінюючи за один крок одну літеру. Використовувати слова словника та передбачити додавання потрібного слова, якщо продовження не знайдено. Вивести ланцюжок або повідомлення про неможливість перетворення.</p></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Рядок розглядається як послідовність слів і роздільників. Функція strspn пропускає пропуски, коми та крапки, а strcspn визначає довжину наступного слова. За кожним виділеним словом збільшується лічильник; для найдовшого слова запам’ятовується найбільша довжина.</p><p>Для числового слова спочатку перевіряються всі символи за допомогою isdigit. До суми додаються значення його окремих цифр. Перетворення записується в інший масив: слова довжини один пропускаються, а між збереженими словами формується один пропуск із допустимим розділовим знаком.</p><h3>Завдання 2</h3><p>Функція compareWords перевіряє однакову довжину та рівно одну відмінну позицію. Послідовний перегляд словника вибирає перше придатне невикористане слово. Масив ознак usedWordFlags запобігає повторному використанню тих самих записів словника.</p><p>Якщо поточне слово відрізняється від кінцевого рівно на одну літеру, виконується завершальний перехід. За відсутності продовження можна додати нове слово, яке задовольняє цю умову відносно поточного. Наведений послідовний алгоритм залежить від порядку словника та не виконує пошуку найкоротшого ланцюжка.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab9-flow-1-01.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-01.png" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-02.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-02.png" alt="input()"></a><figcaption>input()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-03.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-03.png" alt="findNumberOfWords()"></a><figcaption>findNumberOfWords()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-04.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-04.png" alt="findLongestWord()"></a><figcaption>findLongestWord()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-05.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-05.png" alt="findDigitWordSum()"></a><figcaption>findDigitWordSum()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-06.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-06.png" alt="transformInitialString()"></a><figcaption>transformInitialString()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-1-07.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-1-07.png" alt="main()"></a><figcaption>main()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab9-flow-2-01.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-01.svg" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-02.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-02.svg" alt="input()"></a><figcaption>input()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-03.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-03.svg" alt="compareWords()"></a><figcaption>compareWords()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-04.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-04.svg" alt="changeWord()"></a><figcaption>changeWord()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-05.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-05.svg" alt="addWordToVocabulary()"></a><figcaption>addWordToVocabulary()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-06.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-06.svg" alt="transformWord()"></a><figcaption>transformWord()</figcaption></figure><figure class="figure"><a href="assets/lab9-flow-2-07.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-flow-2-07.svg" alt="main()"></a><figcaption>main()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+
+using namespace std;
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 1 завдання 1&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Увести з клавіатури рядок символів, який містить слова та розділові символи.&quot;
+		&lt;&lt; &quot; Слова не повинні містити в собі розділових знаків. Слова відділяються одне&quot;
+		&lt;&lt; &quot; від одного за допомогою розділових знаків та довільної кількості пропусків.&quot;
+		&lt;&lt; &quot; Передбачити меню дій за допомогою якого можна визначити кількість слів і знайти&quot;
+		&lt;&lt; &quot; найдовше слово, знайти слова що складаються тільки з цифр та знайти суму в таких словах,&quot;
+		&lt;&lt; &quot; видалити з рядка однолітерні слова та зайві пропуски, коми, крапки.&quot;
+		&lt;&lt; &quot; вивести на екран слова рядка, їх кількість, найдовше слово, суму цифр слова та&quot;
+		&lt;&lt; &quot; рядок після перетворення&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;======================================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для введення початкового рядка символів
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;initialString&quot;&gt;Масив для збереження введеного рядка&lt;/param&gt;
+void input(char* initialString)
+{
+	cout &lt;&lt; &quot;Введіть початковий рядок слів: &quot; &lt;&lt; endl;
+	cin.getline(initialString, 50);
+	cout &lt;&lt; &quot;Початковий рядок: &quot; &lt;&lt; initialString &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для визначення кількості слів у рядку
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;initialString&quot;&gt;Початковий рядок символів&lt;/param&gt;
+/// &lt;returns&gt;Кількість слів у рядку&lt;/returns&gt;
+int findNumberOfWords(char* initialString)
+{
+	size_t wordLength; // Довжина поточного слова
+	int numberOfWords = 0; // Кількість знайдених слів
+	size_t startOfString; // Кількість розділових символів перед словом
+	size_t i = 0; // Поточна позиція в рядку
+
+	while (i &lt; strlen(initialString))
+	{
+		startOfString = strspn(initialString + i, &quot;, .&quot;);
+		i += startOfString;
+
+		if (initialString[i] == &#x27;\0&#x27;)
+		{
+			break;
+		}
+
+		wordLength = strcspn(initialString + i, &quot;, .&quot;);
+		numberOfWords++;
+		i += wordLength;
+	}
+
+	return numberOfWords;
+}
+
+/// &lt;summary&gt;
+/// Функція для пошуку найдовшого слова у початковому рядку
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;initialString&quot;&gt;Початковий рядок символів&lt;/param&gt;
+/// &lt;param name=&quot;longestWord&quot;&gt;Масив для збереження найдовшого слова&lt;/param&gt;
+void findLongestWord(char* initialString, char* longestWord)
+{
+	size_t currentWordLength = 0; // Довжина поточного слова
+	size_t maxWordLength = 0; // Максимальна довжина слова
+	size_t stringSeparatorNumber; // Кількість розділових символів
+	size_t longestWordStartPosition = 0; // Початкова позиція найдовшого слова
+	size_t i = 0; // Поточна позиція в рядку
+
+	while (i &lt; strlen(initialString))
+	{
+		stringSeparatorNumber = strspn(initialString + i, &quot;, .&quot;);
+		i += stringSeparatorNumber;
+
+		if (initialString[i] == &#x27;\0&#x27;)
+		{
+			break;
+		}
+
+		currentWordLength = strcspn(initialString + i, &quot;, .&quot;);
+
+		if (currentWordLength &gt; maxWordLength)
+		{
+			longestWordStartPosition = i;
+			maxWordLength = currentWordLength;
+		}
+
+		i += currentWordLength;
+	}
+
+	for (size_t i = 0; i &lt; maxWordLength; i++)
+	{
+		longestWord[i] = initialString[longestWordStartPosition + i];
+	}
+
+	longestWord[maxWordLength] = &#x27;\0&#x27;;
+}
+
+/// &lt;summary&gt;
+/// Функція для пошуку слів, що складаються лише з цифр,
+/// та обчислення суми всіх цифр таких слів
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;initialString&quot;&gt;Початковий рядок символів&lt;/param&gt;
+/// &lt;returns&gt;Сума цифр усіх числових слів&lt;/returns&gt;
+int findDigitWordSum(char* initialString)
+{
+	int sum = 0; // Загальна сума цифр
+	size_t currentWordLength = 0; // Довжина поточного слова
+	size_t stringSeparatorNumber; // Кількість розділових символів
+	size_t i = 0; // Поточна позиція в рядку
+	bool wordIsDigit = true; // Ознака того, що слово складається лише з цифр
+
+	while (i &lt; strlen(initialString))
+	{
+		stringSeparatorNumber = strspn(initialString + i, &quot;, .&quot;);
+		i += stringSeparatorNumber;
+
+		if (initialString[i] == &#x27;\0&#x27;)
+		{
+			break;
+		}
+
+		currentWordLength = strcspn(initialString + i, &quot;, .&quot;);
+
+		wordIsDigit = true;
+
+		for (size_t j = 0; j &lt; currentWordLength; j++)
+		{
+			if (!isdigit(initialString[i + j]))
+			{
+				wordIsDigit = false;
+				break;
+			}
+		}
+
+		if (wordIsDigit)
+		{
+			for (size_t j = 0; j &lt; currentWordLength; j++)
+			{
+				sum += initialString[i + j] - &#x27;0&#x27;;
+			}
+		}
+
+		i += currentWordLength;
+	}
+
+	return sum;
+}
+
+/// &lt;summary&gt;
+/// Функція для видалення однолітерних слів та зайвих
+/// пропусків, ком і крапок із початкового рядка
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;initialString&quot;&gt;Початковий рядок символів&lt;/param&gt;
+/// &lt;param name=&quot;transformedString&quot;&gt;Масив для збереження перетвореного рядка&lt;/param&gt;
+void transformInitialString(char* initialString, char* transformedString)
+{
+	size_t transformedStringIndex = 0; // Позиція запису в перетвореному рядку
+	size_t stringSeparatorNumber; // Кількість розділових символів
+	size_t currentWordLength = 0; // Довжина поточного слова
+	size_t i = 0; // Поточна позиція в початковому рядку
+	bool hasComma = false; // Ознака наявності коми
+	bool hasDot = false; // Ознака наявності крапки
+
+	while (i &lt; strlen(initialString))
+	{
+		stringSeparatorNumber = strspn(initialString + i, &quot;, .&quot;);
+		size_t separatorStartPosition = i; // Початок послідовності роздільників
+		i += stringSeparatorNumber;
+
+		if (initialString[i] == &#x27;\0&#x27;)
+		{
+			break;
+		}
+
+		currentWordLength = strcspn(initialString + i, &quot;, .&quot;);
+
+		for (size_t j = separatorStartPosition; j &lt; i; j++)
+		{
+			if (initialString[j] == &#x27;,&#x27;)
+			{
+				hasComma = true;
+			}
+			else if (initialString[j] == &#x27;.&#x27;)
+			{
+				hasDot = true;
+			}
+		}
+
+		if (currentWordLength == 1)
+		{
+			i += currentWordLength;
+			continue;
+		}
+
+		if (transformedStringIndex != 0)
+		{
+			if (hasDot)
+			{
+				transformedString[transformedStringIndex] = &#x27;.&#x27;;
+				transformedStringIndex++;
+			}
+			else if (hasComma)
+			{
+				transformedString[transformedStringIndex] = &#x27;,&#x27;;
+				transformedStringIndex++;
+			}
+
+			transformedString[transformedStringIndex] = &#x27; &#x27;;
+			transformedStringIndex++;
+		}
+
+		hasComma = false;
+		hasDot = false;
+
+		for (size_t j = 0; j &lt; currentWordLength; j++)
+		{
+			transformedString[transformedStringIndex] = initialString[i + j];
+			transformedStringIndex++;
+		}
+
+		i += currentWordLength;
+	}
+
+	transformedString[transformedStringIndex] = &#x27;\0&#x27;;
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми для керування меню обробки рядка
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	char initialString[50]; // Початковий рядок символів
+	char longestWord[50]; // Найдовше слово
+	char transformedString[50]; // Рядок після перетворення
+	int digitWordSum = 0; // Сума цифр числових слів
+	int choice; // Обраний пункт меню
+
+	identificationOutput();
+	input(initialString);
+
+	while (true)
+	{
+		cout &lt;&lt; &quot;1. Визначити кількість слів та знайти найдовше слово&quot; &lt;&lt; endl
+			&lt;&lt; &quot;2. Знайти слова, що складаються тільки з цифр та знайти суму цифр таких слів&quot; &lt;&lt; endl
+			&lt;&lt; &quot;3. Видалити з рядка однолітерні слова та зайві пропуски, коми, крапки&quot; &lt;&lt; endl
+			&lt;&lt; &quot;0. Вихід&quot; &lt;&lt; endl;
+
+		cout &lt;&lt; &quot;Оберіть пункт меню: &quot;;
+		cin &gt;&gt; choice;
+		cout &lt;&lt; endl;
+
+		switch (choice)
+		{
+		case 1:
+			findLongestWord(initialString, longestWord);
+			cout &lt;&lt; &quot;Кількість слів: &quot;
+				&lt;&lt; findNumberOfWords(initialString) &lt;&lt; endl;
+			cout &lt;&lt; &quot;Найдовше слово: &quot; &lt;&lt; longestWord &lt;&lt; endl;
+			cout &lt;&lt; endl;
+			break;
+
+		case 2:
+			digitWordSum = findDigitWordSum(initialString);
+			cout &lt;&lt; &quot;Сума усіх числових слів: &quot;
+				&lt;&lt; digitWordSum &lt;&lt; endl;
+			cout &lt;&lt; endl;
+			break;
+
+		case 3:
+			transformInitialString(initialString, transformedString);
+			cout &lt;&lt; &quot;Рядок після перетворення: &quot;
+				&lt;&lt; transformedString &lt;&lt; endl;
+			cout &lt;&lt; endl;
+			break;
+
+		case 0:
+			break;
+
+		default:
+			cout &lt;&lt; &quot;Введіть коректне значення!&quot; &lt;&lt; endl;
+			cout &lt;&lt; endl;
+			break;
+		}
+
+		if (choice == 0)
+		{
+			break;
+		}
+	}
+}</code></pre><h3>Завдання 2</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;iostream&gt;
+#include &lt;windows.h&gt;
+#include &lt;string.h&gt;
+
+using namespace std;
+
+const int maxVocabularySize = 10; // Максимальна кількість слів у словнику
+
+/// &lt;summary&gt;
+/// Функція для виведення інформації про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	cout &lt;&lt; &quot;======================================================&quot; &lt;&lt; endl
+		&lt;&lt; &quot;&gt; Анастасьєв Володимир | ІПЗ - 11&quot; &lt;&lt; endl
+		&lt;&lt; &quot;&gt; Лабораторна робота 9 | Завдання 2&quot; &lt;&lt; endl
+		&lt;&lt; &quot;======================================================&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Ввести два слова і словник слів, який поданий масивом рядків. Необхідно&quot;
+		&lt;&lt; &quot; перетворити одне слово в інше, міняючи за один крок одну літеру, причому&quot;
+		&lt;&lt; &quot; кожне нове слово має бути в словнику.У випадку відсутності слів у словнику&quot;
+		&lt;&lt; &quot; передбачити додавання потрібних слів.На екран вивести лінцюжок перетворення&quot;
+		&lt;&lt; &quot; одного слова в інше або повідомлення про неможливість такого перетворення.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;======================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Функція для введення початкового та кінцевого слів,
+/// кількості слів у словнику та його заповнення
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;n&quot;&gt;Кількість слів у словнику&lt;/param&gt;
+/// &lt;param name=&quot;firstWord&quot;&gt;Початкове слово&lt;/param&gt;
+/// &lt;param name=&quot;secondWord&quot;&gt;Кінцеве слово&lt;/param&gt;
+/// &lt;param name=&quot;wordVocabulary&quot;&gt;Масив слів словника&lt;/param&gt;
+/// &lt;param name=&quot;transformationPossible&quot;&gt;
+/// Ознака можливості виконання перетворення
+/// &lt;/param&gt;
+void input(int&amp; n, char* firstWord, char* secondWord,
+	char wordVocabulary[][10], bool&amp; transformationPossible)
+{
+	cout &lt;&lt; &quot;Введіть кількість слів у словнику (до 10 слів): &quot;;
+	cin &gt;&gt; n;
+
+	while (n &lt; 1 || n &gt; maxVocabularySize)
+	{
+		cout &lt;&lt; &quot;Введіть коректне значення: &quot;;
+		cin &gt;&gt; n;
+	}
+
+	cout &lt;&lt; &quot;Введіть початкове слово: &quot;;
+	cin &gt;&gt; firstWord;
+
+	cout &lt;&lt; &quot;Введіть кінцеве слово: &quot;;
+	cin &gt;&gt; secondWord;
+
+	if (strlen(firstWord) != strlen(secondWord))
+	{
+		cout &lt;&lt; &quot;Слова різної довжини неможливо перетворити одне в одне.&quot;
+			&lt;&lt; endl;
+		transformationPossible = false;
+		return;
+	}
+
+	if (strcmp(firstWord, secondWord) == 0)
+	{
+		cout &lt;&lt; firstWord &lt;&lt; endl;
+		transformationPossible = false;
+		return;
+	}
+
+	cout &lt;&lt; &quot;Введіть словник слів: &quot; &lt;&lt; endl;
+
+	for (int i = 0; i &lt; n; i++)
+	{
+		cin &gt;&gt; wordVocabulary[i];
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для перевірки відмінності між двома словами
+/// рівно на одну літеру
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;word&quot;&gt;Перше слово для порівняння&lt;/param&gt;
+/// &lt;param name=&quot;wordVocabulary&quot;&gt;Друге слово для порівняння&lt;/param&gt;
+/// &lt;returns&gt;
+/// true, якщо слова відрізняються рівно на одну літеру,
+/// інакше false
+/// &lt;/returns&gt;
+bool compareWords(char* word, char* wordVocabulary)
+{
+	if (strlen(word) != strlen(wordVocabulary))
+	{
+		return false;
+	}
+
+	int diferenceBetweenWords = 0; // Кількість відмінних літер
+
+	for (int i = 0; i &lt; strlen(word); i++)
+	{
+		if (word[i] != wordVocabulary[i])
+		{
+			diferenceBetweenWords++;
+		}
+	}
+
+	if (diferenceBetweenWords == 1)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+/// &lt;summary&gt;
+/// Функція для заміни відмінних літер поточного слова
+/// відповідними літерами іншого слова
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;word&quot;&gt;Поточне слово, яке змінюється&lt;/param&gt;
+/// &lt;param name=&quot;wordVocabulary&quot;&gt;Слово, за яким виконується заміна&lt;/param&gt;
+void changeWord(char* word, char* wordVocabulary)
+{
+	for (int i = 0; i &lt; strlen(word); i++)
+	{
+		if (word[i] != wordVocabulary[i])
+		{
+			word[i] = wordVocabulary[i];
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Функція для додавання нового слова до словника,
+/// якщо воно відрізняється від поточного рівно на одну літеру
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;wordVocabulary&quot;&gt;Масив слів словника&lt;/param&gt;
+/// &lt;param name=&quot;n&quot;&gt;Поточна кількість слів у словнику&lt;/param&gt;
+/// &lt;param name=&quot;firstWord&quot;&gt;Поточне слово для порівняння&lt;/param&gt;
+/// &lt;returns&gt;
+/// true, якщо слово додано до словника,
+/// інакше false
+/// &lt;/returns&gt;
+bool addWordToVocabulary(char wordVocabulary[][10], int&amp; n, char* firstWord)
+{
+	if (n == maxVocabularySize)
+	{
+		cout &lt;&lt; &quot;Неможливо додати нове слово, словник заповнений!&quot; &lt;&lt; endl;
+		return false;
+	}
+
+	char newWord[10]; // Нове слово для додавання до словника
+
+	cout &lt;&lt; &quot;Введіть нове слово: &quot;;
+	cin &gt;&gt; newWord;
+
+	while (!compareWords(firstWord, newWord))
+	{
+		cout &lt;&lt; &quot;Нове слово повинно відрізнятися від поточного &quot;
+			&lt;&lt; &quot;рівно на одну літеру!&quot; &lt;&lt; endl;
+		cout &lt;&lt; &quot;Введіть нове слово: &quot;;
+		cin &gt;&gt; newWord;
+	}
+
+	strcpy(wordVocabulary[n], newWord);
+	n++;
+
+	return true;
+}
+
+/// &lt;summary&gt;
+/// Функція для послідовного перетворення початкового слова
+/// в кінцеве за допомогою слів зі словника
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;transformationCompleted&quot;&gt;
+/// Ознака завершення перетворення
+/// &lt;/param&gt;
+/// &lt;param name=&quot;wordFound&quot;&gt;
+/// Ознака знаходження відповідного слова у словнику
+/// &lt;/param&gt;
+/// &lt;param name=&quot;n&quot;&gt;Кількість слів у словнику&lt;/param&gt;
+/// &lt;param name=&quot;firstWord&quot;&gt;Поточне слово для перетворення&lt;/param&gt;
+/// &lt;param name=&quot;secondWord&quot;&gt;Кінцеве слово&lt;/param&gt;
+/// &lt;param name=&quot;wordVocabulary&quot;&gt;Масив слів словника&lt;/param&gt;
+/// &lt;param name=&quot;usedWordFlags&quot;&gt;
+/// Масив ознак використаних слів словника
+/// &lt;/param&gt;
+void transformWord(bool transformationCompleted, bool wordFound,
+	int&amp; n, char* firstWord, char* secondWord,
+	char wordVocabulary[][10], bool* usedWordFlags)
+{
+	while (!transformationCompleted)
+	{
+		wordFound = false;
+
+		for (int j = 0; j &lt; n; j++)
+		{
+			if (compareWords(firstWord, wordVocabulary[j])
+				&amp;&amp; !usedWordFlags[j])
+			{
+				wordFound = true;
+				usedWordFlags[j] = true;
+
+				changeWord(firstWord, wordVocabulary[j]);
+				cout &lt;&lt; &quot; -&gt; &quot; &lt;&lt; firstWord;
+
+				if (compareWords(firstWord, secondWord))
+				{
+					changeWord(firstWord, secondWord);
+					cout &lt;&lt; &quot; -&gt; &quot; &lt;&lt; firstWord &lt;&lt; endl;
+					transformationCompleted = true;
+				}
+
+				break;
+			}
+		}
+
+		if (!wordFound)
+		{
+			cout &lt;&lt; endl;
+			cout &lt;&lt; &quot;Не знайдено слова для продовження перетворення.&quot;
+				&lt;&lt; endl;
+
+			if (!addWordToVocabulary(wordVocabulary, n, firstWord))
+			{
+				cout &lt;&lt; &quot;Слово неможливо перетворити.&quot; &lt;&lt; endl;
+				break;
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми для керування процесом
+/// перетворення початкового слова в кінцеве
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	int n = 0; // Кількість слів у словнику
+	char wordVocabulary[maxVocabularySize][10]; // Масив слів словника
+	char firstWord[10]; // Початкове слово
+	char secondWord[10]; // Кінцеве слово
+	bool usedWordFlags[maxVocabularySize] = {}; // Ознаки використаних слів
+	bool transformationCompleted = false; // Ознака завершення перетворення
+	bool wordFound = false; // Ознака знаходження слова у словнику
+	bool transformationPossible = true; // Ознака можливості перетворення
+
+	identificationOutput();
+	input(n, firstWord, secondWord, wordVocabulary, transformationPossible);
+
+	if (!transformationPossible)
+	{
+		return 0;
+	}
+
+	cout &lt;&lt; firstWord;
+
+	if (compareWords(firstWord, secondWord))
+	{
+		changeWord(firstWord, secondWord);
+		cout &lt;&lt; &quot; -&gt; &quot; &lt;&lt; firstWord &lt;&lt; endl;
+		transformationCompleted = true;
+	}
+
+	transformWord(transformationCompleted, wordFound, n, firstWord,
+		secondWord, wordVocabulary, usedWordFlags);
+
+	return 0;
+}</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>Для рядка «Програмування, 12282, а робота.» визначено чотири слова. Найдовше — «Програмування». Сума цифр числового слова 12282 дорівнює 1 + 2 + 2 + 8 + 2 = 15, що підтверджено WolframAlpha. Після видалення слова «а» отримано «Програмування, 12282, робота».</p><p>У додатковому тесті повторені однолітерні слова видалено, а результат має вигляд «програмування, робота».</p><div class="gallery"><figure class="figure"><a href="assets/lab9-check-1-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-check-1-1.png" alt="Кількість слів, сума цифр і перетворення рядка"></a><figcaption>Кількість слів, сума цифр і перетворення рядка</figcaption></figure><figure class="figure"><a href="assets/lab9-check-1-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-check-1-2.png" alt="Додатковий тест видалення однолітерних слів"></a><figcaption>Додатковий тест видалення однолітерних слів</figcaption></figure><figure class="figure"><a href="assets/lab9-check-1-3.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-check-1-3.png" alt="Перевірка суми цифр у WolframAlpha"></a><figcaption>Перевірка суми цифр у WolframAlpha</figcaption></figure></div><h3>Завдання 2</h3><p>Для початкового слова hit, кінцевого cog і словника hot, dot, dog, lot, log отримано hit → hot → dot → dog → cog. У кожній парі сусідніх слів змінено рівно одну позицію; проміжні слова є у введеному словнику.</p><div class="gallery"><figure class="figure"><a href="assets/lab9-check-2-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab9-check-2-1.png" alt="Ланцюжок перетворення hit → hot → dot → dog → cog"></a><figcaption>Ланцюжок перетворення hit → hot → dot → dog → cog</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У ході лабораторної роботи опрацьовано символьні масиви та стандартні функції обробки C-рядків. Закріплено визначення довжини, виділення слів за роздільниками, порівняння та копіювання символів. Меню команд дозволило перевірити різні операції над одним початковим рядком.</p><p>У першому завданні правильно визначено чотири слова контрольного рядка та знайдено найдовше слово «Програмування». Перевірка числового слова 12282 дала суму цифр 15. Це дозволило відрізнити додавання цифр від додавання числових значень цілих слів.</p><p>Перетворення рядка вилучило однолітерне слово та зайві роздільники, зберігши послідовність інших слів. Додатковий тест із кількома однолітерними словами показав роботу пропуску коротких фрагментів і формування роздільника між збереженими словами.</p><p>У другому завданні побудовано ланцюжок hit → hot → dot → dog → cog. Перевірка сусідніх пар підтвердила зміну рівно однієї літери на кожному кроці. Використання ознак уже обраних слів дозволило не повертатися до тих самих записів словника.</p><p>Робота закріпила послідовну обробку тексту, перевірку властивостей символів та побудову результату в окремому масиві. Під час аналізу перетворення слів враховано, що вибір першого придатного слова залежить від порядку словника та не гарантує найкоротшого шляху.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>

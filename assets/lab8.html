@@ -1,0 +1,453 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 8</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a href="index.html">Головна</a><a href="lab1.html">Лабораторна робота 1</a><a href="lab2.html">Лабораторна робота 2</a><a href="lab3.html">Лабораторна робота 3</a><a href="lab4.html">Лабораторна робота 4</a><a href="lab5.html">Лабораторна робота 5</a><a href="lab6.html">Лабораторна робота 6</a><a href="lab7.html">Лабораторна робота 7</a><a class="active" href="lab8.html">Лабораторна робота 8</a><a href="lab9.html">Лабораторна робота 9</a><a href="lab10.html">Лабораторна робота 10</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 08</p><h1>Лабораторна робота 8</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Динамічні масиви, вказівники та розріджені матриці.</p><p><strong>Мета:</strong> Навчитися створювати динамічні матриці й подання COO, передавати дані через вказівники та викликати функції через вказівники на функції. Порівняти обчислення суми діагоналі, час виконання й обсяг пам’яті для двох подань.</p></section><section class="card" id="condition"><h2>Умова завдання</h2><h3>Завдання 1</h3><p>Згенерувати матрицю заданих розмірів, у якій понад 60% елементів нульові. Побудувати координатне подання COO у вигляді трьох одновимірних масивів: значень ненульових елементів, індексів рядків та індексів стовпців. Вивести матрицю й масиви COO. Обчислити суму діагональних елементів за координатним і стандартним алгоритмами, порівняти час та обсяг пам’яті. Передбачити меню команд і звільнення виділеної пам’яті.</p></section><section class="card" id="analysis"><h2>Аналіз завдань</h2><h3>Завдання 1</h3><p>Матриця створюється динамічно за введеними додатними розмірами. Генерація повторюється, поки частка нульових елементів не перевищить 60%. Після цього два проходи визначають кількість ненульових елементів та заповнюють три масиви COO. Елементи зберігаються разом зі своїми координатами.</p><p>Для COO сума діагоналі визначається за рівністю індексів рядка і стовпця. Стандартний алгоритм у наведеній реалізації обходить усі елементи матриці та перевіряє i == j. Обидва алгоритми працюють з однією матрицею, тому мають дати однакову суму.</p><p>Обсяг даних звичайної матриці обчислюється як rows · columns · sizeof(int), а трьох масивів COO — як 3 · nnz · sizeof(int). У ці значення не входять службові витрати виділення пам’яті та масив вказівників на рядки. Для вимірювання часу кожне обчислення повторюється 1000 разів, після чого визначається середнє значення.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab8-flow-1-01.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-01.png" alt="identificationOutput()"></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-02.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-02.png" alt="clearMatrixBeforeGeneration()"></a><figcaption>clearMatrixBeforeGeneration()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-03.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-03.png" alt="createNewMatrixWithCustomSize()"></a><figcaption>createNewMatrixWithCustomSize()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-04.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-04.png" alt="matrixOutput()"></a><figcaption>matrixOutput()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-05.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-05.png" alt="checkMatrixForSixtyPercentZeros()"></a><figcaption>checkMatrixForSixtyPercentZeros()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-06.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-06.png" alt="fillSparseMatrix()"></a><figcaption>fillSparseMatrix()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-1-07.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-1-07.png" alt="coordinateMatrixOutput()"></a><figcaption>coordinateMatrixOutput()</figcaption></figure></div><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab8-flow-2-01.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-2-01.png" alt="coordinateMatrixCreate()"></a><figcaption>coordinateMatrixCreate()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-2-02.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-2-02.png" alt="findSumOfDiagonalByCoordinate()"></a><figcaption>findSumOfDiagonalByCoordinate()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-2-03.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-2-03.png" alt="findSumOfDiagonalByStandartAlgorithm()"></a><figcaption>findSumOfDiagonalByStandartAlgorithm()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-2-04.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-2-04.png" alt="outputSizeOfMemoryForStandartAndCoordinate()"></a><figcaption>outputSizeOfMemoryForStandartAndCoordinate()</figcaption></figure><figure class="figure"><a href="assets/lab8-flow-2-05.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-2-05.png" alt="clearMemory()"></a><figcaption>clearMemory()</figcaption></figure></div><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab8-flow-main.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-flow-main.png" alt="main()"></a><figcaption>main()</figcaption></figure></div></section><section class="card" id="code"><h2>Код програми</h2><h3>Завдання 1</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;Windows.h&gt;
+#include &lt;time.h&gt;
+
+using namespace std;
+
+const int numberOfTimeMeasurements = 1000; // Кількість повторів для вимірювання часу
+
+/// &lt;summary&gt;
+/// Виводить відомості про автора та умову лабораторної роботи.
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна 8&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Розробити програму, яка генерує матрицю довільної вимірності, кількість нульових&quot;
+		&lt;&lt; &quot; елементів якої більша за 60%. Збереження матриці в оперативній пам&#x27;яті здійснюється&quot;
+		&lt;&lt; &quot; в координатному форматі СОО у вигляді трьох одновимірних масивів.&quot;
+		&lt;&lt; &quot; Здійснити виведення на екран матриці по рядках і стовпцях. Вивести одновимірні масиви,&quot;
+		&lt;&lt; &quot; що зберігають розріджену матрицю. Визначити суму діагональних елементів розрідженої&quot;
+		&lt;&lt; &quot; матриці за алгоритмом обробки розріджених матриць та вивести результат.&quot;
+		&lt;&lt; &quot; Визначити суму діагональних елементів матриці за стандартним алгоритмом обробки матриць&quot;
+		&lt;&lt; &quot; та вивести результат. Порівняти час виконання операцій і обсяг пам&#x27;яті при використанні&quot;
+		&lt;&lt; &quot; цих двох алгоритмів.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;=====================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Звільняє пам’ять, виділену для попередньої матриці.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Вказівник на матрицю&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків матриці&lt;/param&gt;
+void clearMatrixBeforeGeneration(int** sparseMatrix, int numberOfRows)
+{
+	if (sparseMatrix != NULL)
+	{
+		for (int i = numberOfRows - 1; i &gt;= 0; i--)
+		{
+			delete[] * (sparseMatrix + i);
+		}
+
+		delete[] sparseMatrix;
+	}
+}
+
+/// &lt;summary&gt;
+/// Зчитує розміри та створює динамічну матрицю.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків, що вводиться&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців, що вводиться&lt;/param&gt;
+/// &lt;returns&gt;Вказівник на створену матрицю&lt;/returns&gt;
+int** createNewMatrixWithCustomSize(int&amp; numberOfRows, int&amp; numberOfColumns)
+{
+	cout &lt;&lt; &quot;Введіть кількість рядків та стовпців (наприклад: 3 5): &quot;;
+	cin &gt;&gt; numberOfRows &gt;&gt; numberOfColumns;
+
+	while (numberOfRows &lt;= 0 || numberOfColumns &lt;= 0)
+	{
+		cout &lt;&lt; &quot;Введіть коректну кількість рядків та стовпців &gt; 0! &quot;;
+		cin &gt;&gt; numberOfRows &gt;&gt; numberOfColumns;
+	}
+
+	int** sparseMatrix = new int* [numberOfRows];
+	for (int i = 0; i &lt; numberOfRows; i++)
+	{
+		*(sparseMatrix + i) = new int[numberOfColumns];
+	}
+
+	return sparseMatrix;
+}
+
+/// &lt;summary&gt;
+/// Виводить матрицю за рядками та стовпцями.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Матриця для виведення&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+void matrixOutput(int** sparseMatrix, int numberOfRows, int numberOfColumns)
+{
+	for (int i = 0; i &lt; numberOfRows; i++)
+	{
+		for (int j = 0; j &lt; numberOfColumns; j++)
+		{
+			cout &lt;&lt; setw(5) &lt;&lt; *(*(sparseMatrix + i) + j);
+		}
+		cout &lt;&lt; endl;
+	}
+}
+
+/// &lt;summary&gt;
+/// Перевіряє, чи частка нульових елементів перевищує 60%.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Матриця для перевірки&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+/// &lt;returns&gt;true, якщо нулів понад 60%, інакше false&lt;/returns&gt;
+bool checkMatrixForSixtyPercentZeros(int** sparseMatrix, int numberOfRows, int numberOfColumns)
+{
+	int zerosCount = 0; // Кількість нульових елементів
+	int numberOfElements = numberOfRows * numberOfColumns; // Загальна кількість елементів
+
+	for (int i = 0; i &lt; numberOfRows; i++)
+	{
+		for (int j = 0; j &lt; numberOfColumns; j++)
+		{
+			if (*(*(sparseMatrix + i) + j) == 0)
+			{
+				zerosCount++;
+			}
+		}
+	}
+
+	return numberOfElements * 0.6 &lt; zerosCount;
+}
+
+/// &lt;summary&gt;
+/// Заповнює матрицю випадковими числами до виконання умови розрідженості.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Матриця для заповнення&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+void fillSparseMatrix(int** sparseMatrix, int numberOfRows, int numberOfColumns)
+{
+	do
+	{
+		for (int i = 0; i &lt; numberOfRows; i++)
+		{
+			for (int j = 0; j &lt; numberOfColumns; j++)
+			{
+				*(*(sparseMatrix + i) + j) = rand() % 15;
+
+				if (*(*(sparseMatrix + i) + j) &lt; 10)
+				{
+					*(*(sparseMatrix + i) + j) = 0;
+				}
+			}
+		}
+	} while (!checkMatrixForSixtyPercentZeros(sparseMatrix, numberOfRows, numberOfColumns));
+}
+
+/// &lt;summary&gt;
+/// Виводить три масиви координатного формату COO.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;nonZeroElements&quot;&gt;Кількість ненульових елементів&lt;/param&gt;
+/// &lt;param name=&quot;matrixElementValues&quot;&gt;Масив значень&lt;/param&gt;
+/// &lt;param name=&quot;rowIndexes&quot;&gt;Масив індексів рядків&lt;/param&gt;
+/// &lt;param name=&quot;columnIndexes&quot;&gt;Масив індексів стовпців&lt;/param&gt;
+void coordinateMatrixOutput(int nonZeroElements, int* matrixElementValues,
+	int* rowIndexes, int* columnIndexes)
+{
+	cout &lt;&lt; &quot;Масив значень матриці: &quot; &lt;&lt; endl;
+	for (int i = 0; i &lt; nonZeroElements; i++)
+	{
+		cout &lt;&lt; setw(5) &lt;&lt; *(matrixElementValues + i) &lt;&lt; &quot; &quot;;
+	}
+	cout &lt;&lt; endl;
+
+	cout &lt;&lt; &quot;Масив індексів рядків матриці: &quot; &lt;&lt; endl;
+	for (int i = 0; i &lt; nonZeroElements; i++)
+	{
+		cout &lt;&lt; setw(5) &lt;&lt; *(rowIndexes + i) &lt;&lt; &quot; &quot;;
+	}
+	cout &lt;&lt; endl;
+
+	cout &lt;&lt; &quot;Масив індексів стовпців матриці: &quot; &lt;&lt; endl;
+	for (int i = 0; i &lt; nonZeroElements; i++)
+	{
+		cout &lt;&lt; setw(5) &lt;&lt; *(columnIndexes + i) &lt;&lt; &quot; &quot;;
+	}
+	cout &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Створює три масиви COO для зберігання ненульових елементів.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Початкова матриця&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+/// &lt;param name=&quot;matrixElementValues&quot;&gt;Масив значень COO&lt;/param&gt;
+/// &lt;param name=&quot;rowIndexes&quot;&gt;Масив індексів рядків&lt;/param&gt;
+/// &lt;param name=&quot;columnIndexes&quot;&gt;Масив індексів стовпців&lt;/param&gt;
+/// &lt;param name=&quot;nonZeroElements&quot;&gt;Кількість ненульових елементів&lt;/param&gt;
+void coordinateMatrixCreate(int** sparseMatrix, int numberOfRows, int numberOfColumns,
+	int*&amp; matrixElementValues, int*&amp; rowIndexes,
+	int*&amp; columnIndexes, int&amp; nonZeroElements)
+{
+	delete[] matrixElementValues;
+	delete[] rowIndexes;
+	delete[] columnIndexes;
+
+	nonZeroElements = 0;
+	for (int i = 0; i &lt; numberOfRows; i++)
+	{
+		for (int j = 0; j &lt; numberOfColumns; j++)
+		{
+			if (*(*(sparseMatrix + i) + j) != 0)
+			{
+				nonZeroElements++;
+			}
+		}
+	}
+
+	matrixElementValues = new int[nonZeroElements];
+	rowIndexes = new int[nonZeroElements];
+	columnIndexes = new int[nonZeroElements];
+	int index = 0; // Позиція запису у масивах COO
+
+	for (int i = 0; i &lt; numberOfRows; i++)
+	{
+		for (int j = 0; j &lt; numberOfColumns; j++)
+		{
+			if (*(*(sparseMatrix + i) + j) != 0)
+			{
+				*(matrixElementValues + index) = *(*(sparseMatrix + i) + j);
+				*(rowIndexes + index) = i;
+				*(columnIndexes + index) = j;
+				index++;
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Обчислює суму діагоналі у форматі COO та середній час обчислення.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrixElementValues&quot;&gt;Масив значень COO&lt;/param&gt;
+/// &lt;param name=&quot;rowIndexes&quot;&gt;Індекси рядків&lt;/param&gt;
+/// &lt;param name=&quot;columnIndexes&quot;&gt;Індекси стовпців&lt;/param&gt;
+/// &lt;param name=&quot;nonZeroElements&quot;&gt;Кількість ненульових елементів&lt;/param&gt;
+/// &lt;param name=&quot;coordinateTime&quot;&gt;Середній час виконання в секундах&lt;/param&gt;
+/// &lt;returns&gt;Сума діагональних елементів&lt;/returns&gt;
+int findSumOfDiagonalByCoordinate(int* matrixElementValues,
+	int* rowIndexes, int* columnIndexes, int nonZeroElements, double&amp; coordinateTime)
+{
+	int sum = 0; // Сума діагональних елементів
+
+	clock_t start = clock(); // Початок вимірювання часу
+	for (int indexForTime = 0; indexForTime &lt; numberOfTimeMeasurements; indexForTime++)
+	{
+		sum = 0;
+
+		for (int i = 0; i &lt; nonZeroElements; i++)
+		{
+			if (*(rowIndexes + i) == *(columnIndexes + i))
+			{
+				sum += *(matrixElementValues + i);
+			}
+		}
+	}
+	clock_t end = clock(); // Кінець вимірювання часу
+
+	coordinateTime = ((end - start) / (double)CLOCKS_PER_SEC) / numberOfTimeMeasurements;
+
+	return sum;
+}
+
+/// &lt;summary&gt;
+/// Обчислює суму діагоналі звичайним обходом матриці та вимірює час.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Початкова матриця&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+/// &lt;param name=&quot;standartAlgorithmTime&quot;&gt;Середній час виконання в секундах&lt;/param&gt;
+/// &lt;returns&gt;Сума діагональних елементів&lt;/returns&gt;
+int findSumOfDiagonalByStandartAlgorithm(int** sparseMatrix, int numberOfRows,
+	int numberOfColumns, double&amp; standartAlgorithmTime)
+{
+	int sum = 0; // Сума діагональних елементів
+
+	clock_t start = clock(); // Початок вимірювання часу
+	for (int indexForTime = 0; indexForTime &lt; numberOfTimeMeasurements; indexForTime++)
+	{
+		sum = 0;
+
+		for (int i = 0; i &lt; numberOfRows; i++)
+		{
+			for (int j = 0; j &lt; numberOfColumns; j++)
+			{
+				if (i == j)
+				{
+					sum += *(*(sparseMatrix + i) + j);
+				}
+			}
+		}
+	}
+	clock_t end = clock(); // Кінець вимірювання часу
+
+	standartAlgorithmTime = ((end - start) / (double)CLOCKS_PER_SEC) / numberOfTimeMeasurements;
+
+	return sum;
+}
+
+/// &lt;summary&gt;
+/// Виводить обсяг пам’яті для звичайного та COO-подання матриці.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+/// &lt;param name=&quot;numberOfColumns&quot;&gt;Кількість стовпців&lt;/param&gt;
+/// &lt;param name=&quot;nonZeroElements&quot;&gt;Кількість ненульових елементів&lt;/param&gt;
+void outputSizeOfMemoryForStandartAndCoordinate(int numberOfRows,
+	int numberOfColumns, int nonZeroElements)
+{
+	size_t standartMatrixMemory = size_t(numberOfColumns) * size_t(numberOfRows) * sizeof(int); // Обсяг пам’яті звичайної матриці
+	cout &lt;&lt; &quot;Обсяг пам&#x27;яті при стандартному зберіганні матриці: &quot;
+		&lt;&lt; standartMatrixMemory &lt;&lt; &quot; байт&quot; &lt;&lt; endl;
+
+	size_t coordinateMatrixMemory = 3 * size_t(nonZeroElements) * sizeof(int); // Обсяг пам’яті трьох масивів COO
+	cout &lt;&lt; &quot;Обсяг пам&#x27;яті при зберіганні у СОО: &quot; &lt;&lt; coordinateMatrixMemory &lt;&lt; &quot; байт&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Звільняє пам’ять матриці та масивів COO.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;matrixElementValues&quot;&gt;Масив значень COO&lt;/param&gt;
+/// &lt;param name=&quot;rowIndexes&quot;&gt;Масив індексів рядків&lt;/param&gt;
+/// &lt;param name=&quot;columnIndexes&quot;&gt;Масив індексів стовпців&lt;/param&gt;
+/// &lt;param name=&quot;sparseMatrix&quot;&gt;Початкова матриця&lt;/param&gt;
+/// &lt;param name=&quot;numberOfRows&quot;&gt;Кількість рядків&lt;/param&gt;
+void clearMemory(int* matrixElementValues, int* rowIndexes, int* columnIndexes,
+	int** sparseMatrix, int numberOfRows)
+{
+	delete[] matrixElementValues;
+	delete[] rowIndexes;
+	delete[] columnIndexes;
+	if (sparseMatrix != NULL)
+	{
+		for (int i = numberOfRows - 1; i &gt;= 0; i--)
+		{
+			delete[] * (sparseMatrix + i);
+		}
+		delete[] sparseMatrix;
+	}
+}
+
+/// &lt;summary&gt;
+/// Керує меню програми, створенням матриці, обчисленнями та очищенням пам’яті.
+/// &lt;/summary&gt;
+/// &lt;returns&gt;Код завершення програми&lt;/returns&gt;
+int main()
+{
+	srand((unsigned)(time(NULL)));
+	int choice = 0; // Обраний пункт меню
+	int numberOfRows = 0; // Кількість рядків
+	int numberOfColumns = 0; // Кількість стовпців
+	int** sparseMatrix = NULL; // Вказівник на матрицю
+	int* matrixElementValues = NULL; // Масив значень COO
+	int* rowIndexes = NULL; // Індекси рядків COO
+	int* columnIndexes = NULL; // Індекси стовпців COO
+	int nonZeroElements = 0; // Кількість ненульових елементів
+	double standartAlgorithmTime; // Час стандартного алгоритму
+	double coordinateTime; // Час алгоритму COO
+
+	void (*sparseMatrixPointer)(int**, int, int);
+	void (*coordinateMatrixOutputPointer)
+		(int, int*, int*, int*) = coordinateMatrixOutput;
+	int (*diagonalSumByCoordinatePointer)
+		(int*, int*, int*, int, double&amp;) = findSumOfDiagonalByCoordinate;
+	int** (*createNewMatrixWithCustomSizePointer)(int&amp;, int&amp;) = createNewMatrixWithCustomSize;
+	void(*coordinateMatrixCreatePointer)
+		(int**, int, int, int*&amp;, int*&amp;, int*&amp;, int&amp;) = coordinateMatrixCreate;
+	int (*standartAlgorithmSumPointer)
+		(int**, int, int, double&amp;) = findSumOfDiagonalByStandartAlgorithm;
+	void (*outputSizeOfMemoryForMaticesPointer)
+		(int, int, int) = outputSizeOfMemoryForStandartAndCoordinate;
+	void (*clearMemoryPointer)(int*, int*, int*, int**, int) = clearMemory;
+	void (*clearMatrixBeforeGenerationPointer)(int**, int) = clearMatrixBeforeGeneration;
+
+	identificationOutput();
+
+	while (true)
+	{
+		cout &lt;&lt; endl;
+
+		cout &lt;&lt; &quot;1. Згенерувати розріджену матрицю&quot; &lt;&lt; endl
+			&lt;&lt; &quot;2. Вивести на екран матрицю&quot; &lt;&lt; endl
+			&lt;&lt; &quot;3. Вивести на екран СОО масиви&quot; &lt;&lt; endl
+			&lt;&lt; &quot;4. Визначити суму діагональних елементів матриці за алгоритмом обробки розріджених матриць&quot;
+			&lt;&lt; endl
+			&lt;&lt; &quot;5. Визначити суму діагональних елементів розрідженої матриці за стандартним алгоритмом &quot;
+			&lt;&lt; &quot;обробки матриць&quot; &lt;&lt; endl
+			&lt;&lt; &quot;6. Порівняти час виконання операцій і обсяг пам&#x27;яті при використанні двох алгоритмів&quot;
+			&lt;&lt; endl
+			&lt;&lt; &quot;0. Вихід&quot; &lt;&lt; endl
+			&lt;&lt; &quot;==============================================&quot; &lt;&lt; endl;
+
+		cout &lt;&lt; &quot;Оберіть пункт меню: &quot;;
+		cin &gt;&gt; choice;
+		cout &lt;&lt; endl;
+
+		if (sparseMatrix == NULL &amp;&amp; choice &gt;= 2 &amp;&amp; choice &lt;= 6)
+		{
+			cout &lt;&lt; &quot;Спочатку треба створити матрицю!&quot; &lt;&lt; endl;
+			continue;
+		}
+
+		switch (choice)
+		{
+		case 1:
+			clearMatrixBeforeGenerationPointer(sparseMatrix, numberOfRows);
+			sparseMatrixPointer = fillSparseMatrix;
+			sparseMatrix = createNewMatrixWithCustomSizePointer(numberOfRows, numberOfColumns);
+			sparseMatrixPointer(sparseMatrix, numberOfRows, numberOfColumns);
+			coordinateMatrixCreatePointer(sparseMatrix, numberOfRows, numberOfColumns, matrixElementValues,
+				rowIndexes, columnIndexes, nonZeroElements);
+			break;
+		case 2:
+			sparseMatrixPointer = matrixOutput;
+			sparseMatrixPointer(sparseMatrix, numberOfRows, numberOfColumns);
+			break;
+		case 3:
+			coordinateMatrixOutputPointer(nonZeroElements, matrixElementValues, rowIndexes, columnIndexes);
+			break;
+		case 4:
+			cout &lt;&lt; endl;
+			cout &lt;&lt; &quot;Сума елементів діагоналі розрідженої матриці за алгоритмом &quot;
+				&lt;&lt; &quot;обробки розріджених матриць: &quot;
+				&lt;&lt; diagonalSumByCoordinatePointer(matrixElementValues, rowIndexes,
+					columnIndexes, nonZeroElements, coordinateTime) &lt;&lt; endl;
+			break;
+		case 5:
+			cout &lt;&lt; &quot;Сума елементів діагоналі розрідженої матриці за стандартним алгоритмом &quot;
+				&lt;&lt; &quot;обробки матриць: &quot;
+				&lt;&lt; standartAlgorithmSumPointer(sparseMatrix, numberOfRows, numberOfColumns,
+					standartAlgorithmTime) &lt;&lt; endl;
+			cout &lt;&lt; endl;
+			break;
+		case 6:
+			diagonalSumByCoordinatePointer(matrixElementValues, rowIndexes,
+				columnIndexes, nonZeroElements, coordinateTime);
+			standartAlgorithmSumPointer(sparseMatrix, numberOfRows,
+				numberOfColumns, standartAlgorithmTime);
+			outputSizeOfMemoryForMaticesPointer(numberOfRows, numberOfColumns, nonZeroElements);
+			cout &lt;&lt; &quot;Час розрахунку суми діагоналі за алгоритмом обробки розрідженої матриці: &quot;
+				&lt;&lt; coordinateTime &lt;&lt; &quot; секунд&quot; &lt;&lt; endl;
+			cout &lt;&lt; &quot;Час розрахунку суми діагоналі за стандартним алгоритмом: &quot;
+				&lt;&lt; standartAlgorithmTime &lt;&lt; &quot; секунд&quot; &lt;&lt; endl;
+			break;
+		case 0:
+			break;
+		}
+
+		if (choice == 0)
+		{
+			break;
+		}
+	}
+
+	clearMemoryPointer(matrixElementValues, rowIndexes, columnIndexes, sparseMatrix, numberOfRows);
+}</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>Для матриці 3 × 5 у COO записано п’ять ненульових значень: 13, 11, 11, 11, 10. Лише елемент зі значенням 11 та координатами (2, 2) належить головній діагоналі. Обидва алгоритми й перевірка в Excel дають суму 11.</p><p>За sizeof(int) = 4 байти звичайні елементи матриці займають 3 · 5 · 4 = 60 байт. Три масиви COO займають 3 · 5 · 4 = 60 байт. Для цього невеликого прикладу обсяги однакові.</p><p>У тесті 1000 × 1000 наведено 4 000 000 байт для звичайного подання та 4 001 316 байт для COO. У цьому прикладі координатне подання трохи більше через збереження двох індексів для кожного ненульового значення. Час у наведеному запуску становить 0,000278 с для COO та 0,000473 с для стандартного обходу.</p><div class="gallery"><figure class="figure"><a href="assets/lab8-check-1-1.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-check-1-1.png" alt="Матриця та три масиви COO"></a><figcaption>Матриця та три масиви COO</figcaption></figure><figure class="figure"><a href="assets/lab8-check-1-2.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-check-1-2.png" alt="Сума діагоналі та обсяг пам’яті"></a><figcaption>Сума діагоналі та обсяг пам’яті</figcaption></figure><figure class="figure"><a href="assets/lab8-check-1-3.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-check-1-3.png" alt="Перевірка діагональних елементів в Excel"></a><figcaption>Перевірка діагональних елементів в Excel</figcaption></figure><figure class="figure"><a href="assets/lab8-check-1-4.png" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab8-check-1-4.png" alt="Порівняння для матриці 1000 × 1000"></a><figcaption>Порівняння для матриці 1000 × 1000</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У лабораторній роботі реалізовано створення динамічної матриці та її координатного подання. Закріплено виділення й звільнення пам’яті, доступ до елементів через вказівники та передавання масивів між функціями. Меню дозволило окремо виконувати генерацію, виведення, обчислення та порівняння.</p><p>Формат COO зберігає лише ненульові значення, але для кожного з них потребує також індексів рядка й стовпця. На прикладі матриці 3 × 5 побудовано п’ять координатних записів. Перевірка рівності координат виділила єдиний ненульовий діагональний елемент зі значенням 11, що збіглося зі стандартним обчисленням і результатом Excel.</p><p>Порівняння пам’яті показало, що сама наявність понад 60% нулів ще не гарантує економії для трьох масивів цілих чисел. Для малого прикладу обсяги даних однакові, а для наведеного великого прикладу COO трохи перевищує звичайне подання. За однакового розміру значення та індексів економія виникає, коли ненульових елементів менше третини від загальної кількості.</p><p>У великому тесті координатний обхід виконався швидше за стандартний повний обхід матриці. Вимірювання через повторні обчислення дозволило отримати ненульові значення часу. Для малого прикладу виведений нульовий час означає, що виміряна тривалість не була розрізнена використаним таймером, а не відсутність обчислень.</p><p>Робота закріпила вибір подання даних залежно від структури матриці та конкретного алгоритму. Отримані результати показали, що час і пам’ять слід аналізувати окремо, враховуючи кількість ненульових елементів, збереження індексів і спосіб обходу даних.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
