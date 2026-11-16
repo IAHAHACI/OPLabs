@@ -5,7 +5,7 @@
 <h3>Завдання 1</h3><p>Функція <code>createTextFile()</code> вводить кількість рядків і зберігає їх у <code>text.txt</code>. Функція <code>outputTextFile()</code> відкриває заданий файл у режимі читання та виводить рядки, отримані за допомогою <code>fgets</code>.</p><p>У <code>findShortestWord()</code> позиція <code>i</code> рухається від початку до кінця рядка. Функція <code>strspn</code> пропускає роздільники, а <code>strcspn</code> визначає довжину наступного слова. Якщо слово коротше за знайдене раніше, воно копіюється в окремий символьний масив. За однакової довжини зберігається перше слово.</p><p>Функція <code>processTextFile()</code> читає початковий файл, обробляє кожний рядок і записує непорожні знайдені слова в <code>result.txt</code>. Лічильник <code>wordCount</code> збільшується лише після знаходження слова. Наприкінці файлу записується його значення. Порожні рядки та рядки лише з роздільниками не додають слів до результату.</p><p>Використано масиви по 256 символів: до 255 символів тексту та завершальний нуль. Роздільники: пробіл, кома, крапка, крапка з комою, двокрапка, знак оклику, знак питання, табуляція та кінець рядка. Введення і файли розраховані на Windows-1251.</p>
 <h3>Завдання 2</h3><p>З LAB10 використано структуру <code>studentData</code>: факультет, курс, група, прізвище і шість оцінок. Масив містить до 40 студентів. Дозволені факультети — ФІТ, ФКНК, ФРЕКС; курси — 1–4; оцінки — 2–5. Дані вводяться вручну. Група містить до 9 символів, прізвище — до 14.</p><p><code>writeStudents()</code> записує структури за допомогою <code>fwrite</code>: режим <code>wb</code> створює або перезаписує файл, <code>ab</code> додає записи в кінець. <code>readStudents()</code> читає масив із <code>students.bin</code>. Для заміни або видалення програма читає файл у масив і після зміни записує його знову. При видаленні наступні елементи зсуваються на одну позицію вліво.</p><p>Під час відрахування підраховуються двійки кожного студента. Записи ФІТ із двома або більше двійками додаються до <code>deleted.bin</code>, а решта перезаписуються в <code>students.bin</code>. Звичайне видалення через пункт 5 меню не вважається відрахуванням за неуспішність. Створення нового набору студентів очищає файл відрахованих.</p><p>Відмінник першого курсу має <code>course == 1</code> та всі шість оцінок, рівні 5. Кількості відмінників за трьома факультетами зберігаються в <code>faculties.bin</code>. Кількості відрахованих за чотирма курсами визначаються читанням <code>deleted.bin</code> і зберігаються в <code>courses.bin</code>. Функція <code>outputCounts()</code> повторно читає результати з файлу та позначає всі однакові ненульові максимуми.</p>
 
-<p>Операції з файлами виконуються у відповідних функціях із закриттям відкритих файлів. Функція <code>main()</code> лише викликає виведення умови та меню. У реалізації немає STL, <code>std::string</code>, нескінченних циклів або примусового виходу з циклів; <code>break</code> використано тільки в <code>switch</code>.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-flow-common-main.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-main.svg" alt="Блок-схема main() — обидва завдання"></a><figcaption>main() — обидва завдання</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-common-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-input.svg" alt="Блок-схема inputNumber(minValue, maxValue)"></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-menu.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-menu.svg" alt="Блок-схема menu() — текстові файли"></a><figcaption>menu() — текстові файли</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-create.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-create.svg" alt="Блок-схема createTextFile()"></a><figcaption>createTextFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-output.svg" alt="Блок-схема outputTextFile(fileName)"></a><figcaption>outputTextFile(fileName)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-shortest.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-shortest.svg" alt="Блок-схема findShortestWord(line, shortestWord)"></a><figcaption>findShortestWord(line, shortestWord)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-process.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-process.svg" alt="Блок-схема processTextFile()"></a><figcaption>processTextFile()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-flow-common-main.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-main.svg" alt="Блок-схема main() — обидва завдання"></a><figcaption>main() — обидва завдання</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-common-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-input.svg" alt="Блок-схема inputNumber(minValue, maxValue)"></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-menu.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-menu.svg" alt="Блок-схема menu() — бінарні файли"></a><figcaption>menu() — бінарні файли</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-input.svg" alt="Блок-схема inputStudent(student)"></a><figcaption>inputStudent(student)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-write.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-write.svg" alt="Блок-схема writeStudents(fileName, students, count, mode)"></a><figcaption>writeStudents(fileName, students, count, mode)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-read.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-read.svg" alt="Блок-схема readStudents(students)"></a><figcaption>readStudents(students)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-table.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-table.svg" alt="Блок-схема studentsDataTableOutput(students, studentCount)"></a><figcaption>studentsDataTableOutput(students, studentCount)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-create.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-create.svg" alt="Блок-схема createStudentsFile()"></a><figcaption>createStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-output.svg" alt="Блок-схема outputStudentsFile()"></a><figcaption>outputStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-add.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-add.svg" alt="Блок-схема addStudent()"></a><figcaption>addStudent()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-change.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-change.svg" alt="Блок-схема changeStudent(replace)"></a><figcaption>changeStudent(replace)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-delete-bad.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-delete-bad.svg" alt="Блок-схема deleteBadGradeStudents()"></a><figcaption>deleteBadGradeStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-counts-write.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-counts-write.svg" alt="Блок-схема writeCounts(fileName, counts, count)"></a><figcaption>writeCounts(fileName, counts, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-counts-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-counts-output.svg" alt="Блок-схема outputCounts(fileName, names, count)"></a><figcaption>outputCounts(fileName, names, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-faculty.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-faculty.svg" alt="Блок-схема findFacultyWithMostTopStudents()"></a><figcaption>findFacultyWithMostTopStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-course.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-course.svg" alt="Блок-схема findCourseWithMostDeletedStudents()"></a><figcaption>findCourseWithMostDeletedStudents()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
+<p>Операції з файлами виконуються у відповідних функціях із закриттям відкритих файлів. Функція <code>main()</code> лише викликає виведення умови та меню. У реалізації немає STL, <code>std::string</code>, нескінченних циклів або примусового виходу з циклів; <code>break</code> використано тільки в <code>switch</code>.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-task1-01-identificationOutput.svg" rel="noopener" target="_blank"><img alt="Блок-схема identificationOutput()" loading="lazy" src="assets/lab11-task1-01-identificationOutput.svg"/></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-02-inputNumber.svg" rel="noopener" target="_blank"><img alt="Блок-схема inputNumber(minValue, maxValue)" loading="lazy" src="assets/lab11-task1-02-inputNumber.svg"/></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-03-createTextFile.svg" rel="noopener" target="_blank"><img alt="Блок-схема createTextFile()" loading="lazy" src="assets/lab11-task1-03-createTextFile.svg"/></a><figcaption>createTextFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-04-outputTextFile.svg" rel="noopener" target="_blank"><img alt="Блок-схема outputTextFile(fileName)" loading="lazy" src="assets/lab11-task1-04-outputTextFile.svg"/></a><figcaption>outputTextFile(fileName)</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-05-findShortestWord.svg" rel="noopener" target="_blank"><img alt="Блок-схема findShortestWord(line, shortestWord)" loading="lazy" src="assets/lab11-task1-05-findShortestWord.svg"/></a><figcaption>findShortestWord(line, shortestWord)</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-06-processTextFile.svg" rel="noopener" target="_blank"><img alt="Блок-схема processTextFile()" loading="lazy" src="assets/lab11-task1-06-processTextFile.svg"/></a><figcaption>processTextFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-07-menu.svg" rel="noopener" target="_blank"><img alt="Блок-схема menu()" loading="lazy" src="assets/lab11-task1-07-menu.svg"/></a><figcaption>menu()</figcaption></figure><figure class="figure"><a href="assets/lab11-task1-08-main.svg" rel="noopener" target="_blank"><img alt="Блок-схема main()" loading="lazy" src="assets/lab11-task1-08-main.svg"/></a><figcaption>main()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-task2-01-identificationOutput.svg" rel="noopener" target="_blank"><img alt="Блок-схема identificationOutput()" loading="lazy" src="assets/lab11-task2-01-identificationOutput.svg"/></a><figcaption>identificationOutput()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-02-inputNumber.svg" rel="noopener" target="_blank"><img alt="Блок-схема inputNumber(minValue, maxValue)" loading="lazy" src="assets/lab11-task2-02-inputNumber.svg"/></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-03-inputStudent.svg" rel="noopener" target="_blank"><img alt="Блок-схема inputStudent(student)" loading="lazy" src="assets/lab11-task2-03-inputStudent.svg"/></a><figcaption>inputStudent(student)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-04-writeStudents.svg" rel="noopener" target="_blank"><img alt="Блок-схема writeStudents(fileName, students, count, mode)" loading="lazy" src="assets/lab11-task2-04-writeStudents.svg"/></a><figcaption>writeStudents(fileName, students, count, mode)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-05-readStudents.svg" rel="noopener" target="_blank"><img alt="Блок-схема readStudents(students)" loading="lazy" src="assets/lab11-task2-05-readStudents.svg"/></a><figcaption>readStudents(students)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-06-studentsDataTableOutput.svg" rel="noopener" target="_blank"><img alt="Блок-схема studentsDataTableOutput(students, studentCount)" loading="lazy" src="assets/lab11-task2-06-studentsDataTableOutput.svg"/></a><figcaption>studentsDataTableOutput(students, studentCount)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-07-createStudentsFile.svg" rel="noopener" target="_blank"><img alt="Блок-схема createStudentsFile()" loading="lazy" src="assets/lab11-task2-07-createStudentsFile.svg"/></a><figcaption>createStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-08-outputStudentsFile.svg" rel="noopener" target="_blank"><img alt="Блок-схема outputStudentsFile()" loading="lazy" src="assets/lab11-task2-08-outputStudentsFile.svg"/></a><figcaption>outputStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-09-addStudent.svg" rel="noopener" target="_blank"><img alt="Блок-схема addStudent()" loading="lazy" src="assets/lab11-task2-09-addStudent.svg"/></a><figcaption>addStudent()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-10-changeStudent.svg" rel="noopener" target="_blank"><img alt="Блок-схема changeStudent(replace)" loading="lazy" src="assets/lab11-task2-10-changeStudent.svg"/></a><figcaption>changeStudent(replace)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-11-deleteBadGradeStudents.svg" rel="noopener" target="_blank"><img alt="Блок-схема deleteBadGradeStudents()" loading="lazy" src="assets/lab11-task2-11-deleteBadGradeStudents.svg"/></a><figcaption>deleteBadGradeStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-12-writeCounts.svg" rel="noopener" target="_blank"><img alt="Блок-схема writeCounts(fileName, counts, count)" loading="lazy" src="assets/lab11-task2-12-writeCounts.svg"/></a><figcaption>writeCounts(fileName, counts, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-13-outputCounts.svg" rel="noopener" target="_blank"><img alt="Блок-схема outputCounts(fileName, names, count)" loading="lazy" src="assets/lab11-task2-13-outputCounts.svg"/></a><figcaption>outputCounts(fileName, names, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-14-findFacultyWithMostTopStudents.svg" rel="noopener" target="_blank"><img alt="Блок-схема findFacultyWithMostTopStudents()" loading="lazy" src="assets/lab11-task2-14-findFacultyWithMostTopStudents.svg"/></a><figcaption>findFacultyWithMostTopStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-15-findCourseWithMostDeletedStudents.svg" rel="noopener" target="_blank"><img alt="Блок-схема findCourseWithMostDeletedStudents()" loading="lazy" src="assets/lab11-task2-15-findCourseWithMostDeletedStudents.svg"/></a><figcaption>findCourseWithMostDeletedStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-16-menu.svg" rel="noopener" target="_blank"><img alt="Блок-схема menu()" loading="lazy" src="assets/lab11-task2-16-menu.svg"/></a><figcaption>menu()</figcaption></figure><figure class="figure"><a href="assets/lab11-task2-17-main.svg" rel="noopener" target="_blank"><img alt="Блок-схема main()" loading="lazy" src="assets/lab11-task2-17-main.svg"/></a><figcaption>main()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
 
 #include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
@@ -619,4 +619,384 @@ int main()
 	identificationOutput();
 	menu();
 }
-</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>Для перевірки введено п’ять рядків: «Програмування файл код», «Ми вивчаємо C++», «текст і дані», порожній рядок і «кіт пес». Найкоротшими словами є «код», «Ми», «і» та «кіт». У рядку «кіт пес» обидва слова мають однакову довжину, тому вибрано перше. Порожній рядок не додає слова до результату.</p><p>Файл result.txt містить чотири знайдені слова, а останнім рядком записано число 4. Результат збігається з ручним підрахунком. Додатково перевірено порожній файл, рядки лише з роздільниками, українські літери, введення рядка довжиною 255 символів і повторне введення після перевищення цієї межі.</p><div class="gallery"><figure class="figure"><a href="assets/lab11-check-1-1.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-1-1.svg" alt="Початковий текст — фрагмент консольного виводу"></a><figcaption>Початковий текст — фрагмент консольного виводу</figcaption></figure><figure class="figure"><a href="assets/lab11-check-1-2.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-1-2.svg" alt="Найкоротші слова та їх кількість — фактичний результат"></a><figcaption>Найкоротші слова та їх кількість — фактичний результат</figcaption></figure></div><h3>Завдання 2</h3><p>У контрольному масиві шість студентів: Іванов — ФІТ, 1-й курс, усі оцінки 5; Шевченко — ФКНК, 1-й курс, усі оцінки 5; Петров — ФІТ, 2-й курс, оцінки 2 2 3 4 5 5; Коваленко — ФІТ, 3-й курс, оцінки 2 3 2 4 5 5; Баранов — ФКНК, 2-й курс, усі оцінки 2; Костенко — ФІТ, 4-й курс, оцінки 2 3 3 4 4 5.</p><p>Програма вилучила Петрова і Коваленка: обидва навчаються на ФІТ та мають по дві двійки. У students.bin залишилося чотири записи. Баранова не вилучено, оскільки він навчається на іншому факультеті; Костенка не вилучено, оскільки він має лише одну двійку.</p><p>Ручний підрахунок відмінників першого курсу дає: ФІТ — 1, ФКНК — 1, ФРЕКС — 0. Програма позначила ФІТ і ФКНК як факультети з найбільшою кількістю відмінників. Кількість відрахованих за курсами: 1-й — 0, 2-й — 1, 3-й — 1, 4-й — 0. Другий і третій курси правильно позначено як максимальні.</p><p>Окремо перевірено додавання Ткаченка: кількість записів збільшилася з чотирьох до п’яти. Після заміни п’ятого запису змінилися курс та оцінки. Видалення цього запису повернуло кількість студентів до чотирьох. Повторний запит відрахування після перезапуску не додав повторних записів до deleted.bin. Також перевірено порожній файл, межу 40 студентів, нечислове введення, шість оцінок одним рядком, повідомлення про відсутній файл і завершення після кінця потоку введення.</p><div class="gallery"><figure class="figure"><a href="assets/lab11-check-2-1.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-1.svg" alt="Початкова таблиця з шести студентів — фактичний вивід"></a><figcaption>Початкова таблиця з шести студентів — фактичний вивід</figcaption></figure><figure class="figure"><a href="assets/lab11-check-2-2.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-2.svg" alt="Студенти ФІТ, відраховані за дві двійки"></a><figcaption>Студенти ФІТ, відраховані за дві двійки</figcaption></figure><figure class="figure"><a href="assets/lab11-check-2-3.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-3.svg" alt="Факультети з відмінниками та курси з відрахованими"></a><figcaption>Факультети з відмінниками та курси з відрахованими</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У лабораторній роботі реалізовано дві програми для обробки текстових і бінарних файлів. Використано функції відкриття, читання, запису та закриття файлів із бібліотеки <code>stdio.h</code>. Меню дозволяє виконувати окремі операції повторно та в довільному порядку.</p><p>У першому завданні пошук слова винесено в окрему функцію. Контрольний приклад дав слова «код», «Ми», «і», «кіт» та підсумкову кількість 4. Перевірено пропуск порожніх рядків і вибір першого слова за однакової мінімальної довжини.</p><p>У другому завданні масив структур із LAB10 збережено у бінарному файлі. Реалізовано додавання, заміну та видалення записів. Під час перевірки відраховано лише двох студентів ФІТ, які мали по дві двійки; у початковому файлі залишилося чотири записи.</p><p>Результати запитів зберігаються окремо. За однакової кількості відмінників програма позначила ФІТ і ФКНК, а за однакової кількості відрахувань — другий і третій курси. Збереження записів відрахованих у файлі дозволяє відновити статистику після перезапуску.</p><p>Контрольні приклади підтвердили відповідність результатів ручному підрахунку. Робота закріпила використання символьних масивів, структур, файлових операцій і розподіл програми на функції.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
+</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>Для перевірки введено п’ять рядків: «Програмування файл код», «Ми вивчаємо C++», «текст і дані», порожній рядок і «кіт пес». Найкоротшими словами є «код», «Ми», «і» та «кіт». У рядку «кіт пес» обидва слова мають однакову довжину, тому вибрано перше. Порожній рядок не додає слова до результату.</p><p>Файл result.txt містить чотири знайдені слова, а останнім рядком записано число 4. Результат збігається з ручним підрахунком. Додатково перевірено порожній файл, рядки лише з роздільниками, українські літери, введення рядка довжиною 255 символів і повторне введення після перевищення цієї межі.</p><div class="check-text-files"><figure class="figure"><figcaption>lab11-input-text.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">1
+5
+Програмування файл код
+Ми вивчаємо C++
+текст і дані
+
+кіт пес
+2
+3
+4
+0
+</pre></figure><figure class="figure"><figcaption>lab11-check-text.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">Анастасьєв Володимир ІПЗ-11 Лабораторна робота 11 Завдання 1
+Створити текстовий файл. Знайти найкоротше слово в кожному рядку. Записати знайдені слова в новий файл, а останнім рядком - їх кількість.
+============================================================
+1. Створити файл
+2. Вивести початковий файл
+3. Знайти найкоротші слова та записати результат
+4. Вивести файл результатів
+0. Вихід
+Оберіть пункт меню: Введіть кількість рядків (0-100): Вводьте рядки до 255 символів.
+Рядок 1: Рядок 2: Рядок 3: Рядок 4: Рядок 5: 1. Створити файл
+2. Вивести початковий файл
+3. Знайти найкоротші слова та записати результат
+4. Вивести файл результатів
+0. Вихід
+Оберіть пункт меню: Вміст text.txt:
+Програмування файл код
+Ми вивчаємо C++
+текст і дані
+
+кіт пес
+
+1. Створити файл
+2. Вивести початковий файл
+3. Знайти найкоротші слова та записати результат
+4. Вивести файл результатів
+0. Вихід
+Оберіть пункт меню: Вміст result.txt:
+код
+Ми
+і
+кіт
+4
+
+1. Створити файл
+2. Вивести початковий файл
+3. Знайти найкоротші слова та записати результат
+4. Вивести файл результатів
+0. Вихід
+Оберіть пункт меню: Вміст result.txt:
+код
+Ми
+і
+кіт
+4
+
+1. Створити файл
+2. Вивести початковий файл
+3. Знайти найкоротші слова та записати результат
+4. Вивести файл результатів
+0. Вихід
+Оберіть пункт меню: </pre></figure><figure class="figure"><figcaption>lab11-text-result.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">код
+Ми
+і
+кіт
+4
+</pre></figure></div><h3>Завдання 2</h3><p>У контрольному масиві шість студентів: Іванов — ФІТ, 1-й курс, усі оцінки 5; Шевченко — ФКНК, 1-й курс, усі оцінки 5; Петров — ФІТ, 2-й курс, оцінки 2 2 3 4 5 5; Коваленко — ФІТ, 3-й курс, оцінки 2 3 2 4 5 5; Баранов — ФКНК, 2-й курс, усі оцінки 2; Костенко — ФІТ, 4-й курс, оцінки 2 3 3 4 4 5.</p><p>Програма вилучила Петрова і Коваленка: обидва навчаються на ФІТ та мають по дві двійки. У students.bin залишилося чотири записи. Баранова не вилучено, оскільки він навчається на іншому факультеті; Костенка не вилучено, оскільки він має лише одну двійку.</p><p>Ручний підрахунок відмінників першого курсу дає: ФІТ — 1, ФКНК — 1, ФРЕКС — 0. Програма позначила ФІТ і ФКНК як факультети з найбільшою кількістю відмінників. Кількість відрахованих за курсами: 1-й — 0, 2-й — 1, 3-й — 1, 4-й — 0. Другий і третій курси правильно позначено як максимальні.</p><p>Окремо перевірено додавання Ткаченка: кількість записів збільшилася з чотирьох до п’яти. Після заміни п’ятого запису змінилися курс та оцінки. Видалення цього запису повернуло кількість студентів до чотирьох. Повторний запит відрахування після перезапуску не додав повторних записів до deleted.bin. Також перевірено порожній файл, межу 40 студентів, нечислове введення, шість оцінок одним рядком, повідомлення про відсутній файл і завершення після кінця потоку введення.</p><div class="check-text-files"><figure class="figure"><figcaption>lab11-input-binary.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">1
+6
+1
+1
+IPZ-11
+Іванов
+5
+5
+5
+5
+5
+5
+2
+1
+IPZ-11
+Шевченко
+5
+5
+5
+5
+5
+5
+1
+2
+IPZ-11
+Петров
+2
+2
+3
+4
+5
+5
+1
+3
+IPZ-11
+Коваленко
+2
+3
+2
+4
+5
+5
+2
+2
+IPZ-11
+Баранов
+2
+2
+2
+2
+2
+2
+1
+4
+IPZ-11
+Костенко
+2
+3
+3
+4
+4
+5
+2
+7
+6
+2
+8
+0
+</pre></figure><figure class="figure"><figcaption>lab11-check-binary.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">Анастасьєв Володимир ІПЗ-11 Лабораторна робота 11 Завдання 2
+Записати масив студентів до бінарного файлу. Реалізувати читання, додавання, заміну та видалення записів.
+1. Вивести та вилучити студентів ФІТ із двома або більше двійками.
+2. Знайти факультет із найбільшою кількістю відмінників першого курсу.
+3. Знайти курс, з якого відраховано найбільше студентів.
+Результати запитів записати до бінарних файлів і вивести таблицями.
+============================================================
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Введіть кількість студентів (0-40): Студент 1
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: Студент 2
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: Студент 3
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: Студент 4
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: Студент 5
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: Студент 6
+Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3         ФІТ      2      IPZ-11           Петров   2 2 3 4 5 5 
+   4         ФІТ      3      IPZ-11        Коваленко   2 3 2 4 5 5 
+   5        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   6         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3         ФІТ      2      IPZ-11           Петров   2 2 3 4 5 5 
+   4         ФІТ      3      IPZ-11        Коваленко   2 3 2 4 5 5 
+   5        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   6         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Відмінники першого курсу за факультетами:
+       Назва   Кількість
+         ФІТ           1 - найбільше
+        ФКНК           1 - найбільше
+       ФРЕКС           0
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Відраховані студенти:
+============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      2      IPZ-11           Петров   2 2 3 4 5 5 
+   2         ФІТ      3      IPZ-11        Коваленко   2 3 2 4 5 5 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Відраховані студенти за курсами:
+       Назва   Кількість
+           1           0
+           2           1 - найбільше
+           3           1 - найбільше
+           4           0
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: </pre></figure><figure class="figure"><figcaption>lab11-check-edit.txt</figcaption><pre style="white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto">Анастасьєв Володимир ІПЗ-11 Лабораторна робота 11 Завдання 2
+Записати масив студентів до бінарного файлу. Реалізувати читання, додавання, заміну та видалення записів.
+1. Вивести та вилучити студентів ФІТ із двома або більше двійками.
+2. Знайти факультет із найбільшою кількістю відмінників першого курсу.
+3. Знайти курс, з якого відраховано найбільше студентів.
+Результати запитів записати до бінарних файлів і вивести таблицями.
+============================================================
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: 1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+   5       ФРЕКС      1      IPZ-11         Ткаченко   3 3 3 3 3 3 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+   5       ФРЕКС      1      IPZ-11         Ткаченко   3 3 3 3 3 3 
+Введіть номер запису: Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): Курс (1-4): Група (до 9 символів): Прізвище (до 14 символів): Введіть 6 оцінок від 2 до 5: 1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+   5       ФРЕКС      4      IPZ-11         Ткаченко   4 4 4 4 4 4 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+   5       ФРЕКС      4      IPZ-11         Ткаченко   4 4 4 4 4 4 
+Введіть номер запису: 1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: ============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 
+   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 
+   3        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 
+   4         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5 
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Відраховані студенти:
+============================================================================
+   №   Факультет   Курс       Група         Прізвище   Оцінки
+Записів немає.
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: Відраховані студенти за курсами:
+       Назва   Кількість
+           1           0
+           2           1 - найбільше
+           3           1 - найбільше
+           4           0
+1. Створити файл студентів
+2. Вивести студентів із файлу
+3. Додати студента
+4. Замінити запис
+5. Видалити запис
+6. Відрахувати студентів ФІТ із двома або більше двійками
+7. Факультет із найбільшою кількістю відмінників
+8. Курс із найбільшою кількістю відрахованих
+0. Вихід
+Оберіть пункт меню: </pre></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У лабораторній роботі реалізовано дві програми для обробки текстових і бінарних файлів. Використано функції відкриття, читання, запису та закриття файлів із бібліотеки <code>stdio.h</code>. Меню дозволяє виконувати окремі операції повторно та в довільному порядку.</p><p>У першому завданні пошук слова винесено в окрему функцію. Контрольний приклад дав слова «код», «Ми», «і», «кіт» та підсумкову кількість 4. Перевірено пропуск порожніх рядків і вибір першого слова за однакової мінімальної довжини.</p><p>У другому завданні масив структур із LAB10 збережено у бінарному файлі. Реалізовано додавання, заміну та видалення записів. Під час перевірки відраховано лише двох студентів ФІТ, які мали по дві двійки; у початковому файлі залишилося чотири записи.</p><p>Результати запитів зберігаються окремо. За однакової кількості відмінників програма позначила ФІТ і ФКНК, а за однакової кількості відрахувань — другий і третій курси. Збереження записів відрахованих у файлі дозволяє відновити статистику після перезапуску.</p><p>Контрольні приклади підтвердили відповідність результатів ручному підрахунку. Робота закріпила використання символьних масивів, структур, файлових операцій і розподіл програми на функції.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
