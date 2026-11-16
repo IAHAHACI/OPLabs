@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="218" viewBox="0 0 720 218" role="img" aria-labelledby="title desc">
+  <title id="title">LAB11_1.exe — консольний вивід</title>
+  <desc id="desc">Фактичні результати тестового запуску, оформлені як консольне вікно. Це ілюстрація виводу, а не знімок екрана.</desc>
+  <defs>
+    <clipPath id="window">
+      <rect width="720" height="218" rx="9" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#window)">
+    <rect width="720" height="218" fill="#0c0c0c" />
+    <g font-family="Consolas,monospace" font-size="16" fill="#e6e6e6" xml:space="preserve">
+      <text x="24" y="32">Вміст text.txt:</text>
+      <text x="24" y="59">Програмування файл код</text>
+      <text x="24" y="86">Ми вивчаємо C++</text>
+      <text x="24" y="113">текст і дані</text>
+      <text x="24" y="140">
+      </text>
+      <text x="24" y="167">кіт пес</text>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="719" height="217" rx="9" fill="none" stroke="#454545" />
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="808" height="272" viewBox="0 0 808 272" role="img" aria-labelledby="title desc">
+  <title id="title">LAB11_2.exe — консольний вивід</title>
+  <desc id="desc">Фактичні результати тестового запуску, оформлені як консольне вікно. Це ілюстрація виводу, а не знімок екрана.</desc>
+  <defs>
+    <clipPath id="window">
+      <rect width="808" height="272" rx="9" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#window)">
+    <rect width="808" height="272" fill="#0c0c0c" />
+    <g font-family="Consolas,monospace" font-size="16" fill="#e6e6e6" xml:space="preserve">
+      <text x="24" y="32">============================================================================</text>
+      <text x="24" y="59">   №   Факультет   Курс       Група         Прізвище   Оцінки</text>
+      <text x="24" y="86">   1         ФІТ      1      IPZ-11           Іванов   5 5 5 5 5 5 </text>
+      <text x="24" y="113">   2        ФКНК      1      IPZ-11         Шевченко   5 5 5 5 5 5 </text>
+      <text x="24" y="140">   3         ФІТ      2      IPZ-11           Петров   2 2 3 4 5 5 </text>
+      <text x="24" y="167">   4         ФІТ      3      IPZ-11        Коваленко   2 3 2 4 5 5 </text>
+      <text x="24" y="194">   5        ФКНК      2      IPZ-11          Баранов   2 2 2 2 2 2 </text>
+      <text x="24" y="221">   6         ФІТ      4      IPZ-11         Костенко   2 3 3 4 4 5</text>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="807" height="271" rx="9" fill="none" stroke="#454545" />
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-labelledby="title desc">
+  <title id="title">LAB11_2.exe — консольний вивід</title>
+  <desc id="desc">Фактичні результати тестового запуску, оформлені як консольне вікно. Це ілюстрація виводу, а не знімок екрана.</desc>
+  <defs>
+    <clipPath id="window">
+      <rect width="720" height="380" rx="9" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#window)">
+    <rect width="720" height="380" fill="#0c0c0c" />
+    <g font-family="Consolas,monospace" font-size="16" fill="#e6e6e6" xml:space="preserve">
+      <text x="24" y="32">Відмінники першого курсу за факультетами:</text>
+      <text x="24" y="59">       Назва   Кількість</text>
+      <text x="24" y="86">         ФІТ           1 - найбільше</text>
+      <text x="24" y="113">        ФКНК           1 - найбільше</text>
+      <text x="24" y="140">       ФРЕКС           0</text>
+      <text x="24" y="167">
+      </text>
+      <text x="24" y="194">Відраховані студенти за курсами:</text>
+      <text x="24" y="221">       Назва   Кількість</text>
+      <text x="24" y="248">           1           0</text>
+      <text x="24" y="275">           2           1 - найбільше</text>
+      <text x="24" y="302">           3           1 - найбільше</text>
+      <text x="24" y="329">           4           0</text>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="719" height="379" rx="9" fill="none" stroke="#454545" />
+</svg>

@@ -1,0 +1,622 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лабораторна робота 11</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><header><a class="brand" href="index.html">Лабораторні роботи Анастасьєв</a>
+<div class="header-actions"><button class="theme-btn" type="button" aria-label="Увімкнути темну тему">🌙 <span class="theme-label">Темна тема</span></button><button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button></div>
+<nav class="menu"><a href="index.html">Головна</a><a href="lab1.html">Лабораторна робота 1</a><a href="lab2.html">Лабораторна робота 2</a><a href="lab3.html">Лабораторна робота 3</a><a href="lab4.html">Лабораторна робота 4</a><a href="lab5.html">Лабораторна робота 5</a><a href="lab6.html">Лабораторна робота 6</a><a href="lab7.html">Лабораторна робота 7</a><a href="lab8.html">Лабораторна робота 8</a><a href="lab9.html">Лабораторна робота 9</a><a href="lab10.html">Лабораторна робота 10</a><a class="active" href="lab11.html">Лабораторна робота 11</a></nav></header><main><section class="hero small"><p class="tag">Лабораторна робота · 11</p><h1>Лабораторна робота 11</h1></section><nav class="section-nav"><a href="#theme">Тема та мета</a><a href="#condition">Умова</a><a href="#analysis">Аналіз</a><a href="#flows">Блок-схеми</a><a href="#code">Коди</a><a href="#checks">Перевірка</a><a href="#conclusion">Висновки</a></nav><section class="card" id="theme"><h2>Тема та мета</h2><p><strong>Тема:</strong> Текстові та бінарні файли.</p><p><strong>Мета:</strong> Вивчити особливості використання текстових і бінарних файлів. Навчитися застосовувати текстові та бінарні файли в програмуванні.</p></section><section class="card" id="condition"><h2>Умова завдань</h2><h3>Завдання 1</h3><p>Створити текстовий файл, кожний рядок якого містить різні слова. Знайти найкоротше слово в кожному рядку файлу. Переписати знайдені слова в новий текстовий файл, порахувавши їх кількість. Записати останнім рядком нового файлу кількість слів. Передбачити створення файлу з клавіатури, виведення його вмісту та меню операцій. Обробку рядків виконувати в окремій функції без STL, класу string та ітераторів.</p><h3>Завдання 2</h3><p>Створити масив структур із полями: факультет, курс, група, прізвище студента та екзаменаційні оцінки. Записати масив до бінарного файлу. Реалізувати читання й табличне виведення, додавання нових записів, заміну вибраного запису даними з клавіатури та видалення запису за вибором користувача.</p><p>Знайти й вилучити студентів факультету ФІТ, які мають дві та більше двійок за сесію; визначити факультет із найбільшою кількістю відмінників першого курсу та курс, з якого вилучено найбільше студентів. Дані для запитів читати з бінарного файлу, результати записати до нових бінарних файлів і вивести у вигляді таблиць. Використати структуру з LAB10 та організувати меню запитів.</p></section><section class="card" id="analysis"><h2>Аналіз завдань</h2>
+<h3>Завдання 1</h3><p>Функція <code>createTextFile()</code> вводить кількість рядків і зберігає їх у <code>text.txt</code>. Функція <code>outputTextFile()</code> відкриває заданий файл у режимі читання та виводить рядки, отримані за допомогою <code>fgets</code>.</p><p>У <code>findShortestWord()</code> позиція <code>i</code> рухається від початку до кінця рядка. Функція <code>strspn</code> пропускає роздільники, а <code>strcspn</code> визначає довжину наступного слова. Якщо слово коротше за знайдене раніше, воно копіюється в окремий символьний масив. За однакової довжини зберігається перше слово.</p><p>Функція <code>processTextFile()</code> читає початковий файл, обробляє кожний рядок і записує непорожні знайдені слова в <code>result.txt</code>. Лічильник <code>wordCount</code> збільшується лише після знаходження слова. Наприкінці файлу записується його значення. Порожні рядки та рядки лише з роздільниками не додають слів до результату.</p><p>Використано масиви по 256 символів: до 255 символів тексту та завершальний нуль. Роздільники: пробіл, кома, крапка, крапка з комою, двокрапка, знак оклику, знак питання, табуляція та кінець рядка. Введення і файли розраховані на Windows-1251.</p>
+<h3>Завдання 2</h3><p>З LAB10 використано структуру <code>studentData</code>: факультет, курс, група, прізвище і шість оцінок. Масив містить до 40 студентів. Дозволені факультети — ФІТ, ФКНК, ФРЕКС; курси — 1–4; оцінки — 2–5. Дані вводяться вручну. Група містить до 9 символів, прізвище — до 14.</p><p><code>writeStudents()</code> записує структури за допомогою <code>fwrite</code>: режим <code>wb</code> створює або перезаписує файл, <code>ab</code> додає записи в кінець. <code>readStudents()</code> читає масив із <code>students.bin</code>. Для заміни або видалення програма читає файл у масив і після зміни записує його знову. При видаленні наступні елементи зсуваються на одну позицію вліво.</p><p>Під час відрахування підраховуються двійки кожного студента. Записи ФІТ із двома або більше двійками додаються до <code>deleted.bin</code>, а решта перезаписуються в <code>students.bin</code>. Звичайне видалення через пункт 5 меню не вважається відрахуванням за неуспішність. Створення нового набору студентів очищає файл відрахованих.</p><p>Відмінник першого курсу має <code>course == 1</code> та всі шість оцінок, рівні 5. Кількості відмінників за трьома факультетами зберігаються в <code>faculties.bin</code>. Кількості відрахованих за чотирма курсами визначаються читанням <code>deleted.bin</code> і зберігаються в <code>courses.bin</code>. Функція <code>outputCounts()</code> повторно читає результати з файлу та позначає всі однакові ненульові максимуми.</p>
+
+<p>Операції з файлами виконуються у відповідних функціях із закриттям відкритих файлів. Функція <code>main()</code> лише викликає виведення умови та меню. У реалізації немає STL, <code>std::string</code>, нескінченних циклів або примусового виходу з циклів; <code>break</code> використано тільки в <code>switch</code>.</p></section><section class="card" id="flows"><h2>Блок-схеми</h2><h3>Завдання 1</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-flow-common-main.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-main.svg" alt="Блок-схема main() — обидва завдання"></a><figcaption>main() — обидва завдання</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-common-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-input.svg" alt="Блок-схема inputNumber(minValue, maxValue)"></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-menu.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-menu.svg" alt="Блок-схема menu() — текстові файли"></a><figcaption>menu() — текстові файли</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-create.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-create.svg" alt="Блок-схема createTextFile()"></a><figcaption>createTextFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-output.svg" alt="Блок-схема outputTextFile(fileName)"></a><figcaption>outputTextFile(fileName)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-shortest.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-shortest.svg" alt="Блок-схема findShortestWord(line, shortestWord)"></a><figcaption>findShortestWord(line, shortestWord)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-1-process.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-1-process.svg" alt="Блок-схема processTextFile()"></a><figcaption>processTextFile()</figcaption></figure></div><h3>Завдання 2</h3><div class="gallery flow-gallery"><figure class="figure"><a href="assets/lab11-flow-common-main.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-main.svg" alt="Блок-схема main() — обидва завдання"></a><figcaption>main() — обидва завдання</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-common-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-common-input.svg" alt="Блок-схема inputNumber(minValue, maxValue)"></a><figcaption>inputNumber(minValue, maxValue)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-menu.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-menu.svg" alt="Блок-схема menu() — бінарні файли"></a><figcaption>menu() — бінарні файли</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-input.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-input.svg" alt="Блок-схема inputStudent(student)"></a><figcaption>inputStudent(student)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-write.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-write.svg" alt="Блок-схема writeStudents(fileName, students, count, mode)"></a><figcaption>writeStudents(fileName, students, count, mode)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-read.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-read.svg" alt="Блок-схема readStudents(students)"></a><figcaption>readStudents(students)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-table.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-table.svg" alt="Блок-схема studentsDataTableOutput(students, studentCount)"></a><figcaption>studentsDataTableOutput(students, studentCount)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-create.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-create.svg" alt="Блок-схема createStudentsFile()"></a><figcaption>createStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-output.svg" alt="Блок-схема outputStudentsFile()"></a><figcaption>outputStudentsFile()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-add.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-add.svg" alt="Блок-схема addStudent()"></a><figcaption>addStudent()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-change.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-change.svg" alt="Блок-схема changeStudent(replace)"></a><figcaption>changeStudent(replace)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-delete-bad.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-delete-bad.svg" alt="Блок-схема deleteBadGradeStudents()"></a><figcaption>deleteBadGradeStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-counts-write.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-counts-write.svg" alt="Блок-схема writeCounts(fileName, counts, count)"></a><figcaption>writeCounts(fileName, counts, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-counts-output.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-counts-output.svg" alt="Блок-схема outputCounts(fileName, names, count)"></a><figcaption>outputCounts(fileName, names, count)</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-faculty.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-faculty.svg" alt="Блок-схема findFacultyWithMostTopStudents()"></a><figcaption>findFacultyWithMostTopStudents()</figcaption></figure><figure class="figure"><a href="assets/lab11-flow-2-course.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-flow-2-course.svg" alt="Блок-схема findCourseWithMostDeletedStudents()"></a><figcaption>findCourseWithMostDeletedStudents()</figcaption></figure></div></section><section class="card" id="code"><h2>Коди програм</h2><h3>Завдання 1</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;windows.h&gt;
+
+using namespace std;
+
+const int maxStringLength = 256; // Максимальна довжина рядка з нульовим символом
+
+/// &lt;summary&gt;
+/// Виводить інформацію про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 11 Завдання 1&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Створити текстовий файл. Знайти найкоротше слово в кожному рядку.&quot;
+		&lt;&lt; &quot; Записати знайдені слова в новий файл, а останнім рядком - їх кількість.&quot;
+		&lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Вводить ціле число в заданих межах
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;minValue&quot;&gt;Найменше допустиме число&lt;/param&gt;
+/// &lt;param name=&quot;maxValue&quot;&gt;Найбільше допустиме число&lt;/param&gt;
+int inputNumber(int minValue, int maxValue)
+{
+	int value = minValue; // Введене число
+	bool correctInput = false; // Ознака правильного введення
+	do
+	{
+		cin &gt;&gt; value;
+		correctInput = !cin.fail() &amp;&amp; value &gt;= minValue &amp;&amp; value &lt;= maxValue;
+		if (!correctInput &amp;&amp; !cin.eof())
+		{
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout &lt;&lt; &quot;Введіть число від &quot; &lt;&lt; minValue &lt;&lt; &quot; до &quot; &lt;&lt; maxValue &lt;&lt; &quot;: &quot;;
+		}
+	} while (!correctInput &amp;&amp; !cin.eof());
+	return value;
+}
+
+/// &lt;summary&gt;
+/// Створює текстовий файл із рядків, введених із клавіатури
+/// &lt;/summary&gt;
+void createTextFile()
+{
+	FILE* file = fopen(&quot;text.txt&quot;, &quot;w&quot;); // Початковий файл
+	if (file != NULL)
+	{
+		cout &lt;&lt; &quot;Введіть кількість рядків (0-100): &quot;;
+		int lineCount = inputNumber(0, 100); // Кількість рядків
+		char line[maxStringLength]; // Поточний рядок
+		cin.ignore(10000, '\n');
+		cout &lt;&lt; &quot;Вводьте рядки до 255 символів.&quot; &lt;&lt; endl;
+		for (int i = 0; i &lt; lineCount &amp;&amp; !cin.eof(); i++)
+		{
+			cout &lt;&lt; &quot;Рядок &quot; &lt;&lt; i + 1 &lt;&lt; &quot;: &quot;;
+			cin.getline(line, maxStringLength);
+			while (cin.fail() &amp;&amp; !cin.eof())
+			{
+				cin.clear();
+				cin.ignore(10000, '\n');
+				cout &lt;&lt; &quot;Рядок задовгий. Введіть ще раз: &quot;;
+				cin.getline(line, maxStringLength);
+			}
+			if (!cin.eof()) fprintf(file, &quot;%s\n&quot;, line);
+		}
+		if (fclose(file) != 0) cout &lt;&lt; &quot;Помилка запису файлу.&quot; &lt;&lt; endl;
+	}
+	else cout &lt;&lt; &quot;Не вдалося створити файл.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Виводить вміст текстового файлу на екран
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;fileName&quot;&gt;Назва файлу&lt;/param&gt;
+void outputTextFile(const char fileName[])
+{
+	FILE* file = fopen(fileName, &quot;r&quot;); // Файл для читання
+	char line[maxStringLength]; // Рядок файлу
+	if (file != NULL)
+	{
+		cout &lt;&lt; &quot;Вміст &quot; &lt;&lt; fileName &lt;&lt; &quot;:&quot; &lt;&lt; endl;
+		while (fgets(line, maxStringLength, file) != NULL)
+		{
+			cout &lt;&lt; line;
+		}
+		fclose(file);
+		cout &lt;&lt; endl;
+	}
+	else cout &lt;&lt; &quot;Файл не знайдено.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Знаходить перше найкоротше слово рядка
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;line&quot;&gt;Початковий рядок&lt;/param&gt;
+/// &lt;param name=&quot;shortestWord&quot;&gt;Знайдене слово або порожній рядок&lt;/param&gt;
+void findShortestWord(const char line[], char shortestWord[])
+{
+	size_t i = 0; // Поточна позиція в рядку
+	size_t minLength = maxStringLength; // Найменша довжина слова
+	shortestWord[0] = '\0';
+	while (line[i] != '\0')
+	{
+		i += strspn(line + i, &quot; ,.;:!?\t\n\r&quot;);
+		size_t wordLength = strcspn(line + i, &quot; ,.;:!?\t\n\r&quot;); // Довжина слова
+		if (wordLength &gt; 0 &amp;&amp; wordLength &lt; minLength)
+		{
+			minLength = wordLength;
+			strncpy(shortestWord, line + i, wordLength);
+			shortestWord[wordLength] = '\0';
+		}
+		i += wordLength;
+	}
+}
+
+/// &lt;summary&gt;
+/// Записує найкоротші слова та їх кількість у новий текстовий файл
+/// &lt;/summary&gt;
+void processTextFile()
+{
+	FILE* input = fopen(&quot;text.txt&quot;, &quot;r&quot;); // Початковий файл
+	if (input != NULL)
+	{
+		FILE* output = fopen(&quot;result.txt&quot;, &quot;w&quot;); // Файл результатів
+		if (output != NULL)
+		{
+			char line[maxStringLength]; // Рядок початкового файлу
+			char shortestWord[maxStringLength]; // Найкоротше слово рядка
+			int wordCount = 0; // Кількість знайдених слів
+			while (fgets(line, maxStringLength, input) != NULL)
+			{
+				findShortestWord(line, shortestWord);
+				if (shortestWord[0] != '\0')
+				{
+					fprintf(output, &quot;%s\n&quot;, shortestWord);
+					wordCount++;
+				}
+			}
+			fprintf(output, &quot;%d\n&quot;, wordCount);
+			if (fclose(output) == 0) outputTextFile(&quot;result.txt&quot;);
+			else cout &lt;&lt; &quot;Помилка запису результату.&quot; &lt;&lt; endl;
+		}
+		else cout &lt;&lt; &quot;Не вдалося створити файл результатів.&quot; &lt;&lt; endl;
+		fclose(input);
+	}
+	else cout &lt;&lt; &quot;Спочатку створіть текстовий файл.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Викликає операції з файлами відповідно до вибору користувача
+/// &lt;/summary&gt;
+void menu()
+{
+	int choice = 1; // Обраний пункт меню
+	while (choice != 0 &amp;&amp; !cin.eof())
+	{
+		cout &lt;&lt; &quot;1. Створити файл&quot; &lt;&lt; endl
+			&lt;&lt; &quot;2. Вивести початковий файл&quot; &lt;&lt; endl
+			&lt;&lt; &quot;3. Знайти найкоротші слова та записати результат&quot; &lt;&lt; endl
+			&lt;&lt; &quot;4. Вивести файл результатів&quot; &lt;&lt; endl
+			&lt;&lt; &quot;0. Вихід&quot; &lt;&lt; endl;
+		cout &lt;&lt; &quot;Оберіть пункт меню: &quot;;
+		choice = inputNumber(0, 4);
+		if (!cin.eof())
+		{
+			switch (choice)
+			{
+			case 1: createTextFile(); break;
+			case 2: outputTextFile(&quot;text.txt&quot;); break;
+			case 3: processTextFile(); break;
+			case 4: outputTextFile(&quot;result.txt&quot;); break;
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+int main()
+{
+	identificationOutput();
+	menu();
+}
+</code></pre><h3>Завдання 2</h3><pre><code>#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;windows.h&gt;
+
+using namespace std;
+
+const int maxStudentNumber = 40; // Максимальна кількість студентів
+const int maxGradeNumber = 6; // Кількість оцінок одного студента
+const char faculties[][10] = { &quot;ФІТ&quot;, &quot;ФКНК&quot;, &quot;ФРЕКС&quot; }; // Назви факультетів
+
+/// &lt;summary&gt;
+/// Структура для збереження інформації про студента з лабораторної роботи 10
+/// &lt;/summary&gt;
+struct studentData
+{
+	char faculty[15]; // Назва факультету
+	int course; // Номер курсу
+	char group[10]; // Назва групи
+	char surname[15]; // Прізвище студента
+	int grade[maxGradeNumber]; // Масив оцінок студента
+};
+
+/// &lt;summary&gt;
+/// Виводить інформацію про автора та умову завдання
+/// &lt;/summary&gt;
+void identificationOutput()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	cout &lt;&lt; &quot;Анастасьєв Володимир ІПЗ-11 Лабораторна робота 11 Завдання 2&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Записати масив студентів до бінарного файлу. Реалізувати читання,&quot;
+		&lt;&lt; &quot; додавання, заміну та видалення записів.&quot; &lt;&lt; endl
+		&lt;&lt; &quot;1. Вивести та вилучити студентів ФІТ із двома або більше двійками.&quot; &lt;&lt; endl
+		&lt;&lt; &quot;2. Знайти факультет із найбільшою кількістю відмінників першого курсу.&quot; &lt;&lt; endl
+		&lt;&lt; &quot;3. Знайти курс, з якого відраховано найбільше студентів.&quot; &lt;&lt; endl
+		&lt;&lt; &quot;Результати запитів записати до бінарних файлів і вивести таблицями.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;============================================================&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Вводить ціле число в заданих межах
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;minValue&quot;&gt;Найменше допустиме число&lt;/param&gt;
+/// &lt;param name=&quot;maxValue&quot;&gt;Найбільше допустиме число&lt;/param&gt;
+int inputNumber(int minValue, int maxValue)
+{
+	int value = minValue; // Введене число
+	bool correctInput = false; // Ознака правильного введення
+	do
+	{
+		cin &gt;&gt; value;
+		correctInput = !cin.fail() &amp;&amp; value &gt;= minValue &amp;&amp; value &lt;= maxValue;
+		if (!correctInput &amp;&amp; !cin.eof())
+		{
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout &lt;&lt; &quot;Введіть число від &quot; &lt;&lt; minValue &lt;&lt; &quot; до &quot; &lt;&lt; maxValue &lt;&lt; &quot;: &quot;;
+		}
+	} while (!correctInput &amp;&amp; !cin.eof());
+	return value;
+}
+
+/// &lt;summary&gt;
+/// Вводить дані одного студента
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;student&quot;&gt;Запис, який заповнюється&lt;/param&gt;
+void inputStudent(studentData&amp; student)
+{
+	student = {};
+	int facultyNumber; // Номер факультету
+	cout &lt;&lt; &quot;Факультет (1 - ФІТ, 2 - ФКНК, 3 - ФРЕКС): &quot;;
+	facultyNumber = inputNumber(1, 3);
+	if (!cin.eof())
+	{
+		strcpy(student.faculty, faculties[facultyNumber - 1]);
+		cout &lt;&lt; &quot;Курс (1-4): &quot;;
+		student.course = inputNumber(1, 4);
+		cout &lt;&lt; &quot;Група (до 9 символів): &quot;;
+		cin &gt;&gt; setw(10) &gt;&gt; student.group;
+		cin.ignore(10000, '\n');
+		cout &lt;&lt; &quot;Прізвище (до 14 символів): &quot;;
+		cin &gt;&gt; setw(15) &gt;&gt; student.surname;
+		cin.ignore(10000, '\n');
+		cout &lt;&lt; &quot;Введіть 6 оцінок від 2 до 5: &quot;;
+		for (int i = 0; i &lt; maxGradeNumber &amp;&amp; !cin.eof(); i++)
+		{
+			student.grade[i] = inputNumber(2, 5);
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Записує масив структур у файл або дописує його в кінець файлу
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;fileName&quot;&gt;Назва файлу&lt;/param&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість записів&lt;/param&gt;
+/// &lt;param name=&quot;mode&quot;&gt;wb - перезапис, ab - доповнення&lt;/param&gt;
+bool writeStudents(const char fileName[], const studentData students[], int studentCount, const char mode[])
+{
+	FILE* file = fopen(fileName, mode); // Файл для запису
+	bool success = false; // Результат запису
+	if (file != NULL)
+	{
+		success = fwrite(students, sizeof(studentData), studentCount, file) == (size_t)studentCount;
+		if (fclose(file) != 0) success = false;
+	}
+	if (!success) cout &lt;&lt; &quot;Помилка запису файлу &quot; &lt;&lt; fileName &lt;&lt; endl;
+	return success;
+}
+
+/// &lt;summary&gt;
+/// Зчитує масив студентів із файлу
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив для прочитаних записів&lt;/param&gt;
+/// &lt;returns&gt;Кількість студентів або -1, якщо файл не вдалося прочитати&lt;/returns&gt;
+int readStudents(studentData students[])
+{
+	FILE* file = fopen(&quot;students.bin&quot;, &quot;rb&quot;); // Початковий бінарний файл
+	int studentCount = -1; // Кількість прочитаних записів
+	if (file != NULL)
+	{
+		studentCount = (int)fread(students, sizeof(studentData), maxStudentNumber, file);
+		if (ferror(file) || fgetc(file) != EOF) studentCount = -1;
+		fclose(file);
+	}
+	if (studentCount == -1) cout &lt;&lt; &quot;Не вдалося прочитати файл студентів.&quot; &lt;&lt; endl;
+	return studentCount;
+}
+
+/// &lt;summary&gt;
+/// Виводить масив студентів у вигляді таблиці
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;students&quot;&gt;Масив даних студентів&lt;/param&gt;
+/// &lt;param name=&quot;studentCount&quot;&gt;Кількість студентів&lt;/param&gt;
+void studentsDataTableOutput(const studentData students[], int studentCount)
+{
+	cout &lt;&lt; &quot;============================================================================&quot; &lt;&lt; endl;
+	cout &lt;&lt; setw(4) &lt;&lt; &quot;№&quot; &lt;&lt; setw(12) &lt;&lt; &quot;Факультет&quot; &lt;&lt; setw(7) &lt;&lt; &quot;Курс&quot;
+		&lt;&lt; setw(12) &lt;&lt; &quot;Група&quot; &lt;&lt; setw(17) &lt;&lt; &quot;Прізвище&quot; &lt;&lt; &quot;   Оцінки&quot; &lt;&lt; endl;
+	for (int i = 0; i &lt; studentCount; i++)
+	{
+		cout &lt;&lt; setw(4) &lt;&lt; i + 1 &lt;&lt; setw(12) &lt;&lt; students[i].faculty
+			&lt;&lt; setw(7) &lt;&lt; students[i].course &lt;&lt; setw(12) &lt;&lt; students[i].group
+			&lt;&lt; setw(17) &lt;&lt; students[i].surname &lt;&lt; &quot;   &quot;;
+		for (int j = 0; j &lt; maxGradeNumber; j++)
+		{
+			cout &lt;&lt; students[i].grade[j] &lt;&lt; &quot; &quot;;
+		}
+		cout &lt;&lt; endl;
+	}
+	if (studentCount == 0) cout &lt;&lt; &quot;Записів немає.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Створює масив студентів і записує його в новий бінарний файл
+/// &lt;/summary&gt;
+void createStudentsFile()
+{
+	studentData students[maxStudentNumber] = {}; // Масив студентів
+	cout &lt;&lt; &quot;Введіть кількість студентів (0-40): &quot;;
+	int studentCount = inputNumber(0, maxStudentNumber); // Кількість студентів
+	for (int i = 0; i &lt; studentCount &amp;&amp; !cin.eof(); i++)
+	{
+		cout &lt;&lt; &quot;Студент &quot; &lt;&lt; i + 1 &lt;&lt; endl;
+		inputStudent(students[i]);
+	}
+	if (!cin.eof() &amp;&amp; writeStudents(&quot;students.bin&quot;, students, studentCount, &quot;wb&quot;))
+	{
+		// Для нового набору даних очищаємо список відрахованих.
+		writeStudents(&quot;deleted.bin&quot;, students, 0, &quot;wb&quot;);
+		studentsDataTableOutput(students, studentCount);
+	}
+}
+
+/// &lt;summary&gt;
+/// Зчитує студентів із бінарного файлу та виводить таблицю
+/// &lt;/summary&gt;
+void outputStudentsFile()
+{
+	studentData students[maxStudentNumber]; // Прочитані записи
+	int studentCount = readStudents(students); // Кількість записів
+	if (studentCount &gt;= 0) studentsDataTableOutput(students, studentCount);
+}
+
+/// &lt;summary&gt;
+/// Дописує нового студента в кінець бінарного файлу
+/// &lt;/summary&gt;
+void addStudent()
+{
+	studentData students[maxStudentNumber]; // Масив для визначення кількості студентів
+	int studentCount = readStudents(students); // Поточна кількість записів
+	if (studentCount &gt;= 0 &amp;&amp; studentCount &lt; maxStudentNumber)
+	{
+		studentData student; // Новий студент
+		inputStudent(student);
+		if (!cin.eof()) writeStudents(&quot;students.bin&quot;, &amp;student, 1, &quot;ab&quot;);
+	}
+	else if (studentCount == maxStudentNumber) cout &lt;&lt; &quot;У файлі вже 40 студентів.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Замінює або видаляє вибраний запис у бінарному файлі
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;replace&quot;&gt;true - замінити запис, false - видалити&lt;/param&gt;
+void changeStudent(bool replace)
+{
+	studentData students[maxStudentNumber]; // Записи початкового файлу
+	int studentCount = readStudents(students); // Кількість студентів
+	if (studentCount &gt; 0)
+	{
+		studentsDataTableOutput(students, studentCount);
+		cout &lt;&lt; &quot;Введіть номер запису: &quot;;
+		int index = inputNumber(1, studentCount) - 1; // Індекс вибраного запису
+		if (!cin.eof())
+		{
+			if (replace) inputStudent(students[index]);
+			else
+			{
+				for (int i = index; i &lt; studentCount - 1; i++) students[i] = students[i + 1];
+				studentCount--;
+			}
+			if (!cin.eof()) writeStudents(&quot;students.bin&quot;, students, studentCount, &quot;wb&quot;);
+		}
+	}
+	else if (studentCount == 0) cout &lt;&lt; &quot;Файл порожній.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Вилучає студентів ФІТ із двома або більше двійками та зберігає їх в окремому файлі
+/// &lt;/summary&gt;
+void deleteBadGradeStudents()
+{
+	studentData students[maxStudentNumber]; // Початкові записи
+	studentData deletedStudents[maxStudentNumber]; // Відраховані студенти
+	int studentCount = readStudents(students); // Кількість початкових записів
+	int deletedCount = 0; // Кількість відрахованих студентів
+	int remainingCount = 0; // Кількість студентів, які залишилися
+	if (studentCount &gt;= 0)
+	{
+		for (int i = 0; i &lt; studentCount; i++)
+		{
+			int badGrades = 0; // Кількість двійок студента
+			for (int j = 0; j &lt; maxGradeNumber; j++)
+			{
+				if (students[i].grade[j] == 2) badGrades++;
+			}
+			if (strcmp(students[i].faculty, &quot;ФІТ&quot;) == 0 &amp;&amp; badGrades &gt;= 2)
+			{
+				deletedStudents[deletedCount++] = students[i];
+			}
+			else students[remainingCount++] = students[i];
+		}
+		if (writeStudents(&quot;deleted.bin&quot;, deletedStudents, deletedCount, &quot;ab&quot;)
+			&amp;&amp; writeStudents(&quot;students.bin&quot;, students, remainingCount, &quot;wb&quot;))
+		{
+			cout &lt;&lt; &quot;Відраховані студенти:&quot; &lt;&lt; endl;
+			studentsDataTableOutput(deletedStudents, deletedCount);
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Записує результати підрахунку в бінарний файл
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;fileName&quot;&gt;Назва файлу результатів&lt;/param&gt;
+/// &lt;param name=&quot;counts&quot;&gt;Масив кількостей&lt;/param&gt;
+/// &lt;param name=&quot;count&quot;&gt;Розмір масиву&lt;/param&gt;
+bool writeCounts(const char fileName[], const int counts[], int count)
+{
+	FILE* file = fopen(fileName, &quot;wb&quot;); // Файл результатів
+	bool success = false; // Ознака успішного запису
+	if (file != NULL)
+	{
+		success = fwrite(counts, sizeof(int), count, file) == (size_t)count;
+		if (fclose(file) != 0) success = false;
+	}
+	if (!success) cout &lt;&lt; &quot;Не вдалося записати результат.&quot; &lt;&lt; endl;
+	return success;
+}
+
+/// &lt;summary&gt;
+/// Зчитує результати з файлу та виводить таблицю, позначаючи найбільші значення
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;fileName&quot;&gt;Назва файлу результатів&lt;/param&gt;
+/// &lt;param name=&quot;names&quot;&gt;Назви факультетів або курсів&lt;/param&gt;
+/// &lt;param name=&quot;count&quot;&gt;Кількість рядків таблиці, не більше чотирьох&lt;/param&gt;
+void outputCounts(const char fileName[], const char names[][10], int count)
+{
+	FILE* file = fopen(fileName, &quot;rb&quot;); // Файл для читання
+	int counts[4] = { 0 }; // Прочитані кількості
+	int maximum = 0; // Найбільша кількість
+	if (file != NULL)
+	{
+		if (fread(counts, sizeof(int), count, file) == (size_t)count)
+		{
+			for (int i = 0; i &lt; count; i++)
+			{
+				if (counts[i] &gt; maximum) maximum = counts[i];
+			}
+			cout &lt;&lt; setw(12) &lt;&lt; &quot;Назва&quot; &lt;&lt; setw(12) &lt;&lt; &quot;Кількість&quot; &lt;&lt; endl;
+			for (int i = 0; i &lt; count; i++)
+			{
+				cout &lt;&lt; setw(12) &lt;&lt; names[i] &lt;&lt; setw(12) &lt;&lt; counts[i];
+				if (maximum &gt; 0 &amp;&amp; counts[i] == maximum) cout &lt;&lt; &quot; - найбільше&quot;;
+				cout &lt;&lt; endl;
+			}
+			if (maximum == 0) cout &lt;&lt; &quot;Студентів за цим запитом немає.&quot; &lt;&lt; endl;
+		}
+		else cout &lt;&lt; &quot;Помилка читання результату.&quot; &lt;&lt; endl;
+		fclose(file);
+	}
+	else cout &lt;&lt; &quot;Файл результатів не знайдено.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Визначає факультети з найбільшою кількістю відмінників першого курсу
+/// &lt;/summary&gt;
+void findFacultyWithMostTopStudents()
+{
+	studentData students[maxStudentNumber]; // Студенти з файлу
+	int studentCount = readStudents(students); // Кількість студентів
+	int counts[3] = { 0 }; // Кількість відмінників на кожному факультеті
+	if (studentCount &gt;= 0)
+	{
+		for (int i = 0; i &lt; studentCount; i++)
+		{
+			bool topStudent = students[i].course == 1; // Ознака відмінника першого курсу
+			for (int j = 0; j &lt; maxGradeNumber; j++)
+			{
+				if (students[i].grade[j] != 5) topStudent = false;
+			}
+			if (topStudent)
+			{
+				for (int j = 0; j &lt; 3; j++)
+				{
+					if (strcmp(students[i].faculty, faculties[j]) == 0) counts[j]++;
+				}
+			}
+		}
+		if (writeCounts(&quot;faculties.bin&quot;, counts, 3))
+		{
+			cout &lt;&lt; &quot;Відмінники першого курсу за факультетами:&quot; &lt;&lt; endl;
+			outputCounts(&quot;faculties.bin&quot;, faculties, 3);
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Зчитує відрахованих студентів і визначає курси з найбільшою їх кількістю
+/// &lt;/summary&gt;
+void findCourseWithMostDeletedStudents()
+{
+	FILE* file = fopen(&quot;deleted.bin&quot;, &quot;rb&quot;); // Файл відрахованих студентів
+	studentData student; // Поточний запис
+	int counts[4] = { 0 }; // Кількість відрахованих за курсами
+	const char courses[][10] = { &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; }; // Назви курсів
+	if (file != NULL)
+	{
+		while (fread(&amp;student, sizeof(studentData), 1, file) == 1)
+		{
+			if (student.course &gt;= 1 &amp;&amp; student.course &lt;= 4) counts[student.course - 1]++;
+		}
+		fclose(file);
+		if (writeCounts(&quot;courses.bin&quot;, counts, 4))
+		{
+			cout &lt;&lt; &quot;Відраховані студенти за курсами:&quot; &lt;&lt; endl;
+			outputCounts(&quot;courses.bin&quot;, courses, 4);
+		}
+	}
+	else cout &lt;&lt; &quot;Спочатку створіть файл студентів.&quot; &lt;&lt; endl;
+}
+
+/// &lt;summary&gt;
+/// Меню операцій із бінарними файлами
+/// &lt;/summary&gt;
+void menu()
+{
+	int choice = 1; // Обраний пункт меню
+	while (choice != 0 &amp;&amp; !cin.eof())
+	{
+		cout &lt;&lt; &quot;1. Створити файл студентів&quot; &lt;&lt; endl
+			&lt;&lt; &quot;2. Вивести студентів із файлу&quot; &lt;&lt; endl
+			&lt;&lt; &quot;3. Додати студента&quot; &lt;&lt; endl
+			&lt;&lt; &quot;4. Замінити запис&quot; &lt;&lt; endl
+			&lt;&lt; &quot;5. Видалити запис&quot; &lt;&lt; endl
+			&lt;&lt; &quot;6. Відрахувати студентів ФІТ із двома або більше двійками&quot; &lt;&lt; endl
+			&lt;&lt; &quot;7. Факультет із найбільшою кількістю відмінників&quot; &lt;&lt; endl
+			&lt;&lt; &quot;8. Курс із найбільшою кількістю відрахованих&quot; &lt;&lt; endl
+			&lt;&lt; &quot;0. Вихід&quot; &lt;&lt; endl;
+		cout &lt;&lt; &quot;Оберіть пункт меню: &quot;;
+		choice = inputNumber(0, 8);
+		if (!cin.eof())
+		{
+			switch (choice)
+			{
+			case 1: createStudentsFile(); break;
+			case 2: outputStudentsFile(); break;
+			case 3: addStudent(); break;
+			case 4: changeStudent(true); break;
+			case 5: changeStudent(false); break;
+			case 6: deleteBadGradeStudents(); break;
+			case 7: findFacultyWithMostTopStudents(); break;
+			case 8: findCourseWithMostDeletedStudents(); break;
+			}
+		}
+	}
+}
+
+/// &lt;summary&gt;
+/// Головна функція програми
+/// &lt;/summary&gt;
+int main()
+{
+	identificationOutput();
+	menu();
+}
+</code></pre></section><section class="card" id="checks"><h2>Перевірка результатів</h2><h3>Завдання 1</h3><p>Для перевірки введено п’ять рядків: «Програмування файл код», «Ми вивчаємо C++», «текст і дані», порожній рядок і «кіт пес». Найкоротшими словами є «код», «Ми», «і» та «кіт». У рядку «кіт пес» обидва слова мають однакову довжину, тому вибрано перше. Порожній рядок не додає слова до результату.</p><p>Файл result.txt містить чотири знайдені слова, а останнім рядком записано число 4. Результат збігається з ручним підрахунком. Додатково перевірено порожній файл, рядки лише з роздільниками, українські літери, введення рядка довжиною 255 символів і повторне введення після перевищення цієї межі.</p><div class="gallery"><figure class="figure"><a href="assets/lab11-check-1-1.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-1-1.svg" alt="Початковий текст — фрагмент консольного виводу"></a><figcaption>Початковий текст — фрагмент консольного виводу</figcaption></figure><figure class="figure"><a href="assets/lab11-check-1-2.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-1-2.svg" alt="Найкоротші слова та їх кількість — фактичний результат"></a><figcaption>Найкоротші слова та їх кількість — фактичний результат</figcaption></figure></div><h3>Завдання 2</h3><p>У контрольному масиві шість студентів: Іванов — ФІТ, 1-й курс, усі оцінки 5; Шевченко — ФКНК, 1-й курс, усі оцінки 5; Петров — ФІТ, 2-й курс, оцінки 2 2 3 4 5 5; Коваленко — ФІТ, 3-й курс, оцінки 2 3 2 4 5 5; Баранов — ФКНК, 2-й курс, усі оцінки 2; Костенко — ФІТ, 4-й курс, оцінки 2 3 3 4 4 5.</p><p>Програма вилучила Петрова і Коваленка: обидва навчаються на ФІТ та мають по дві двійки. У students.bin залишилося чотири записи. Баранова не вилучено, оскільки він навчається на іншому факультеті; Костенка не вилучено, оскільки він має лише одну двійку.</p><p>Ручний підрахунок відмінників першого курсу дає: ФІТ — 1, ФКНК — 1, ФРЕКС — 0. Програма позначила ФІТ і ФКНК як факультети з найбільшою кількістю відмінників. Кількість відрахованих за курсами: 1-й — 0, 2-й — 1, 3-й — 1, 4-й — 0. Другий і третій курси правильно позначено як максимальні.</p><p>Окремо перевірено додавання Ткаченка: кількість записів збільшилася з чотирьох до п’яти. Після заміни п’ятого запису змінилися курс та оцінки. Видалення цього запису повернуло кількість студентів до чотирьох. Повторний запит відрахування після перезапуску не додав повторних записів до deleted.bin. Також перевірено порожній файл, межу 40 студентів, нечислове введення, шість оцінок одним рядком, повідомлення про відсутній файл і завершення після кінця потоку введення.</p><div class="gallery"><figure class="figure"><a href="assets/lab11-check-2-1.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-1.svg" alt="Початкова таблиця з шести студентів — фактичний вивід"></a><figcaption>Початкова таблиця з шести студентів — фактичний вивід</figcaption></figure><figure class="figure"><a href="assets/lab11-check-2-2.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-2.svg" alt="Студенти ФІТ, відраховані за дві двійки"></a><figcaption>Студенти ФІТ, відраховані за дві двійки</figcaption></figure><figure class="figure"><a href="assets/lab11-check-2-3.svg" target="_blank" rel="noopener"><img loading="lazy" src="assets/lab11-check-2-3.svg" alt="Факультети з відмінниками та курси з відрахованими"></a><figcaption>Факультети з відмінниками та курси з відрахованими</figcaption></figure></div></section><section class="card" id="conclusion"><h2>Висновки</h2><p>У лабораторній роботі реалізовано дві програми для обробки текстових і бінарних файлів. Використано функції відкриття, читання, запису та закриття файлів із бібліотеки <code>stdio.h</code>. Меню дозволяє виконувати окремі операції повторно та в довільному порядку.</p><p>У першому завданні пошук слова винесено в окрему функцію. Контрольний приклад дав слова «код», «Ми», «і», «кіт» та підсумкову кількість 4. Перевірено пропуск порожніх рядків і вибір першого слова за однакової мінімальної довжини.</p><p>У другому завданні масив структур із LAB10 збережено у бінарному файлі. Реалізовано додавання, заміну та видалення записів. Під час перевірки відраховано лише двох студентів ФІТ, які мали по дві двійки; у початковому файлі залишилося чотири записи.</p><p>Результати запитів зберігаються окремо. За однакової кількості відмінників програма позначила ФІТ і ФКНК, а за однакової кількості відрахувань — другий і третій курси. Збереження записів відрахованих у файлі дозволяє відновити статистику після перезапуску.</p><p>Контрольні приклади підтвердили відповідність результатів ручному підрахунку. Робота закріпила використання символьних масивів, структур, файлових операцій і розподіл програми на функції.</p></section><a class="back" href="index.html">← На головну</a></main><footer>Анастасьєв Володимир Андрійович · ІПЗ11(3) · 2026</footer></body></html>
